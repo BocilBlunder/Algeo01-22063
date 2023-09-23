@@ -1,4 +1,4 @@
-package ADTMatrix;
+package Matrix;
 
 import java.util.*;
 import java.util.Scanner;
@@ -10,13 +10,34 @@ public class Matrix {
     int col = 0;
     double [][] matrix ;
     double MARK = Double.NaN;
-    
+
     public Matrix (double [][] contents , int rows, int cols) {
         this.matrix = contents;
         this.row = rows;
         this.col = cols;
 
+       /* for (i = 0; i < rows; i++)
+        {
+            for (j = 0; j < cols; j++)
+            {
+                contents[i][j] = MARK;
+            }
+        }
     }
+
+    public Matrix (double [][] contents , int rows, int cols) {
+        this.matrix = contents;
+        this.row = rows;
+        this.col = cols;
+        for (i = 0; i < rows; i++)
+        {
+            for (j = 0; j < cols; j++)
+            {
+                contents[i][j] = MARK;
+            }
+        }
+
+    }*/
 
     public int getRowLength(double [][] matrix){
         return this.matrix.length;
@@ -35,34 +56,7 @@ public class Matrix {
     }
 
     public boolean isSquare(double [][] matrix){
-        return getRowLength(matrix) == getColLength(matrix);
+        return matrix.length == matrix[0].length;
     }
 
-    public Matrix readMatrix(){
-        Scanner input = new Scanner(System.in);
-        int i,j;
-        int rows, cols;
-        double [][] matrix;
-        Matrix m;
-
-        System.out.print("Masukkan jumlah baris: ");
-        rows = input.nextInt();
-        System.out.print("Masukkan jumlah kolom: ");
-        cols = input.nextInt();
-
-        matrix = new double[rows][cols];
-
- 
-        for(i = 0; i < row; i++){
-            for(j = 0; j < col; j++){
-                matrix[i][j] = input.nextDouble();
-            }
-        }
-
-        m = new Matrix(matrix, rows, cols);
-        return m;
-    }
-
-    
 }
-
