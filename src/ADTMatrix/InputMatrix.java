@@ -2,9 +2,8 @@ package ADTMatrix;
 import java.util.*;
 import java.io.*;
 
-
 public class InputMatrix{
-    double [][] matrix;
+    double matrix [][];
     int rows;
     int cols;
 
@@ -30,7 +29,7 @@ public class InputMatrix{
         m = new Matrix(matrix, rows, cols);
         return m;
     }
-
+    
     // Input dari File
     public Matrix readMatrixFile(){
         Scanner input = new Scanner(System.in);
@@ -80,3 +79,5 @@ public class InputMatrix{
         return m;
     }
 }
+
+

@@ -1,69 +1,63 @@
 package ADTMatrix;
 
-import java.util.*;
-import java.util.Scanner;
-
 public class Matrix {
-    int rowIdx = 0;
-    int colIdx = 0;
-    int row = 0;
-    int col = 0;
-    double [][] matrix ;
-    double MARK = Double.NaN;
+    public int row = 0;
+    public int col = 0;
+    public double matrix [][] ;
+    public double MARK = Double.NaN;
 
-    public Matrix (double [][] contents , int rows, int cols) {
+    public Matrix (double contents [][] , int rows, int cols) {
         this.matrix = contents;
         this.row = rows;
         this.col = cols;
+    }
 
-       /* for (i = 0; i < rows; i++)
-        {
-            for (j = 0; j < cols; j++)
-            {
-                contents[i][j] = MARK;
+    public Matrix (int rows, int cols){
+        int i, j;
+        matrix = new double[rows][cols];
+        this.row = rows;
+        this.col = cols;
+        for (i = 0; i < rows; i++){
+            for (j = 0; j < cols ; j++){
+                setElmt(i, j, MARK);
             }
         }
     }
 
-    public Matrix (double [][] contents , int rows, int cols) {
-        this.matrix = contents;
-        this.row = rows;
-        this.col = cols;
-        for (i = 0; i < rows; i++)
-        {
-            for (j = 0; j < cols; j++)
-            {
-                contents[i][j] = MARK;
-            }
-        }
-
-    }*/
+    public int getRowLength(){
+        return this.row;
     }
 
-    public int getRowLength(double [][] matrix){
-        return this.matrix.length;
+    public int getColLength(){
+        return this.col;
     }
 
-    public int getColLength(double [][] matrix){
-        return this.matrix[0].length;
+    public int getLastRowIdx(){
+        return this.row - 1;
     }
 
-    public int getLastRowIdx(double [][] matrix){
-        return this.matrix.length - 1;
+    public int getLastColIdx(){
+        return this.col - 1;
     }
 
-    public int getLastColIdx(double [][] matrix){
-        return this.matrix[0].length - 1;
-    }
-
-    public boolean isSquare(double [][] matrix){
-        return matrix.length == matrix[0].length;
+    public boolean isSquare(){
+        return this.row == this.col;
     }
     public double getElmt(int i, int j){
         return this.matrix[i][j];
     }
-    public void setElmt(int i, int j, double x){
-        this.matrix[i][j] = x;
+    public void setElmt(int i, int j, double elmt){
+        this.matrix[i][j] = elmt;
     }
+
+    public void rowSwap(Matrix m, int rows1, int rows2){
+		double temp;
+		for (int i = 0; i < m.getColLength(); i++){
+			temp = m.getElmt(rows1, i);
+			m.setElmt(rows1, i, m.getElmt(rows2, i));
+			m.setElmt(rows2, i, temp);
+		}
+    }
+
 
 }

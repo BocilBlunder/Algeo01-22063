@@ -1,16 +1,11 @@
 package ADTMatrix;
 
 public class OutputMatrix {
-    double [][] matrix ;
+    double matrix [][] ;
     double MARK = Double.NaN;
     int row = 0;
     int col = 0;
-    
-    public Matrix (double [][] contents , int rows, int cols) {
-        this.matrix = contents;
-        this.row = rows;
-        this.col = cols;
-    }
+
     public void printMatrix(){
         int i, j;
         Matrix matrix;
