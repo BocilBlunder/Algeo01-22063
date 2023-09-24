@@ -1,4 +1,4 @@
-package Matrix;
+package ADTMatrix;
 
 import java.util.*;
 import java.util.Scanner;
@@ -38,6 +38,7 @@ public class Matrix {
         }
 
     }*/
+    }
 
     public int getRowLength(double [][] matrix){
         return this.matrix.length;
@@ -57,6 +58,12 @@ public class Matrix {
 
     public boolean isSquare(double [][] matrix){
         return matrix.length == matrix[0].length;
+    }
+    public double getElmt(int i, int j){
+        return this.matrix[i][j];
+    }
+    public void setElmt(int i, int j, double x){
+        this.matrix[i][j] = x;
     }
 
 }
