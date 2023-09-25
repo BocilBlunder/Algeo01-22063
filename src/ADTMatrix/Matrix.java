@@ -52,7 +52,7 @@ public class Matrix {
 
     public void rowSwap(Matrix m, int rows1, int rows2){
 		double temp;
-		for (int i = 0; i < m.getColLength(); i++){
+		for (int i = 0; i < m.col; i++){
 			temp = m.getElmt(rows1, i);
 			m.setElmt(rows1, i, m.getElmt(rows2, i));
 			m.setElmt(rows2, i, temp);
@@ -64,11 +64,11 @@ public class Matrix {
         int temp;
         Matrix MMultiply;
 
-        MMultiply = new Matrix(m1.getRowLength(), m2.getColLength());
-        for (i = 0; i < MMultiply.getRowLength(); i++) {
-            for (j = 0; j < MMultiply.getColLength(); j++) {
+        MMultiply = new Matrix(m1.row, m2.col);
+        for (i = 0; i < MMultiply.row; i++) {
+            for (j = 0; j < MMultiply.col; j++) {
                 temp = 0;
-                for(k = 0; k < m1.getColLength(); k++) {
+                for(k = 0; k < m1.col; k++) {
                     temp += m1.getElmt(i, k) * m2.getElmt(k, j);
                 }
                 MMultiply.setElmt(i, j, temp);

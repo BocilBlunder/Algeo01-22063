@@ -1,4 +1,6 @@
-import ADTMatrix.*;
+package Function;
+
+import ADTMatrix.Matrix;
 import java.util.*;
 import java.io.*;
 
@@ -19,9 +21,9 @@ public class Determinan {
                 return m.getElmt(0, 0);
             } else{
                 for (i = 0; i < row; i++){
-                    mTemp = new Matrix(row, col);
-                    for (j = 0; j < row; j++){
-                        for (k = 0; k < m.col; k++){
+                    mTemp = new Matrix(row - 1, col - 1);
+                    for (j = 1; j < row; j++){
+                        for (k = 0; k < col; k++){
                             x = m.getElmt(j, k);
                             if (k > i){
                                 mTemp.setElmt(j - 1, k - 1, x);
@@ -31,7 +33,7 @@ public class Determinan {
                             }
                         }
                     }
-                    det += Math.pow(-1,i) * m.getElmt(0, i) * detKofaktor(mTemp);
+                    det += Math.pow(-1,i) * m.getElmt(0, i) * Determinan.detKofaktor(mTemp);
                 }
                 return det;
             }
@@ -39,8 +41,9 @@ public class Determinan {
             return m.MARK;
         }
     }
+}
 
-    public double detOBE (Matrix m){
+   /* public double detOBE (Matrix m){
         int i, j;
         double det = 0;
         int row = 0;
@@ -75,4 +78,4 @@ public class Determinan {
         }
     }
 }
-
+*/

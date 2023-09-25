@@ -6,12 +6,12 @@ public class OutputMatrix {
     int row = 0;
     int col = 0;
 
-    public void printMatrix(){
+    public static void printMatrix(){
         int i, j;
         Matrix matrix;
-        for (i = 0; i < this.matrix.length; i++){
-            for (j = 0; j < this.matrix[0].length; j++){
-                System.out.print(this.matrix[i][j]+" ");
+        for (i = 0; i < matrix.row; i++){
+            for (j = 0; j < matrix.col; j++){
+                System.out.print(matrix.matrix[i][j]+" ");
             }
             System.out.print("\n");
         }

@@ -3,9 +3,9 @@ import java.util.*;
 import java.io.*;
 
 public class InputMatrix{
-    double matrix [][];
-    int rows;
-    int cols;
+    public double matrix [][];
+    public int rows;
+    public int cols;
 
     // Input dari Keyboard
     public Matrix readMatrixKeyboard(){

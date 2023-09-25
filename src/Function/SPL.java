@@ -1,9 +1,11 @@
+package Function;
+
 import ADTMatrix.Matrix;
 import java.util.*;
 import java.io.*;
 
 public class SPL {
-    public void metodeInvers (Matrix MatrixSPL){
+    public static void inversSPL (Matrix MatrixSPL){
         Matrix A;
         Matrix B;
         Matrix x;
@@ -15,7 +17,7 @@ public class SPL {
         }
 
         A = new Matrix(MatrixSPL.getRowLength(), MatrixSPL.getColLength());
-        B = new Matrix(MatrixSPL.getRowLength(), 1);
+        B = new Matrix(MatrixSPL.col, 1);
         x = new Matrix(MatrixSPL.getRowLength(), 1);
 
         matrixInvers = Invers.inversIdentitas(A);
@@ -23,7 +25,7 @@ public class SPL {
         x = Matrix.multiplyMatrix(matrixInvers, B);
         
         for(int i = 0; i < x.getRowLength(); i++){
-            System.out.print("x"+Integer.toString(i+1)+" = "+Double.toString(x.getElmt(i, 1))+"\n");
+            System.out.print("x"+Integer.toString(i+1)+" = "+Double.toString(x.getElmt(i, 0))+"\n");
         }
     }
 }
