@@ -3,7 +3,7 @@ import java.util.*;
 import java.io.*;
 
 public class Determinan {
-    public double detKofaktor(Matrix m){
+    public static double detKofaktor(Matrix m){
         int i, j, k;
         double det = 0;
         double x = 0;

@@ -6,9 +6,10 @@ public class Invers {
 	public double matrix [][];
     public boolean inversExist = true;
 
-    public Matrix inversIdentitas (Matrix matrix){
+    public static Matrix inversIdentitas (Matrix matrix){
         int i, j, k;
         Matrix invers;
+		Boolean inversExist = true;
 		invers = new Matrix(matrix.getRowLength(), matrix.getColLength()*2);
 		
         for (i = 0; i < matrix.getRowLength(); i++){

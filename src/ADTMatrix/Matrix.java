@@ -59,5 +59,23 @@ public class Matrix {
 		}
     }
 
+    public static Matrix multiplyMatrix(Matrix m1, Matrix m2){
+        int i, j, k;
+        int temp;
+        Matrix MMultiply;
+
+        MMultiply = new Matrix(m1.getRowLength(), m2.getColLength());
+        for (i = 0; i < MMultiply.getRowLength(); i++) {
+            for (j = 0; j < MMultiply.getColLength(); j++) {
+                temp = 0;
+                for(k = 0; k < m1.getColLength(); k++) {
+                    temp += m1.getElmt(i, k) * m2.getElmt(k, j);
+                }
+                MMultiply.setElmt(i, j, temp);
+            }
+        }
+        return MMultiply;
+    }
+
 
 }
