@@ -1,8 +1,6 @@
 package Function;
 
 import ADTMatrix.Matrix;
-import java.util.*;
-import java.io.*;
 
 public class Determinan {
     public static double detKofaktor(Matrix m){
@@ -41,14 +39,14 @@ public class Determinan {
             return m.MARK;
         }
     }
-}
 
-   /* public double detOBE (Matrix m){
+
+    public double detOBE (Matrix m){
         int i, j;
         double det = 0;
         int row = 0;
         int col = 0;
-        int count = 1;
+        double count = 1;
 
         row = m.getRowLength();
         col = m.getColLength();
@@ -66,16 +64,26 @@ public class Determinan {
                         if (j < row){
                             m.rowSwap(m, i, j);
                             count *= -1;
-                        } else {
-                            return 0;
+                        } else{
+                            break;
+                        }
+                    }
+
+                    double pembagi = m.matrix[i][i];
+                    for (j = 0; j < col; j++){
+                        m.matrix[i][j] /= pembagi;
+                    }
+
+                    for (j = i + 1; j < row; j++){
+                        double pengurang = m.matrix[j][i];
+                        for(int k=0;k<m.col;k++){
+                            m.matrix[j][k] -= m.matrix[i][k] * pengurang;
                         }
                     }
                 }
             }
-
-        } else {
-            return m.MARK;
         }
+        return count;
     }
 }
-*/
+

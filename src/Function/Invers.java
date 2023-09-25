@@ -1,8 +1,7 @@
 package Function;
 
 import ADTMatrix.Matrix;
-import java.util.*;
-import java.io.*;
+
 
 public class Invers {
 	public double matrix [][];
