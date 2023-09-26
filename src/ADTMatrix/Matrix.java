@@ -82,7 +82,6 @@ public class Matrix {
     public static double detKofaktorIJ(Matrix m, int row, int col){
 		int n = m.getRowLength();
         int i, j;
-
 		Matrix temp = new Matrix(n-1, n-1);
 
         i = 0;
