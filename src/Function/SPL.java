@@ -1,6 +1,7 @@
 package Function;
 
 import ADTMatrix.Matrix;
+import ADTMatrix.OutputMatrix;
 
 public class SPL {
     public static void inversSPL (Matrix MatrixSPL){
@@ -44,7 +45,7 @@ public class SPL {
         Matrix A;
         Matrix B;
         Matrix x;
-        int i, j, k;
+        int i, j;
         double det;
         Matrix mTemp;
 
@@ -57,8 +58,6 @@ public class SPL {
         B = new Matrix(mCramer.row, 1);
         x = new Matrix(mCramer.getRowLength(), 1);
 
-        det = Determinan.detKofaktor(mCramer);
-
         for (i = 0; i < mCramer.getRowLength(); i++){
             for (j = 0; j < mCramer.getColLength(); j++){
                 if (j != mCramer.getColLength()-1){
@@ -70,17 +69,18 @@ public class SPL {
                 
             }
         }
-
+        
+        det = Determinan.detKofaktor(A);
         mTemp = A;
-        for (k = 0; k < A.col+1; k++){
-            for (i = 0; i < mCramer.getRowLength(); i++){
-                mTemp.setElmt(i, k, B.getElmt(i, k));
-                x.setElmt(i, 0, (Determinan.detKofaktor(mTemp)/det));
+        for (j = 0; j < A.row; j++){
+            for (i = 0; i < A.row; i++){
+                mTemp.setElmt(i, j, mCramer.getElmt(i, A.row));
             }
-        }
-
-        for(i = 0; i < x.getRowLength(); i++){
-            System.out.print("x"+Integer.toString(i+1)+" = "+Double.toString(x.getElmt(i, 0))+"\n");
+            double solution = Determinan.detKofaktor(mTemp)/det;
+            System.out.print("x"+Integer.toString(j+1)+" = "+Double.toString(solution)+"\n");
+            for (i = 0; i < A.row; i++){
+                mTemp.setElmt(i, j, mCramer.getElmt(i, j));
+            }
         }
     }
 }
