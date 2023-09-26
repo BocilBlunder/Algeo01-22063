@@ -66,4 +66,21 @@ public class Invers {
 		}
 		return matrix;
 	}
+
+	public static Matrix inversAdjoin (Matrix m){
+		int i, j;
+		Boolean inversExist = true;
+		Matrix mAdjoin = Matrix.Adjoin(m);
+		double det = Determinan.detKofaktor(m);
+
+		if (det == 0){
+			inversExist = false;
+		}
+		for (i = 0; i < m.row; i++){
+			for (j = 0; j < m.col; j++){
+				mAdjoin.setElmt(i, j, (mAdjoin.getElmt(i, j)/det));
+			}
+		}
+		return mAdjoin;
+	}
 }

@@ -1,5 +1,7 @@
 package ADTMatrix;
 
+import Function.Determinan;
+
 public class Matrix {
     public int row = 0;
     public int col = 0;
@@ -77,5 +79,70 @@ public class Matrix {
         return MMultiply;
     }
 
+    public static double detKofaktorIJ (Matrix m, int i, int j){
+        int k, l;
+
+        int rowTemp = m.row - 1;
+        int colTemp = m.col - 1;
+        Matrix temp = new Matrix (rowTemp, colTemp);
+
+        for (k = 0; k < m.row; k++){
+            for (l = 0; l < m.col; l++){
+                if (k != i || l != j){
+                    if (k < i){
+                        if (l < j){
+                            temp.setElmt(k, l, m.getElmt(k, l));
+                        }
+                        else{
+                            temp.setElmt(k, l-1, m.getElmt(k, l));
+                        }
+                    }
+                    else{
+                        if (l < j){
+                            temp.setElmt(k-1, l, m.getElmt(k, l));
+                        }
+                        else{
+                            temp.setElmt(k-1, l-1, m.getElmt(k, l));
+                        }
+                    }
+                }
+            }
+        }
+
+        return Determinan.detKofaktor(temp);
+
+    }
+
+    public static Matrix matriksKofaktor (Matrix m){
+        int n = m.row;
+
+		Matrix mKofaktor = new Matrix(n,n);
+		
+		for (int i = 0; i < n; i++){
+			for (int j = 0; j < n; j++){
+				mKofaktor.setElmt(i, j, detKofaktorIJ(m,i,j));
+				if ((i+j) % 2 == 1 && mKofaktor.getElmt(i,j) != 0)
+					mKofaktor.setElmt(i, j, (mKofaktor.getElmt(i,j) * -1));
+			}
+		}
+
+		return mKofaktor;
+    }
+
+    public static Matrix Adjoin (Matrix m){
+        Matrix mAdjoin;
+        int i, j;
+        
+        m = Matrix.matriksKofaktor(m);
+        mAdjoin = new Matrix(m.row, m.col);
+
+        for (i = 0; i < m.row; i++){
+            for (j = 0; j < m.col; j++){
+                mAdjoin.setElmt(i, j, m.getElmt(j, i));
+            }
+        }
+
+        return mAdjoin;
+    }
 
 }
