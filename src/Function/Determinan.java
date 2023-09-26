@@ -31,7 +31,7 @@ public class Determinan {
                             }
                         }
                     }
-                    det += Math.pow(-1,i) * m.getElmt(0, i) * Determinan.detKofaktor(mTemp);
+                    det += Math.pow(-1,i) * m.getElmt(0, i) * detKofaktor(mTemp);
                 }
                 return det;
             }
@@ -42,11 +42,10 @@ public class Determinan {
 
     // blm selesai
     public static double detOBE (Matrix m){
-        int i, j;
-        double det = 0;
+        int i, j, k;
+        double det = 1;
         int row = 0;
         int col = 0;
-        double count = 1;
 
         row = m.getRowLength();
         col = m.getColLength();
@@ -56,34 +55,37 @@ public class Determinan {
                 return m.getElmt(0, 0);
             } else {
                 for (i = 0; i < row; i++){
-                    if (m.matrix[i][i]== 0){
-                        j = 0;
-                        while (j < row && m.matrix[i][i] == 0){
-                            j++;
-                        }
-                        if (j < row){
+                    j = i;
+
+                    while (j < row && m.matrix[j][i] == 0){
+                        j++;
+                    }
+                    
+
+                    if (j != i){
+                        for (k = 0; k < col; k++){
                             m.rowSwap(m, i, j);
-                            count *= -1;
-                        } else{
-                            break;
                         }
-                    }
+                        det *= -1;
+                    } 
 
-                    double pembagi = m.matrix[i][i];
-                    for (j = 0; j < col; j++){
-                        m.matrix[i][j] /= pembagi;
+                    if (j == row){
+                        return 0;
                     }
-
+                    
+                    det *= m.matrix[i][i];
                     for (j = i + 1; j < row; j++){
-                        double pengurang = m.matrix[j][i];
-                        for(int k=0;k<m.col;k++){
-                            m.matrix[j][k] -= m.matrix[i][k] * pengurang;
+                        double pengurang = m.matrix[j][i] / m.getElmt(i, i);
+                        for (k = 0; k < row; k++){
+                            m.setElmt(j, k, m.getElmt(j, k) - pengurang * m.getElmt(i, k));
                         }
+                        
                     }
                 }
             }
         }
-        return count;
+        return (Math.round(det));
     }
 }
+
 
