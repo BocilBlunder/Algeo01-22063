@@ -83,7 +83,7 @@ public class Matrix {
 		int n = m.getRowLength();
         int i, j;
 
-		Matrix temp = new Matrix(n-1,n-1);
+		Matrix temp = new Matrix(n-1, n-1);
 
         i = 0;
         while (i < n){
@@ -100,18 +100,18 @@ public class Matrix {
 
                 if (i < row){
                     if (j < col){
-						temp.setElmt(i,j,m.getElmt(i,j));
+						temp.setElmt(i, j, m.getElmt(i, j));
                     }
 					else{
-						temp.setElmt(i,j-1,m.getElmt(i,j));
+						temp.setElmt(i, j-1, m.getElmt(i, j));
                     }
 				}
 				else{
 					if (j < col){
-						temp.setElmt(i-1,j,m.getElmt(i,j));
+						temp.setElmt(i-1, j, m.getElmt(i, j));
                     }
 					else{
-						temp.setElmt(i-1,j-1,m.getElmt(i,j));
+						temp.setElmt(i-1, j-1, m.getElmt(i, j));
                     }
 				}
                 j++;
