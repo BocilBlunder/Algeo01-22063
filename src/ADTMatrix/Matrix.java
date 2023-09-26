@@ -63,7 +63,7 @@ public class Matrix {
 
     public static Matrix multiplyMatrix(Matrix m1, Matrix m2){
         int i, j, k;
-        int temp;
+        double temp;
         Matrix MMultiply;
 
         MMultiply = new Matrix(m1.row, m2.col);
@@ -71,7 +71,7 @@ public class Matrix {
             for (j = 0; j < MMultiply.col; j++) {
                 temp = 0;
                 for(k = 0; k < m1.col; k++) {
-                    temp += m1.getElmt(i, k) * m2.getElmt(k, j);
+                    temp = temp + (m1.getElmt(i, k) * m2.getElmt(k, j));
                 }
                 MMultiply.setElmt(i, j, temp);
             }

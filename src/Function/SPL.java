@@ -15,19 +15,19 @@ public class SPL {
             return;
         }
 
-        A = new Matrix(MatrixSPL.getRowLength(), MatrixSPL.getColLength());
-        B = new Matrix(MatrixSPL.col, 1);
-        x = new Matrix(MatrixSPL.getRowLength(), 1);
+        A = new Matrix(MatrixSPL.row, MatrixSPL.row);
+        B = new Matrix(MatrixSPL.row, 1);
+        x = new Matrix(MatrixSPL.row, 1);
 
-        for (i = 0; i < MatrixSPL.getRowLength(); i++){
-            for (j = 0; j < MatrixSPL.getColLength()-1; j++){
-                A.setElmt(i, j, MatrixSPL.getElmt(i, j));
-            }
-        }
-
-        for (i = 0; i < MatrixSPL.getRowLength(); i++){
-            for (j = MatrixSPL.getColLength()-1; j < MatrixSPL.getColLength(); j++){
-                B.setElmt(i, j, A.getElmt(i, j));
+        for (i = 0; i < A.getRowLength(); i++){
+            for (j = 0; j < MatrixSPL.getColLength(); j++){
+                if (j != MatrixSPL.getColLength()-1){
+                    A.setElmt(i, j, MatrixSPL.getElmt(i, j));
+                }
+                else if (j == MatrixSPL.getColLength()-1){
+                    B.setElmt(i, 0, MatrixSPL.getElmt(i, j));
+                }
+                
             }
         }
 
@@ -44,8 +44,7 @@ public class SPL {
         Matrix A;
         Matrix B;
         Matrix x;
-        int i, j;
-        Matrix detMatriks;
+        int i, j, k;
         double det;
         Matrix mTemp;
 
@@ -54,34 +53,30 @@ public class SPL {
             return;
         }
 
-        A = new Matrix(mCramer.getRowLength(), mCramer.getColLength());
+        A = new Matrix(mCramer.getRowLength(), mCramer.getColLength()-1);
         B = new Matrix(mCramer.row, 1);
         x = new Matrix(mCramer.getRowLength(), 1);
-        detMatriks = new Matrix(mCramer.row, 1);
 
         det = Determinan.detKofaktor(mCramer);
 
         for (i = 0; i < mCramer.getRowLength(); i++){
-            for (j = 0; j < mCramer.getColLength()-1; j++){
-                A.setElmt(i, j, mCramer.getElmt(i, j));
+            for (j = 0; j < mCramer.getColLength(); j++){
+                if (j != mCramer.getColLength()-1){
+                    A.setElmt(i, j, mCramer.getElmt(i, j));
+                }
+                else{
+                    B.setElmt(i, 0, mCramer.getElmt(i, j));
+                }
+                
             }
         }
 
-        for (i = 0; i < mCramer.getRowLength(); i++){
-            for (j = mCramer.getColLength()-1; j < mCramer.getColLength(); j++){
-                B.setElmt(i, j, A.getElmt(i, j));
-            }
-        }
-
-        j = 0;
-        mTemp = mCramer;
-        while (j < mCramer.col){
+        mTemp = A;
+        for (k = 0; k < A.col+1; k++){
             for (i = 0; i < mCramer.getRowLength(); i++){
-                mTemp.setElmt(i, j, B.getElmt(i, j));
+                mTemp.setElmt(i, k, B.getElmt(i, k));
+                x.setElmt(i, 0, (Determinan.detKofaktor(mTemp)/det));
             }
-            detMatriks.setElmt(i, 0, Determinan.detKofaktor(mTemp));
-            x.setElmt(i, 0, (detMatriks.getElmt(i, 0))/det);
-            j++;
         }
 
         for(i = 0; i < x.getRowLength(); i++){
