@@ -79,38 +79,46 @@ public class Matrix {
         return MMultiply;
     }
 
-    public static double detKofaktorIJ (Matrix m, int i, int j){
-        int k, l;
+    public static double detKofaktorIJ(Matrix m, int row, int col){
+		int n = m.getRowLength();
+        int i, j;
 
-        int rowTemp = m.row - 1;
-        int colTemp = m.col - 1;
-        Matrix temp = new Matrix (rowTemp, colTemp);
+		Matrix temp = new Matrix(n-1,n-1);
 
-        for (k = 0; k < m.row; k++){
-            for (l = 0; l < m.col; l++){
-                if (k != i || l != j){
-                    if (k < i){
-                        if (l < j){
-                            temp.setElmt(k, l, m.getElmt(k, l));
-                        }
-                        else{
-                            temp.setElmt(k, l-1, m.getElmt(k, l));
-                        }
-                    }
-                    else{
-                        if (l < j){
-                            temp.setElmt(k-1, l, m.getElmt(k, l));
-                        }
-                        else{
-                            temp.setElmt(k-1, l-1, m.getElmt(k, l));
-                        }
-                    }
-                }
+        i = 0;
+        while (i < n){
+            if (i == row){
+                i++;
+                continue;
             }
+            j = 0;
+            while (j < n){
+                if (j == col){
+                    j++;
+                    continue;
+                }
+
+                if (i < row){
+                    if (j < col){
+						temp.setElmt(i,j,m.getElmt(i,j));
+                    }
+					else{
+						temp.setElmt(i,j-1,m.getElmt(i,j));
+                    }
+				}
+				else{
+					if (j < col){
+						temp.setElmt(i-1,j,m.getElmt(i,j));
+                    }
+					else{
+						temp.setElmt(i-1,j-1,m.getElmt(i,j));
+                    }
+				}
+                j++;
+            }
+            i++;
         }
-
-        return Determinan.detKofaktor(temp);
-
+		return Determinan.detKofaktor(temp);
     }
 
     public static Matrix matriksKofaktor (Matrix m){
