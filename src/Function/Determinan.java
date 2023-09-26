@@ -40,8 +40,8 @@ public class Determinan {
         }
     }
 
-
-    public double detOBE (Matrix m){
+    // blm selesai
+    public static double detOBE (Matrix m){
         int i, j;
         double det = 0;
         int row = 0;

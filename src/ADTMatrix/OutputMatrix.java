@@ -5,7 +5,7 @@ public class OutputMatrix {
         int i, j;
         for (i = 0; i < matrix.row; i++) {
             for (j = 0; j < matrix.col; j++) {
-                System.out.print(matrix.getElmt(i, j));
+                System.out.printf("%0.2f ",matrix.getElmt(i, j));
             }
             System.out.println();
         }

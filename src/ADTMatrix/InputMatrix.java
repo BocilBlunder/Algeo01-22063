@@ -3,15 +3,12 @@ import java.util.*;
 import java.io.*;
 
 public class InputMatrix{
-    public double matrix [][];
-    public int rows;
-    public int cols;
-
     // Input dari Keyboard
-    public Matrix readMatrixKeyboard(){
-        Scanner input = new Scanner(System.in);
+    public static Scanner input = new Scanner(System.in);
+    public static double[][] readMatrixKeyboard(){
         int i,j;
-        Matrix m;
+        double [][] matrix;
+        int rows, cols;
 
         System.out.print("Masukkan jumlah baris: ");
         rows = input.nextInt();
@@ -19,19 +16,18 @@ public class InputMatrix{
         cols = input.nextInt();
 
         matrix = new double[rows][cols];
-
+        
+        System.out.println("Masukkan elemen A: ");
         for(i = 0; i < rows; i++){
             for(j = 0; j < cols; j++){
                 matrix[i][j] = input.nextDouble();
             }
         }
+        return matrix;
 
-        m = new Matrix(matrix, rows, cols);
-        return m;
     }
-    
     // Input dari File
-    public Matrix readMatrixFile(){
+    /*public Matrix readMatrixFile(){
         Scanner input = new Scanner(System.in);
         BufferedReader inputFile = new BufferedReader(new InputStreamReader(System.in));
         Matrix m;
@@ -77,7 +73,7 @@ public class InputMatrix{
         }
         m = new Matrix(matrix, rows, cols);
         return m;
-    }
+    }*/
 }
 
 
