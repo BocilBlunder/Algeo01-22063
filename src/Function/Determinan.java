@@ -91,9 +91,12 @@ public class Determinan {
                 if (det == -0 || det == 0){
                     det = 0;
                 }
+                return det;
             }
+        
+        } else {
+            return m.MARK;
         }
-        return det;
     }
 }
 
