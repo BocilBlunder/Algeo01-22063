@@ -27,12 +27,12 @@ public class InputMatrix{
 
     }
     // Input dari File
-    /*public Matrix readMatrixFile(){
-        Scanner input = new Scanner(System.in);
+    public static Matrix readMatrixFile(){
         BufferedReader inputFile = new BufferedReader(new InputStreamReader(System.in));
-        Matrix m;
+        double[][] matrix;
         Boolean fileExist;
         int i, j;
+        int rows, cols;
 
         fileExist = false;
         while (fileExist == true){
@@ -64,6 +64,8 @@ public class InputMatrix{
                     }
                 }
                 file.close();
+                Matrix m = new Matrix(matrix, matrix.length, matrix[0].length);
+                return m;
             }
             catch(FileNotFoundException err){
                 err.printStackTrace();
@@ -71,9 +73,9 @@ public class InputMatrix{
             }
 
         }
-        m = new Matrix(matrix, rows, cols);
-        return m;
-    }*/
+        return null;
+        
+    }
 }
 
 

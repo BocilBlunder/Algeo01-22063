@@ -5,9 +5,9 @@ import ADTMatrix.Matrix;
 public class Determinan {
     public static double detKofaktor(Matrix m){
         int i, j, k;
+        Matrix mTemp;
         double det = 0;
         double x = 0;
-        Matrix mTemp;
         int row = 0;
         int col = 0;
 
@@ -16,13 +16,13 @@ public class Determinan {
 
         if (m.isSquare()){
             if(row == 1 || col == 1){
-                return m.getElmt(0, 0);
+                return m.matrix[0][0];
             } else{
                 for (i = 0; i < row; i++){
                     mTemp = new Matrix(row - 1, col - 1);
                     for (j = 1; j < row; j++){
-                        for (k = 0; k < col; k++){
-                            x = m.getElmt(j, k);
+                        for (k = 0; k < row; k++){
+                            x = m.matrix[j][k];
                             if (k > i){
                                 mTemp.setElmt(j - 1, k - 1, x);
                             }
@@ -31,7 +31,7 @@ public class Determinan {
                             }
                         }
                     }
-                    det += Math.pow(-1,i) * m.getElmt(0, i) * detKofaktor(mTemp);
+                    det += Math.pow(-1,i) * m.matrix[0][i] * detKofaktor(mTemp);
                 }
                 return det;
             }
@@ -40,10 +40,11 @@ public class Determinan {
         }
     }
 
-    // blm selesai
     public static double detOBE (Matrix m){
-        int i, j, k;
+        int i, j, k, l;
         double det = 1;
+        double x = 0;
+        double y = 0;
         int row = 0;
         int col = 0;
 
@@ -52,40 +53,50 @@ public class Determinan {
 
         if (m.isSquare()){
             if (row == 1 || col == 1){
-                return m.getElmt(0, 0);
+                return m.matrix[0][0];
             } else {
                 for (i = 0; i < row; i++){
-                    j = i;
+                    if (m.matrix[i][i] == 0){
+                        j = i + 1;
 
-                    while (j < row && m.matrix[j][i] == 0){
-                        j++;
-                    }
-                    
-
-                    if (j != i){
-                        for (k = 0; k < col; k++){
-                            m.rowSwap(m, i, j);
+                        while (j < row && m.matrix[j][i] == 0){
+                            j++;
                         }
-                        det *= -1;
-                    } 
-
-                    if (j == row){
-                        return 0;
+                    
+                        if (j > row){
+                            det = 0;
+                        } else {
+                            for (k = 0; k < row; k++){
+                                m.rowSwap(m, i, j);
+                            }
+                            det *= -1;
+                        }
                     }
                     
-                    det *= m.matrix[i][i];
-                    for (j = i + 1; j < row; j++){
-                        double pengurang = m.matrix[j][i] / m.getElmt(i, i);
+                    x = m.matrix[i][i];
+                    det *= x;
+                    if (x != 0){
                         for (k = 0; k < row; k++){
-                            m.setElmt(j, k, m.getElmt(j, k) - pengurang * m.getElmt(i, k));
+                            m.matrix[i][k] /= x;
                         }
                         
+                        for (k = i + 1; k < row; k++){
+                            y = m.matrix[k][i];
+                            for (l = 0; l < row; l++){
+                                m.setElmt(k, l, m.matrix[k][l] - y * m.matrix[i][l]);
+                            }
+                        }    
                     }
+                }
+                if (det == -0 || det == 0){
+                    det = 0;
                 }
             }
         }
-        return (Math.round(det));
+        return det;
     }
 }
+
+
 
 
