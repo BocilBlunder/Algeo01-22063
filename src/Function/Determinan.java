@@ -63,13 +63,13 @@ public class Determinan {
                             j++;
                         }
                     
-                        if (j < row){
+                        if (j >= row){
+                            det = 0;
+                        } else {
                             for (k = 0; k < row; k++){
                                 m.rowSwap(m, i, j);
                             }
                             det *= -1;
-                        } else {
-                            det = 0;
                         }
                     }
                     

@@ -85,43 +85,40 @@ public class SPL {
     }
 public static void gaussSPL (Matrix Mgauss) {
 
-        Mgauss = GaussElimination.gaussElimination(Mgauss);
+        Mgauss = Matrix.gaussElimination(Mgauss);
 
-        double X[] = new double[Mgauss.getRowLength()];
-
-        int solutionType = GaussElimination.SolutionType(Mgauss);
+        int solutionType = Matrix.SolutionType(Mgauss);
 
         if (solutionType == 0) {
             System.out.println("Solusi tidak ada.");
         } else if (solutionType == 1) {
             System.out.println("Solusi tunggal:");
             for (int i = 0; i < Mgauss.getRowLength(); i++) {
-                System.out.printf("X[%d] = %.2f%n", i + 1, X[i]);
+                System.out.printf("X[%d] = %.2f%n", i + 1, Mgauss.matrix[i][Mgauss.getColLength() - 1]);
             }
+            
         } else {
             System.out.println("Solusi banyak (parametrik):");
-            GaussElimination.solveManySolution(Mgauss);
+            Matrix.solveManySolution(Mgauss);
         }
     }
 
     public static void gaussJordanSPL (Matrix Mgajo) {
 
-        Mgajo = GaussJordanElimination.gaussJordanElimination(Mgajo);
+        Mgajo = Matrix.gaussJordanElimination(Mgajo);
 
-        double X[] = new double[Mgajo.getRowLength()];
-
-        int solutionType = GaussJordanElimination.SolutionType(Mgajo);
+        int solutionType = Matrix.SolutionType(Mgajo);
 
         if (solutionType == 0) {
             System.out.println("Solusi tidak ada.");
         } else if (solutionType == 1) {
             System.out.println("Solusi tunggal:");
             for (int i = 0; i < Mgajo.getRowLength(); i++) {
-                System.out.printf("X[%d] = %.2f%n", i + 1, X[i]);
+                System.out.printf("X[%d] = %.2f%n", i + 1, Mgajo.matrix[i][Mgajo.getColLength() - 1]);
             }
         } else {
             System.out.println("Solusi banyak (parametrik):");
-            GaussJordanElimination.solveManySolution(Mgajo);
+            Matrix.solveManySolution(Mgajo);
         }
     }
 }
