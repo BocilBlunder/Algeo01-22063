@@ -215,7 +215,7 @@ public class Matrix {
                     StringBuilder temp = new StringBuilder();
 
                     if (Math.abs(matrix.getElmt(i, matrix.getColLength() - 1)) > 1e-8) {
-                        temp.append(String.format("%.2f", Math.abs(matrix.getElmt(i, matrix.getColLength() - 1))));
+                        temp.append(String.format("%.2f", (matrix.getElmt(i, matrix.getColLength() - 1))));
                     }
 
                     for (int k = j + 1; k < nEff; k++) {
@@ -231,13 +231,23 @@ public class Matrix {
                                 if (temp.length() == 0) {
                                     temp.append(String.format("%.2f", Math.abs(matrix.getElmt(i, k))));
                                 } else {
-                                    temp.append(String.format(" - %.2f", Math.abs(matrix.getElmt(i, k))));
+                                    if (Math.abs(matrix.getElmt(i, k)) == 1) {
+                                        temp.append(String.format(" - ", Math.abs(matrix.getElmt(i, k))));
+                                    }
+                                    else {
+                                        temp.append(String.format(" - %.2f", Math.abs(matrix.getElmt(i, k))));
+                                    }
                                 }
                             } else {
                                 if (temp.length() == 0) {
                                     temp.append(String.format("%.2f", Math.abs(matrix.getElmt(i, k))));
                                 } else {
+                                    if (Math.abs(matrix.getElmt(i, k)) == 1) {
+                                        temp.append(String.format(" + ", Math.abs(matrix.getElmt(i, k))));
+                                    }
+                                    else {
                                     temp.append(String.format(" + %.2f", Math.abs(matrix.getElmt(i, k))));
+                                    }
                                 }
                             }
                             temp.append(parametric[k]);
@@ -292,29 +302,6 @@ public class Matrix {
                 }
             }
         }
-        for (int i = 0; i < n; i++) {
-            for (int j = i + 1; j < n; j++) {
-                int sameAbsValue = 1;
-                for (int k = 0 ; k < m - 1; k++) {
-                    if (Math.abs(matrix.getElmt(i, k)) != Math.abs(matrix.getElmt(j, k) )) {
-                        sameAbsValue = 0;
-                        break;
-                    }
-                }
-                if (sameAbsValue == 1) {
-                    if (matrix.getElmt(i, m-1) < 0 && matrix.getElmt(i, m-1) > 0) {
-                        for (int k = 0; k < m ; k++) {
-                            matrix.setElmt(i, k, matrix.getElmt(i, k) + matrix.getElmt(j, k));
-                        }
-                    }
-                    else if (matrix.getElmt(i, m-1) > 0 && matrix.getElmt(i, m-1) < 0) {
-                        for (int k = 0; k < m ; k++) {
-                            matrix.setElmt(i, k, matrix.getElmt(i, k) + matrix.getElmt(j, k));
-                }
-            }
-        }
-            }
-        }
 
         for (int i = 0 ; i < n ; i++) {
             int allZero = 1 ;
@@ -350,6 +337,41 @@ public class Matrix {
                 }
             }
         }
+
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
+                int sameAbsValue = 1;
+                for (int k = 0 ; k < m - 1; k++) {
+                    if (Math.abs(matrix.getElmt(i, k)) != Math.abs(matrix.getElmt(j, k) )) {
+                        sameAbsValue = 0;
+                        break;
+                    }
+                }
+                if (sameAbsValue == 1) {
+                    if (matrix.getElmt(i, m-2) < 0 && matrix.getElmt(i, m-2) > 0) {
+                        for (int k = 0; k < m ; k++) {
+                            matrix.setElmt(j, k, matrix.getElmt(j, k) + matrix.getElmt(i, k));
+                        }
+                    }
+                    else if (matrix.getElmt(i, m-2) > 0 && matrix.getElmt(i, m-2) < 0) {
+                        for (int k = 0; k < m ; k++) {
+                            matrix.setElmt(j, k, matrix.getElmt(j, k) + matrix.getElmt(i, k));
+                }
+            }
+                    else if (matrix.getElmt(i, m-2) > 0 && matrix.getElmt(i, m-2) > 0) {
+                        for (int k = 0; k < m ; k++) {
+                            matrix.setElmt(j, k, matrix.getElmt(j, k) - matrix.getElmt(i, k));
+                }
+            }
+                    else if (matrix.getElmt(i, m-2) < 0 && matrix.getElmt(i, m-2) < 0) {
+                        for (int k = 0; k < m ; k++) {
+                            matrix.setElmt(j, k, matrix.getElmt(j, k) - matrix.getElmt(i, k));
+                }
+            }
+        }
+            }
+        }
+
         backSubstitution(matrix, X);
         return matrix;
     }
