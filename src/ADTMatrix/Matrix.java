@@ -249,7 +249,7 @@ public class Matrix {
                     if (!visited[j]) {
                         visited[j] = true;
                         parametric[j] = (char) ('a' + cur % 26);
-                        System.out.printf("X%d = %c%n", j + 1, parametric[j]);
+                        System.out.printf("X%d = %c%n", j + i, parametric[j]);
                         cur = (cur + 1) % 26;
                     }
                 }
@@ -292,6 +292,46 @@ public class Matrix {
                 }
             }
         }
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
+                int sameAbsValue = 1;
+                for (int k = 0 ; k < m - 1; k++) {
+                    if (Math.abs(matrix.getElmt(i, k)) != Math.abs(matrix.getElmt(j, k) )) {
+                        sameAbsValue = 0;
+                        break;
+                    }
+                }
+                if (sameAbsValue == 1) {
+                    if (matrix.getElmt(i, m-1) < 0 && matrix.getElmt(i, m-1) > 0) {
+                        for (int k = 0; k < m ; k++) {
+                            matrix.setElmt(i, k, matrix.getElmt(i, k) + matrix.getElmt(j, k));
+                        }
+                    }
+                    else if (matrix.getElmt(i, m-1) > 0 && matrix.getElmt(i, m-1) < 0) {
+                        for (int k = 0; k < m ; k++) {
+                            matrix.setElmt(i, k, matrix.getElmt(i, k) + matrix.getElmt(j, k));
+                }
+            }
+        }
+            }
+        }
+
+        for (int i = 0 ; i < n ; i++) {
+            int allZero = 1 ;
+            for (int j = 0; j < m - 1 ; j++) {
+                if (matrix.getElmt(i,j) != 0) {
+                    allZero = 0;
+                    break;
+                }
+            }
+            if (allZero == 1) {
+                for (int k = i ; k < n - 1 ; k++) {
+                    for (int j = 0 ; j < m ; j++) {
+                        matrix.rowSwap(matrix, k, k+1);
+                }
+            }
+        }
+    }
 
         for (int i = 0; i < n; i++) {
             int pivotColl = 0;

@@ -10,34 +10,33 @@ public class SPL {
         Matrix x;
         Matrix matrixInvers;
         int i, j;
-
-        if ((MatrixSPL.getRowLength() != MatrixSPL.getColLength()-1) || Determinan.detKofaktor(MatrixSPL) == 0){
+        A = new Matrix(MatrixSPL.row, MatrixSPL.row);
+        if ((MatrixSPL.getRowLength() != MatrixSPL.getColLength()-1) || Determinan.detKofaktor(A) == 0 || Matrix.SolutionType(MatrixSPL) == 0 || Matrix.SolutionType(MatrixSPL) == 2){
             System.out.print("SPL tidak dapat diselesaikan dengan metode invers.");
             return;
-        }
+        } else {
+            B = new Matrix(MatrixSPL.row, 1);
+            x = new Matrix(MatrixSPL.row, 1);
 
-        A = new Matrix(MatrixSPL.row, MatrixSPL.row);
-        B = new Matrix(MatrixSPL.row, 1);
-        x = new Matrix(MatrixSPL.row, 1);
-
-        for (i = 0; i < A.getRowLength(); i++){
-            for (j = 0; j < MatrixSPL.getColLength(); j++){
-                if (j != MatrixSPL.getColLength()-1){
-                    A.setElmt(i, j, MatrixSPL.getElmt(i, j));
+            for (i = 0; i < A.getRowLength(); i++){
+                for (j = 0; j < MatrixSPL.getColLength(); j++){
+                    if (j != MatrixSPL.getColLength()-1){
+                        A.setElmt(i, j, MatrixSPL.getElmt(i, j));
+                    }
+                    else if (j == MatrixSPL.getColLength()-1){
+                        B.setElmt(i, 0, MatrixSPL.getElmt(i, j));
+                    }
+                    
                 }
-                else if (j == MatrixSPL.getColLength()-1){
-                    B.setElmt(i, 0, MatrixSPL.getElmt(i, j));
-                }
-                
             }
-        }
 
-        matrixInvers = Invers.inversIdentitas(A);
+            matrixInvers = Invers.inversIdentitas(A);
 
-        x = Matrix.multiplyMatrix(matrixInvers, B);
-        
-        for(i = 0; i < x.getRowLength(); i++){
-            System.out.print("x"+Integer.toString(i+1)+" = "+Double.toString(x.getElmt(i, 0))+"\n");
+            x = Matrix.multiplyMatrix(matrixInvers, B);
+            
+            for(i = 0; i < x.getRowLength(); i++){
+                System.out.print("x"+Integer.toString(i+1)+" = "+Double.toString(x.getElmt(i, 0))+"\n");
+            }
         }
     }
 
@@ -49,41 +48,42 @@ public class SPL {
         double det;
         Matrix mTemp;
 
-        if ((mCramer.getRowLength() != mCramer.getColLength()-1) || Determinan.detKofaktor(mCramer) == 0){
+        A = new Matrix(mCramer.getRowLength(), mCramer.getColLength()-1);
+        if ((mCramer.getRowLength() != mCramer.getColLength()-1) || Determinan.detKofaktor(A) == 0 || Matrix.SolutionType(mCramer) == 0 || Matrix.SolutionType(mCramer) == 2){
             System.out.print("SPL tidak dapat diselesaikan dengan metode cramer.");
             return;
-        }
+        } else {
+            B = new Matrix(mCramer.row, 1);
+            x = new Matrix(mCramer.getRowLength(), 1);
 
-        A = new Matrix(mCramer.getRowLength(), mCramer.getColLength()-1);
-        B = new Matrix(mCramer.row, 1);
-        x = new Matrix(mCramer.getRowLength(), 1);
-
-        for (i = 0; i < mCramer.getRowLength(); i++){
-            for (j = 0; j < mCramer.getColLength(); j++){
-                if (j != mCramer.getColLength()-1){
-                    A.setElmt(i, j, mCramer.getElmt(i, j));
+            for (i = 0; i < mCramer.getRowLength(); i++){
+                for (j = 0; j < mCramer.getColLength(); j++){
+                    if (j != mCramer.getColLength()-1){
+                        A.setElmt(i, j, mCramer.getElmt(i, j));
+                    }
+                    else{
+                        B.setElmt(i, 0, mCramer.getElmt(i, j));
+                    }
+                    
                 }
-                else{
-                    B.setElmt(i, 0, mCramer.getElmt(i, j));
+            }
+            
+            det = Determinan.detKofaktor(A);
+            mTemp = A;
+            for (j = 0; j < A.row; j++){
+                for (i = 0; i < A.row; i++){
+                    mTemp.setElmt(i, j, mCramer.getElmt(i, A.row));
                 }
-                
-            }
-        }
-        
-        det = Determinan.detKofaktor(A);
-        mTemp = A;
-        for (j = 0; j < A.row; j++){
-            for (i = 0; i < A.row; i++){
-                mTemp.setElmt(i, j, mCramer.getElmt(i, A.row));
-            }
-            double solution = Determinan.detKofaktor(mTemp)/det;
-            System.out.print("x"+Integer.toString(j+1)+" = "+Double.toString(solution)+"\n");
-            for (i = 0; i < A.row; i++){
-                mTemp.setElmt(i, j, mCramer.getElmt(i, j));
+                double solution = Determinan.detKofaktor(mTemp)/det;
+                System.out.print("x"+Integer.toString(j+1)+" = "+Double.toString(solution)+"\n");
+                for (i = 0; i < A.row; i++){
+                    mTemp.setElmt(i, j, mCramer.getElmt(i, j));
+                }
             }
         }
     }
-public static void gaussSPL (Matrix Mgauss) {
+
+    public static void gaussSPL (Matrix Mgauss) {
 
         Mgauss = Matrix.gaussElimination(Mgauss);
 
