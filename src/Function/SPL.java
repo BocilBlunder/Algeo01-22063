@@ -85,15 +85,17 @@ public class SPL {
     public static void gaussSPL (Matrix Mgauss) {
 
         Mgauss = Matrix.gaussElimination(Mgauss);
-
+        double X[] = new double[Mgauss.getRowLength()];
         int solutionType = Matrix.SolutionType(Mgauss);
+
+        Matrix.backSubstitution(Mgauss, X);
 
         if (solutionType == 0) {
             System.out.println("Solusi tidak ada.");
         } else if (solutionType == 1) {
             System.out.println("Solusi tunggal:");
             for (int i = 0; i < Mgauss.getRowLength(); i++) {
-                System.out.printf("X[%d] = %.2f%n", i + 1, Mgauss.matrix[i][Mgauss.getColLength() - 1]);
+                System.out.printf("X[%d] = %.2f%n", i + 1, X[i]);
             }
             
         } else {
