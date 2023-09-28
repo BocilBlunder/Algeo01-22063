@@ -5,29 +5,8 @@ import java.io.*;
 public class InputMatrix{
     // Input dari Keyboard
     public static Scanner input = new Scanner(System.in);
+    
     public static double[][] readMatrixKeyboard1(){
-        int i,j;
-        double [][] matrix;
-        int rows, cols;
-
-        System.out.print("Masukkan jumlah baris: ");
-        rows = input.nextInt();
-        System.out.print("Masukkan jumlah kolom: ");
-        cols = input.nextInt();
-
-        matrix = new double[rows][cols];
-        
-        System.out.println("Masukkan elemen matriks: ");
-        for(i = 0; i < rows; i++){
-            for(j = 0; j < cols; j++){
-                matrix[i][j] = input.nextDouble();
-            }
-        }
-        return matrix;
-
-    }
-
-    public static double[][] readMatrixKeyboard2(){
         int i,j;
         double [][] matrixA, matrixB, m;
         int rows, cols;
@@ -60,6 +39,48 @@ public class InputMatrix{
         }
         return m;
     }
+
+    public static double[][] readMatrixKeyboard2(){
+        int i,j;
+        double [][] matrix;
+        int rows, cols;
+
+        System.out.print("Masukkan jumlah baris: ");
+        rows = input.nextInt();
+        System.out.print("Masukkan jumlah kolom: ");
+        cols = input.nextInt();
+
+        matrix = new double[rows][cols];
+        System.out.println("Masukkan elemen matriks: ");
+        for(i = 0; i < rows; i++){
+            for(j = 0; j < cols; j++){
+                matrix[i][j] = input.nextDouble();
+            }
+        }
+        return matrix;
+    }
+
+    public static double[][] readInterpolasiKeyboard(){
+        int i, j;
+        int n;
+        double [][] matrix;
+
+        System.out.print("Masukkan derajat polinom (n): ");
+        n = input.nextInt();
+
+        matrix = new double[n + 1][2];
+        System.out.println("Masukkan titik x dan y: ");
+        for(i = 0; i < n + 1; i++){
+            for(j = 0; j < 2; j++){
+                matrix[i][j] = input.nextDouble();
+            }
+        }
+        return matrix;
+    }
+
+    //public static double[][] readRegresiKeyboard(){}
+
+
     // Input dari File
     public static Matrix readMatrixFile(){
         BufferedReader inputFile = new BufferedReader(new InputStreamReader(System.in));
