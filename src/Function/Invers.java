@@ -17,7 +17,7 @@ public class Invers {
             for (j = 0; j < matrix.getColLength(); j++){
                 if (i == j){
 					invers.setElmt(i, j+matrix.getColLength(), 1);
-                }
+	            }
 				else{
 					invers.setElmt(i, j+matrix.getColLength(), 0);
 				}
