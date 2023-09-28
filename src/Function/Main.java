@@ -4,8 +4,9 @@ import Function.*;
 
 public class Main{
     public static void main (String[] args){
-        double[][]m = InputMatrix.readMatrixKeyboard();
+        double[][]m = InputMatrix.readMatrixKeyboard1();
         Matrix m1 = new Matrix(m, m.length, m[0].length);
+        OutputMatrix.printMatrix(m1);
         double hasil = Determinan.detKofaktor((m1));
         double hasil2 = Determinan.detOBE(m1);
         System.out.printf("%.2f", hasil);
