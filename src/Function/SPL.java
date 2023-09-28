@@ -83,7 +83,6 @@ public class SPL {
     }
 
     public static void gaussSPL (Matrix Mgauss) {
-
         Mgauss = Matrix.gaussElimination(Mgauss);
         double X[] = new double[Mgauss.getRowLength()];
         int solutionType = Matrix.SolutionType(Mgauss);
@@ -105,7 +104,6 @@ public class SPL {
     }
 
     public static void gaussJordanSPL (Matrix Mgajo) {
-
         Mgajo = Matrix.gaussJordanElimination(Mgajo);
 
         int solutionType = Matrix.SolutionType(Mgajo);
