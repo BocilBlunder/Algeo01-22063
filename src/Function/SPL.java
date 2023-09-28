@@ -11,24 +11,23 @@ public class SPL {
         Matrix matrixInvers;
         int i, j;
         A = new Matrix(MatrixSPL.row, MatrixSPL.row);
-        if ((MatrixSPL.getRowLength() != MatrixSPL.getColLength()-1) || Determinan.detKofaktor(A) == 0 || Matrix.SolutionType(MatrixSPL) == 0 || Matrix.SolutionType(MatrixSPL) == 2){
+        B = new Matrix(MatrixSPL.row, 1);
+        for (i = 0; i < A.getRowLength(); i++){
+            for (j = 0; j < MatrixSPL.getColLength(); j++){
+                if (j != MatrixSPL.getColLength()-1){
+                        A.setElmt(i, j, MatrixSPL.getElmt(i, j));
+                }
+                else if (j == MatrixSPL.getColLength()-1){
+                    B.setElmt(i, 0, MatrixSPL.getElmt(i, j));
+                }
+            }
+        }
+
+        if ((MatrixSPL.getRowLength() != MatrixSPL.getColLength()-1) || Determinan.detKofaktor(A) == 0){
             System.out.print("SPL tidak dapat diselesaikan dengan metode invers.");
             return;
         } else {
-            B = new Matrix(MatrixSPL.row, 1);
             x = new Matrix(MatrixSPL.row, 1);
-
-            for (i = 0; i < A.getRowLength(); i++){
-                for (j = 0; j < MatrixSPL.getColLength(); j++){
-                    if (j != MatrixSPL.getColLength()-1){
-                        A.setElmt(i, j, MatrixSPL.getElmt(i, j));
-                    }
-                    else if (j == MatrixSPL.getColLength()-1){
-                        B.setElmt(i, 0, MatrixSPL.getElmt(i, j));
-                    }
-                    
-                }
-            }
 
             matrixInvers = Invers.inversIdentitas(A);
 
@@ -49,24 +48,24 @@ public class SPL {
         Matrix mTemp;
 
         A = new Matrix(mCramer.getRowLength(), mCramer.getColLength()-1);
-        if ((mCramer.getRowLength() != mCramer.getColLength()-1) || Determinan.detKofaktor(A) == 0 || Matrix.SolutionType(mCramer) == 0 || Matrix.SolutionType(mCramer) == 2){
+        B = new Matrix(mCramer.row, 1);
+        for (i = 0; i < mCramer.getRowLength(); i++){
+            for (j = 0; j < mCramer.getColLength(); j++){
+                if (j != mCramer.getColLength()-1){
+                    A.setElmt(i, j, mCramer.getElmt(i, j));
+                }
+                else{
+                    B.setElmt(i, 0, mCramer.getElmt(i, j));
+                }
+                
+            }
+        }
+
+        if ((mCramer.getRowLength() != mCramer.getColLength()-1) || Determinan.detKofaktor(A) == 0){
             System.out.print("SPL tidak dapat diselesaikan dengan metode cramer.");
             return;
         } else {
-            B = new Matrix(mCramer.row, 1);
             x = new Matrix(mCramer.getRowLength(), 1);
-
-            for (i = 0; i < mCramer.getRowLength(); i++){
-                for (j = 0; j < mCramer.getColLength(); j++){
-                    if (j != mCramer.getColLength()-1){
-                        A.setElmt(i, j, mCramer.getElmt(i, j));
-                    }
-                    else{
-                        B.setElmt(i, 0, mCramer.getElmt(i, j));
-                    }
-                    
-                }
-            }
             
             det = Determinan.detKofaktor(A);
             mTemp = A;
