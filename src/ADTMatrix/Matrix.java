@@ -82,6 +82,25 @@ public class Matrix {
         return MMultiply;
     }
 
+    public static double sumCol(Matrix m, int i){
+        int j;
+        double sum = 0;
+
+        for(j = 0; j < m.row ;j++){
+            sum += m.matrix[j][i];
+        }
+        return sum;
+    }
+
+    public static double sumMultiplyCol(Matrix m, int i, int j){
+        double sum = 0;
+        int k = 0;
+        for (k = 0; k < m.row ;k++){
+            sum += m.matrix[k][i] * m.matrix[k][j];
+        }
+        return sum;
+    }
+
     public static double detKofaktorIJ(Matrix m, int row, int col){
 		int n = m.getRowLength();
         int i, j;

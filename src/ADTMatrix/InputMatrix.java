@@ -78,7 +78,25 @@ public class InputMatrix{
         return matrix;
     }
 
-    //public static double[][] readRegresiKeyboard(){}
+    public static double[][] readRegresiKeyboard(){
+        int i, j;
+        int n, m;
+        double [][] matrix;
+
+        System.out.print("Masukkan jumlah peubah (x): ");
+        n = input.nextInt();
+        System.out.print("Masukkan jumlah sampel (m): ");
+        m = input.nextInt();
+
+        matrix = new double[m][n + 1];
+        System.out.println("Masukkan titik x dan y: ");
+        for(i = 0; i < m; i++){
+            for(j = 0; j < n + 1; j++){
+                matrix[i][j] = input.nextDouble();
+            }
+        }
+        return matrix;
+    }
 
 
     // Input dari File
