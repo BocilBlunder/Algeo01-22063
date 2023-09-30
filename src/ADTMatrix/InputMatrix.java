@@ -66,6 +66,7 @@ public class InputMatrix{
         int i, j;
         int n;
         double [][] matrix;
+        double x;
 
         System.out.print("Masukkan derajat polinom (n): ");
         n = input.nextInt();
@@ -77,6 +78,8 @@ public class InputMatrix{
                 matrix[i][j] = input.nextDouble();
             }
         }
+        System.out.print("Masukkan nilai yang ingin ditaksir (x): ");
+        x = InputMatrix.input.nextDouble();
         return matrix;
     }
 
@@ -112,7 +115,7 @@ public class InputMatrix{
 
         System.out.print("Masukkan nama file: ");
         String file = input.nextLine();
-        String path = "Test/" + file;
+        String path = "test/" + file;
         System.out.println(path);
 
         try{
@@ -144,46 +147,67 @@ public class InputMatrix{
         }
     }    
 
-    public static double[][] readInterpolasiFile(){
-        Scanner scan;
-        File tes;
-        double[][] matrix;
-        int i, j;
-        int row = 0;
-        int col = 0;
+    public static Matrix readInterpolasiBicubicFile(){
+        int i;
+        Matrix matrix;
+        
 
         System.out.print("Masukkan nama file: ");
         String file = input.nextLine();
-        String path = "Test/" + file;
+        String path = "test/" + file;
         System.out.println(path);
 
         try{
-            tes = new File(path);
-            scan = new Scanner(tes);
-            while(scan.hasNextLine()){
-                col = (scan.nextLine()).split(" ").length;
-                row++;
-            }
-            scan.close();
+            BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(path)));
+            String s;
+            String[] x;
+            double[] y;
+            double[][] mTemp;
 
-            matrix = new double[row][col];
-            scan = new Scanner(tes);
-  
-            for (i = 0; i < row; i++){
-                for (j = 0; j < col; j++){
-                    matrix[i][j] = scan.nextDouble();
+            
+            s = br.readLine();
+     
+            x = s.split("\\s+");
+            y = new double[x.length];
+        
+            for(i = 0; i < y.length; i++){
+                y[i] = Double.parseDouble(x[i]);
+            }
+            // pindah ke matriks dengan kolom 1
+            mTemp = new double[1][x.length];
+            for(i = 0; i < y.length; i++){
+                mTemp[0][i] = y[i];
+            }
+            // buat matriks 
+            matrix = new Matrix(mTemp, 1, y.length);
+
+            while((s = br.readLine()) != null){
+                x = s.split("\\s+");
+                y = new double [x.length];
+                for(i = 0; i < x.length; i++){
+                    y[i] = Double.parseDouble(x[i]);
+                }
+                if(x.length < matrix.col){
+                    double[] z = new double[matrix.col];
+                    for(i = 0; i < matrix.col;i++){
+                        if(i >= y.length){
+                            z[i] = 0;
+                        }else{
+                            z[i] = y[i];
+                        }
+                    }
+                    matrix = Matrix.addRow(matrix, z);
+                }else{
+                    matrix = Matrix.addRow(matrix, y);
                 }
             }
-            // close the scanner
-            scan.close();
+            br.close();
             return matrix;
-        }
-        catch(FileNotFoundException e){
+        }catch(Exception ex){
             System.out.println("File not found");
             System.out.println("Returning a 1x1 matrix with value 0");
-            matrix = new double[1][1];
+            matrix = new Matrix(1, 1);
             return matrix;
         }
-    }    
-
+    }
 }

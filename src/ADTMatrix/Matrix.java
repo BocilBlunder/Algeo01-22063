@@ -101,6 +101,24 @@ public class Matrix {
         return sum;
     }
 
+    public static Matrix addRow(Matrix m, double[] newRow){
+        Matrix mTemp;
+        double[][] matrix;
+        int i, j;
+
+        matrix = new double[m.row + 1][m.col];
+        for(i = 0; i < m.row; i++){
+            for(j = 0; j < m.col; j++){
+                matrix[i][j] = m.matrix[i][j];
+            }
+        }
+        for(i = 0; i < m.col; i++){
+            matrix[m.row][i] = newRow[i];
+        }
+        mTemp = new Matrix(matrix, m.row+1, m.col);
+        return mTemp;
+    }
+
     public static double detKofaktorIJ(Matrix m, int row, int col){
 		int n = m.getRowLength();
         int i, j;

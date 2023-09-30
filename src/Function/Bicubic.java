@@ -3,22 +3,22 @@ import java.util.*;
 import ADTMatrix.*;
 
 public class Bicubic {
-    public static void interpolasiBicubic (){
+    public static void interpolasiBicubic (Matrix m){
         int i, j;
-        Matrix m;
-        Scanner input = new Scanner(System.in);
+        Matrix m1;
+        Matrix m2;
 
-        m = new Matrix(4, 4);
-        System.out.print("Input matriks\n");
+        m1 = new Matrix(4, 4);
         for(i = 0; i < 4; i++){
             for(j = 0; j < 4; j++){
-                m.setElmt(i, j, input.nextDouble());
+                m1.setElmt(i, j, m.matrix[i][j]);
             }
         }
-        System.out.print("Input a:");
-        double a = input.nextDouble();
-        System.out.print("Input b: ");
-        double b = input.nextDouble();
+
+        m2 = new Matrix(1, 2);
+        for(j = 0; j < 2; j++){
+            m2.setElmt(0, j, m.matrix[4][j]);
+        }
 
         Matrix tempX = new Matrix(16, 16);
         Matrix tempY = new Matrix(16, 1);
@@ -27,7 +27,7 @@ public class Bicubic {
         int indeks = 0;
         for(i = 0; i < 4; i++){
             for(j = 0; j < 4; j++){
-                tempY.setElmt(indeks, 0, m.getElmt(i,j));
+                tempY.setElmt(indeks, 0, m1.getElmt(i,j));
                 indeks++;
             }
         }
@@ -45,7 +45,6 @@ public class Bicubic {
                 row++;
             }
         }    
-        OutputMatrix.printMatrix(tempX);
 
         X = Invers.inversIdentitas(tempX);
         A = Matrix.multiplyMatrix(X, tempY);
@@ -54,10 +53,10 @@ public class Bicubic {
         indeks = 0;
         for(i = 0; i < 4; i++){
             for(j = 0; j < 4; j++){
-                hasil += A.getElmt(indeks, 0) * Math.pow(a, i) * Math.pow(b, j);
+                hasil += A.getElmt(indeks, 0) * Math.pow(m2.matrix[0][0], i) * Math.pow(m2.matrix[0][1], j);
                 indeks++;
             }
         }
-        System.out.println("f(" + a + "," + b+ ") = " + hasil);
+        System.out.println("f(" + m2.matrix[0][0] + "," + m2.matrix[0][1]+ ") = " + hasil);
     }
 }
