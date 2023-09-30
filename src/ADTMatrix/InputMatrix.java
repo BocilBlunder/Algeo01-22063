@@ -1,6 +1,10 @@
 package ADTMatrix;
 import java.util.*;
 import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 public class InputMatrix{
     // Input dari Keyboard
@@ -100,54 +104,50 @@ public class InputMatrix{
 
 
     // Input dari File
-    public static Matrix readMatrixFile(){
-        BufferedReader inputFile = new BufferedReader(new InputStreamReader(System.in));
+    public static double[][] readMatrixFile(){
+        Scanner scan;
+        File tes;
         double[][] matrix;
-        Boolean fileExist;
         int i, j;
-        int rows, cols;
+        int row = 0;
+        int col = 0;
 
-        fileExist = false;
-        while (fileExist == true){
-            fileExist = true;
-            String fileName;
-            fileName = "";
-            System.out.print("Masukkan nama file: ");
-            try{
-                fileName = inputFile.readLine();
-            }
-            catch(IOException err){
-                err.printStackTrace();
-            }
-            try{
-                rows = 0;
-                cols = 0;
-                Scanner file = new Scanner(new File("../test/"+fileName));
-                matrix = new double[rows][cols];
-                while(file.hasNextLine()){
-                    rows++;
-                    cols = file.nextLine().split(" ").length;
-                }
-            
-                file.close();
-                file = new Scanner(new File("../test/"+fileName));
-                for (i = 0; i < rows; i++){
-                    for (j = 0; j < cols; j++){
-                        matrix[i][j] = input.nextDouble();
-                    }
-                }
-                file.close();
-                Matrix m = new Matrix(matrix, matrix.length, matrix[0].length);
-                return m;
-            }
-            catch(FileNotFoundException err){
-                err.printStackTrace();
-                fileExist = false;
-            }
+        System.out.print("Masukkan nama file: ");
+        String file = input.nextLine();
+        String path = "Test/" + file;
+        System.out.println(path);
 
+        try{
+            tes = new File(path);
+            scan = new Scanner(tes);
+            while(scan.hasNextLine()){
+                col = (scan.nextLine()).split(" ").length;
+                row++;
+            }
+            scan.close();
+
+            matrix = new double[row][col];
+            scan = new Scanner(tes);
+  
+            for (i = 0; i < row; i++){
+                for (j = 0; j < col; j++){
+                    matrix[i][j] = scan.nextDouble();
+                }
+            }
+            // close the scanner
+            scan.close();
+            return matrix;
         }
-        return null;
-        
+        catch(FileNotFoundException e){
+            System.out.println("File not found");
+            System.out.println("Returning a 1x1 matrix with value 0");
+            matrix = new double[1][1];
+            return matrix;
+        }
     }
-    
 }
+    
+
+
+    
+
