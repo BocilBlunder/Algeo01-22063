@@ -43,16 +43,16 @@ public class Regresi {
 
         System.out.print("f(x) = ");
         for (i = 0; i < mTemp.row; i++) {
-            result = m1[i];
-            sum += result;
             if (i == 0){
+                result = m1[i];
                 if (m1[i] > 0){
-                    System.out.printf("+ %.4f ", m1[i]);
+                    System.out.printf("%.4f ", m1[i]);
                 } else {
                     m1[i] *= -1;
                     System.out.printf("- %.4f ", m1[i]);
                 }
             } else if ( i > 0 && i < mTemp.row - 1){
+                result = m1[i] * x[i - 1];
                 if (m1[i] > 0){
                     System.out.printf("+ %.4fx%d ", m1[i], i);
                 } else {
@@ -60,6 +60,7 @@ public class Regresi {
                     System.out.printf("- %.4fx%d ", m1[i], i);
                 }
             } else if (i == mTemp.row - 1){
+                result = m1[i] * x[i - 1];
                 if (m1[i] > 0){
                     System.out.printf("+ %.4fx%d, ", m1[i], i);
                 } else {
@@ -67,6 +68,7 @@ public class Regresi {
                     System.out.printf("- %.4fx%d, ", m1[i], i);
                 }
             }
+            sum += result;
         }
         System.out.printf("f(xk) = %.4f", sum);
     }

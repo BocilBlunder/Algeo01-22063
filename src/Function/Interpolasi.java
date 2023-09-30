@@ -52,7 +52,7 @@ public class Interpolasi {
                 }
             } else{
                 if (m1[i] > 0){
-                    System.out.printf("+ %.4f, ", m1[i]);
+                    System.out.printf("%.4f, ", m1[i]);
                 } else {
                     m1[i] *= -1;
                     System.out.printf("- %.4f, ", m1[i]);
