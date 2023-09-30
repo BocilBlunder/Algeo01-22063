@@ -1,4 +1,9 @@
 package Function;
+import java.io.BufferedReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 import ADTMatrix.*;
 
 public class Regresi {
@@ -9,6 +14,7 @@ public class Regresi {
         double sum = 0;
         Matrix mTemp;
         double [] x;
+        BufferedReader inputFile = new BufferedReader(new InputStreamReader(System.in));
 
         x = new double [m.col - 1];
         System.out.println("Masukkan nilai x yang ingin ditaksir: ");
@@ -71,6 +77,56 @@ public class Regresi {
             sum += result;
         }
         System.out.printf("f(xk) = %.4f", sum);
+
+        int pil3 = OutputMatrix.printMenuOutput();
+        if (pil3 == 1){
+            String nameFile = "";
+            System.out.println("Masukkan nama file: ");
+            try {
+                nameFile = inputFile.readLine();
+                String path = "Test/" + nameFile;
+            }
+            catch (IOException err) {
+                err.printStackTrace();
+            }
+            try {
+                FileWriter file = new FileWriter("Test/" + nameFile);
+                System.out.print("f(x) = ");
+                for (i = 0; i < mTemp.row; i++) {
+                    if (i == 0){
+                        result = m1[i];
+                        if (m1[i] > 0){
+                            file.write(Double.toString(m1[i]));
+                        } else {
+                            m1[i] *= -1;
+                            file.write("- "+Double.toString(m1[i]));
+                        }
+                    } else if (i > 0 && i < mTemp.row - 1){
+                        result = m1[i] * x[i - 1];
+                        if (m1[i] > 0){
+                            file.write("+ "+ Double.toString(m1[i])+"x"+Integer.toString(i));
+                        } else {
+                            m1[i] *= -1;
+                            file.write("- "+ Double.toString(m1[i])+"x"+Integer.toString(i));
+                        }
+                    } else if (i == mTemp.row - 1){
+                        result = m1[i] * x[i - 1];
+                        if (m1[i] > 0){
+                            file.write("+ "+Double.toString(m1[i])+"x^"+Integer.toString(i));
+                        } else {
+                            m1[i] *= -1;
+                            file.write("- "+Double.toString(m1[i])+"x^"+Integer.toString(i));
+                        }
+                    }
+                    sum += result;
+                }
+                file.write("f(xk) = "+Double.toString(sum));
+                file.close();
+            }
+            catch(IOException err) {
+                err.printStackTrace();
+            }
+        }
     }
  }
 

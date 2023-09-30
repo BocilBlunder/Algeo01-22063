@@ -1,5 +1,11 @@
 package ADTMatrix;
 
+import java.io.BufferedReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Scanner;
+
 import Function.Determinan;
 
 public class Matrix {
@@ -244,64 +250,110 @@ public class Matrix {
         for (int i = 0; i < nEff; i++) {
             visited[i] = false;
         }
-
+        //Untuk menyimpan dalam File
+        Scanner input = new Scanner(System.in);
+        BufferedReader inputFile = new BufferedReader(new InputStreamReader(System.in));
+        int pil3 = OutputMatrix.printMenuOutput();
+        if(pil3 == 1) {
+        String nameFile = "";
+        System.out.println("Masukkan nama file: ");
+        try {
+            nameFile = inputFile.readLine();
+            String path = "Test/" + nameFile;
+        }
+        catch (IOException err) {
+            err.printStackTrace();
+        }
         for (int i = 0; i < matrix.getRowLength(); i++) {
             for (int j = i; j < nEff; j++) {
                 if (matrix.getElmt(i, j) == 1) {
-                    visited[j] = true;
-                    StringBuilder temp = new StringBuilder();
+                visited[j] = true;
+                StringBuilder temp = new StringBuilder();
 
-                    if (Math.abs(matrix.getElmt(i, matrix.getColLength() - 1)) > 1e-8) {
-                        temp.append(String.format("%.2f", (matrix.getElmt(i, matrix.getColLength() - 1))));
-                    }
+                if (Math.abs(matrix.getElmt(i, matrix.getColLength() - 1)) > 1e-8) {
+                    temp.append(String.format("%.4f", (matrix.getElmt(i, matrix.getColLength() - 1))));
+                }
 
-                    for (int k = j + 1; k < nEff; k++) {
-                        if (Math.abs(matrix.getElmt(i, k)) > 1e-8) {
-                            if (!visited[k]) {
-                                visited[k] = true;
-                                parametric[k] = (char) ('a' + cur % 26);
-                                System.out.printf("X%d = %c%n", k + 1, parametric[k]);
-                                cur = (cur + 1) % 26;
+                for (int k = j + 1; k < nEff; k++) {
+                    if (Math.abs(matrix.getElmt(i, k)) > 1e-8) {
+                        if (!visited[k]) {
+                            visited[k] = true;
+                            parametric[k] = (char) ('a' + cur % 26);
+                            System.out.printf("X%d = %c%n", k + 1, parametric[k]);
+                            cur = (cur + 1) % 26;
+                            try {
+                            FileWriter file = new FileWriter("Test/" + nameFile);
+                            file.write("Solusi parametrik:\n");
+                            String tempString = Double.toString(parametric[k]);
+                            String tempIndex = Integer.toString(k + 1);
+                            file.write("X" + tempIndex + " = " + tempString + "\n");
+                            file.close();
                             }
-
-                            if (matrix.getElmt(i, k) > 0) {
-                                if (temp.length() == 0) {
-                                    temp.append(String.format("%.2f", Math.abs(matrix.getElmt(i, k))));
-                                } else {
-                                    if (Math.abs(matrix.getElmt(i, k)) == 1) {
-                                        temp.append(String.format(" - ", Math.abs(matrix.getElmt(i, k))));
-                                    }
-                                    else {
-                                        temp.append(String.format(" - %.2f", Math.abs(matrix.getElmt(i, k))));
-                                    }
-                                }
-                            } else {
-                                if (temp.length() == 0) {
-                                    temp.append(String.format("%.2f", Math.abs(matrix.getElmt(i, k))));
-                                } else {
-                                    if (Math.abs(matrix.getElmt(i, k)) == 1) {
-                                        temp.append(String.format(" + ", Math.abs(matrix.getElmt(i, k))));
-                                    }
-                                    else {
-                                    temp.append(String.format(" + %.2f", Math.abs(matrix.getElmt(i, k))));
-                                    }
-                                }
+                            catch(IOException err) {
+                            err.printStackTrace();
                             }
-                            temp.append(parametric[k]);
                         }
+
+                        if (matrix.getElmt(i, k) > 0) {
+                            if (temp.length() == 0) {
+                                temp.append(String.format("%.4f", Math.abs(matrix.getElmt(i, k))));
+                            } else {
+                                if (Math.abs(matrix.getElmt(i, k)) == 1) {
+                                    temp.append(String.format(" - ", Math.abs(matrix.getElmt(i, k))));
+                                }
+                                else {
+                                    temp.append(String.format(" - %.4f", Math.abs(matrix.getElmt(i, k))));
+                                }
+                            }
+                        } else {
+                            if (temp.length() == 0) {
+                                temp.append(String.format("%.4f", Math.abs(matrix.getElmt(i, k))));
+                            } else {
+                                if (Math.abs(matrix.getElmt(i, k)) == 1) {
+                                    temp.append(String.format(" + ", Math.abs(matrix.getElmt(i, k))));
+                                }
+                                else {
+                                temp.append(String.format(" + %.4f", Math.abs(matrix.getElmt(i, k))));
+                                }
+                            }
+                        }
+                        temp.append(parametric[k]);
                     }
-                    System.out.printf("X%d = %s%n", j + 1, temp.toString());
-                    break;
-                } else {
-                    if (!visited[j]) {
-                        visited[j] = true;
-                        parametric[j] = (char) ('a' + cur % 26);
-                        System.out.printf("X%d = %c%n", j + i, parametric[j]);
-                        cur = (cur + 1) % 26;
+                }
+                System.out.printf("X%d = %s%n", j + 1, temp.toString());
+                try {
+                    FileWriter file = new FileWriter("Test/" + nameFile);
+                    file.write("Solusi parametrik:\n");
+                    String tempIndex = Integer.toString(j + 1);
+                    file.write("X" + tempIndex + " = " + temp.toString() + "\n");
+                    file.close();
+                    }
+                catch(IOException err) {
+                    err.printStackTrace();
+                    }
+                break;
+            } else {
+                if (!visited[j]) {
+                    visited[j] = true;
+                    parametric[j] = (char) ('a' + cur % 26);
+                    System.out.printf("X%d = %c%n", j + i, parametric[j]);
+                    cur = (cur + 1) % 26;
+                    try {
+                        FileWriter file = new FileWriter("Test/" + nameFile);
+                        file.write("Solusi parametrik:\n");
+                        String tempString = Double.toString(parametric[j]);
+                        String tempIndex = Integer.toString(j + i);
+                        file.write("X" + tempIndex + " = " + tempString + "\n");
+                        file.close();
+                        }
+                    catch(IOException err) {
+                        err.printStackTrace();
+                        }
                     }
                 }
             }
         }
+    }
     }
 
     public static Matrix gaussElimination(Matrix matrix) {

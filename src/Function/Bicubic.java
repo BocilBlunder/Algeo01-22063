@@ -1,9 +1,14 @@
 package Function;
+import java.io.BufferedReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.*;
 import ADTMatrix.*;
 
 public class Bicubic {
     public static void interpolasiBicubic (Matrix m){
+        BufferedReader inputFile = new BufferedReader(new InputStreamReader(System.in));
         int i, j;
         Matrix m1;
         Matrix m2;
@@ -58,5 +63,25 @@ public class Bicubic {
             }
         }
         System.out.println("f(" + m2.matrix[0][0] + "," + m2.matrix[0][1]+ ") = " + hasil);
+        int pil3 = OutputMatrix.printMenuOutput();
+        if(pil3 == 1) {
+            String nameFile = "";
+            System.out.println("Masukkan nama file: ");
+            try {
+                nameFile = inputFile.readLine();
+                String path = "Test/" + nameFile;
+            }
+            catch (IOException err) {
+                err.printStackTrace();
+            }
+            try {
+                FileWriter file = new FileWriter("Test/" + nameFile);
+                file.write("f(" + Double.toString(m2.matrix[0][0]) + "," + Double.toString(m2.matrix[0][1])+ ") = " + Double.toString(hasil));
+                file.close();
+            }
+            catch(IOException err) {
+                err.printStackTrace();
+            }
+        }
     }
 }

@@ -1,5 +1,10 @@
 package Function;
 
+import java.io.BufferedReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 import ADTMatrix.Matrix;
 import ADTMatrix.OutputMatrix;
 
@@ -10,6 +15,7 @@ public class SPL {
         Matrix x;
         Matrix matrixInvers;
         int i, j;
+        BufferedReader inputFile = new BufferedReader(new InputStreamReader(System.in));
         A = new Matrix(MatrixSPL.row, MatrixSPL.row);
         B = new Matrix(MatrixSPL.row, 1);
         for (i = 0; i < A.getRowLength(); i++){
@@ -24,17 +30,61 @@ public class SPL {
         }
 
         if ((MatrixSPL.getRowLength() != MatrixSPL.getColLength()-1) || Determinan.detKofaktor(A) == 0){
-            System.out.print("SPL tidak dapat diselesaikan dengan metode invers.");
-            return;
+            System.out.println("SPL tidak dapat diselesaikan dengan metode invers.");
+            int pil3 = OutputMatrix.printMenuOutput();
+            if (pil3 == 1){
+                String newfileName = "";
+                System.out.print("Masukkan nama file: ");
+                try{
+                    newfileName = inputFile.readLine();
+                    String path = "Test/" + newfileName;
+                }
+                catch(IOException err){
+                    err.printStackTrace();
+                }
+                try{
+                    FileWriter file = new FileWriter("Test/" + newfileName);
+                    file.write("SPL tidak dapat diselesaikan dengan metode invers.");
+                    file.close();
+                }
+                catch(IOException err){
+                    err.printStackTrace();
+                }
+            }
         } else {
             x = new Matrix(MatrixSPL.row, 1);
-
             matrixInvers = Invers.inversIdentitas(A);
-
             x = Matrix.multiplyMatrix(matrixInvers, B);
-            
             for(i = 0; i < x.getRowLength(); i++){
-                System.out.print("x"+Integer.toString(i+1)+" = "+Double.toString(x.getElmt(i, 0))+"\n");
+                System.out.printf("x%d = %.4f\n", (i+1), (x.getElmt(i, 0)));
+            }
+            int pil3 = OutputMatrix.printMenuOutput();
+            if (pil3 == 1){
+                String newfileName = "";
+                System.out.print("Masukkan nama file: ");
+                try{
+                    newfileName = inputFile.readLine();
+                    String path = "Test/" + newfileName;
+                }
+                catch(IOException err){
+                    err.printStackTrace();
+                }
+                try{
+                    FileWriter file = new FileWriter("Test/" + newfileName);
+                    for(i = 0; i < x.getRowLength(); i++){
+                        if (i != x.row - 1){
+                            double temp = x.getElmt(i, 0);
+                            file.write("x"+Integer.toString(i+1)+" = " + Double.toString(temp)+"\n");
+                        }
+                        else{
+                            file.write("x"+Integer.toString(i+1)+" = "+Double.toString(x.getElmt(i, 0)));
+                        }
+                    }
+                    file.close();
+                }
+                catch(IOException err){
+                    err.printStackTrace();
+                }
             }
         }
     }
@@ -46,6 +96,7 @@ public class SPL {
         int i, j;
         double det;
         Matrix mTemp;
+        BufferedReader inputFile = new BufferedReader(new InputStreamReader(System.in));
 
         A = new Matrix(mCramer.getRowLength(), mCramer.getColLength()-1);
         B = new Matrix(mCramer.row, 1);
@@ -63,7 +114,26 @@ public class SPL {
 
         if ((mCramer.getRowLength() != mCramer.getColLength()-1) || Determinan.detKofaktor(A) == 0){
             System.out.print("SPL tidak dapat diselesaikan dengan metode cramer.");
-            return;
+            int pil3 = OutputMatrix.printMenuOutput();
+            if (pil3 == 1){
+                String newfileName = "";
+                System.out.print("Masukkan nama file: ");
+                try{
+                    newfileName = inputFile.readLine();
+                    String path = "Test/" + newfileName;
+                }
+                catch(IOException err){
+                    err.printStackTrace();
+                }
+                try{
+                    FileWriter file = new FileWriter("Test/" + newfileName);
+                    file.write("SPL tidak dapat diselesaikan dengan metode cramer.");
+                    file.close();
+                }
+                catch(IOException err){
+                    err.printStackTrace();
+                }
+            }
         } else {
             x = new Matrix(mCramer.getRowLength(), 1);
             
@@ -74,50 +144,179 @@ public class SPL {
                     mTemp.setElmt(i, j, mCramer.getElmt(i, A.row));
                 }
                 double solution = Determinan.detKofaktor(mTemp)/det;
-                System.out.print("x"+Integer.toString(j+1)+" = "+Double.toString(solution)+"\n");
+                System.out.printf("x%d = %.4f\n", (j+1), (solution));
                 for (i = 0; i < A.row; i++){
                     mTemp.setElmt(i, j, mCramer.getElmt(i, j));
+                }
+            }
+            int pil3 = OutputMatrix.printMenuOutput();
+            if (pil3 == 1){
+                String newfileName = "";
+                System.out.print("Masukkan nama file: ");
+                try{
+                    newfileName = inputFile.readLine();
+                    String path = "Test/" + newfileName;
+                }
+                catch(IOException err){
+                    err.printStackTrace();
+                }
+                try{
+                    FileWriter file = new FileWriter("Test/" + newfileName);
+                    for (j = 0; j < A.row; j++){
+                        for (i = 0; i < A.row; i++){
+                            mTemp.setElmt(i, j, mCramer.getElmt(i, A.row));
+                        }
+                        double solution = Determinan.detKofaktor(mTemp)/det;
+                        file.write("x"+Integer.toString(j+1)+" = "+Double.toString(solution)+"\n");
+                        for (i = 0; i < A.row; i++){
+                            mTemp.setElmt(i, j, mCramer.getElmt(i, j));
+                        }
+                    }
+                    file.close();
+                }
+                catch(IOException err){
+                    err.printStackTrace();
                 }
             }
         }
     }
 
     public static void gaussSPL (Matrix Mgauss) {
+        BufferedReader inputFile = new BufferedReader(new InputStreamReader(System.in));
         Mgauss = Matrix.gaussElimination(Mgauss);
         double X[] = new double[Mgauss.getRowLength()];
         int solutionType = Matrix.SolutionType(Mgauss);
-
+        int pil3;
         Matrix.backSubstitution(Mgauss, X);
 
         if (solutionType == 0) {
             System.out.println("Solusi tidak ada.");
+            pil3 = OutputMatrix.printMenuOutput();
+            if(pil3 == 1) {
+                String nameFile = "";
+                System.out.println("Masukkan nama file: ");
+                try {
+                    nameFile = inputFile.readLine();
+                    String path = "Test/" + nameFile;
+                }
+                catch (IOException err) {
+                    err.printStackTrace();
+                }
+                try {
+                    FileWriter file = new FileWriter("Test/" + nameFile);
+                    file.write("Solusi tidak ada.");
+                    file.close();
+                }
+                catch(IOException err) {
+                    err.printStackTrace();
+                }
+            }
         } else if (solutionType == 1) {
             System.out.println("Solusi tunggal:");
             for (int i = 0; i < Mgauss.getRowLength(); i++) {
-                System.out.printf("X[%d] = %.2f%n", i + 1, X[i]);
+                System.out.printf("X[%d] = %.4f%n", i + 1, X[i]);
             }
+            pil3 = OutputMatrix.printMenuOutput();
+            if(pil3 == 1) {
+                String nameFile = "";
+                System.out.println("Masukkan nama file: ");
+                try {
+                    nameFile = inputFile.readLine();
+                    String path = "Test/" + nameFile;
+                }
+                catch (IOException err) {
+                    err.printStackTrace();
+                }
+                try {
+                    FileWriter file = new FileWriter("Test/" + nameFile);
+                    file.write("Solusi tunggal:\n");
+                    for (int i = 0; i < Mgauss.getRowLength(); i++) {
+                        String tempString = Double.toString(X[i]);
+                        String tempIndex = Integer.toString(i+1);
+                        if (i == Mgauss.getRowLength() - 1){
+                            file.write("X" + tempIndex + " = " + tempString);
+                        } else {
+                            file.write("X" + tempIndex + " = " + tempString+ "\n");
+                        }
+                    }
+                    file.close();
+                }
+                catch(IOException err) {
+                    err.printStackTrace();
+                }
             
-        } else {
-            System.out.println("Solusi banyak (parametrik):");
-            Matrix.solveManySolution(Mgauss);
+            } else {
+                System.out.println("Solusi banyak (parametrik):");
+                Matrix.solveManySolution(Mgauss);
+            }
         }
     }
 
     public static void gaussJordanSPL (Matrix Mgajo) {
         Mgajo = Matrix.gaussJordanElimination(Mgajo);
-
+        int pil3;
+        BufferedReader inputFile = new BufferedReader(new InputStreamReader(System.in));
         int solutionType = Matrix.SolutionType(Mgajo);
 
         if (solutionType == 0) {
             System.out.println("Solusi tidak ada.");
+            pil3 = OutputMatrix.printMenuOutput();
+            if(pil3 == 1) {
+                String nameFile = "";
+                System.out.println("Masukkan nama file: ");
+                try {
+                    nameFile = inputFile.readLine();
+                    String path = "Test/" + nameFile;
+                }
+                catch (IOException err) {
+                    err.printStackTrace();
+                }
+                try {
+                    FileWriter file = new FileWriter("Test/" + nameFile);
+                    file.write("Solusi tidak ada.");
+                    file.close();
+                }
+                catch(IOException err) {
+                    err.printStackTrace();
+                }
+            }
         } else if (solutionType == 1) {
             System.out.println("Solusi tunggal:");
             for (int i = 0; i < Mgajo.getRowLength(); i++) {
-                System.out.printf("X[%d] = %.2f%n", i + 1, Mgajo.matrix[i][Mgajo.getColLength() - 1]);
+                System.out.printf("X[%d] = %.4f%n", i + 1, Mgajo.matrix[i][Mgajo.getColLength() - 1]);
             }
-        } else {
-            System.out.println("Solusi banyak (parametrik):");
-            Matrix.solveManySolution(Mgajo);
+            pil3 = OutputMatrix.printMenuOutput();
+            if(pil3 == 1) {
+                String nameFile = "";
+                System.out.println("Masukkan nama file: ");
+                try {
+                    nameFile = inputFile.readLine();
+                    String path = "Test/" + nameFile;
+                }
+                catch (IOException err) {
+                    err.printStackTrace();
+                }
+                try {
+                    FileWriter file = new FileWriter("Test/" + nameFile);
+                    file.write("Solusi tunggal:\n");
+                    for (int i = 0; i < Mgajo.getRowLength(); i++) {
+                        String tempString = Double.toString(Mgajo.matrix[i][Mgajo.getColLength() - 1]);
+                        String tempIndex = Integer.toString(i + 1);
+                        if (i == Mgajo.getRowLength() - 1){
+                            file.write("X" + tempIndex + " = " + tempString);
+                        } else {
+                            file.write("X" + tempIndex + " = " + tempString+ "\n");
+                        }
+                    }
+                    file.close();
+                }
+                catch(IOException err) {
+                    err.printStackTrace();
+                }
+            } else {
+                System.out.println("Solusi banyak (parametrik):");
+                Matrix.solveManySolution(Mgajo);
+            }
         }
     }
 }

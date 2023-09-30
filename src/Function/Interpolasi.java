@@ -1,4 +1,9 @@
 package Function;
+import java.io.BufferedReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 import ADTMatrix.*;
 
 public class Interpolasi {
@@ -8,6 +13,8 @@ public class Interpolasi {
         double result = 0;
         double x, temp;
         Matrix mTemp;
+        BufferedReader inputFile = new BufferedReader(new InputStreamReader(System.in));
+
 
         System.out.print("Masukkan nilai yang ingin ditaksir (x): ");
         x = InputMatrix.input.nextDouble();
@@ -67,9 +74,67 @@ public class Interpolasi {
             }
         }
         System.out.printf("f(%.4f) = %.4f", x, result);
+        int pil3 = OutputMatrix.printMenuOutput();
+        if (pil3 == 1){
+            String nameFile = "";
+            System.out.println("Masukkan nama file: ");
+            try {
+                nameFile = inputFile.readLine();
+                String path = "Test/" + nameFile;
+            }
+            catch (IOException err) {
+                err.printStackTrace();
+            }
+            try {
+                FileWriter file = new FileWriter("Test/" + nameFile);
+                file.write("f(x) = ");
+                for (i = m.row - 1; i >= 0; i--) {
+                    temp = (m1[i] * Math.pow(x, i));
+                    result += temp;
+                    if (i == m.row - 1){
+                        if (m1[i] > 0){
+                            file.write(Double.toString(m1[i])+"x^"+Integer.toString(i));
+                        } else {
+                            m1[i] *= -1;
+                            file.write("- "+Double.toString(m1[i])+"x^"+Integer.toString(i));
+                        }
+                    }
+                    else if (i > 1 && i < m.row - 1){
+                        if (m1[i] > 0){
+                            file.write("+ "+Double.toString(m1[i])+"x^"+Integer.toString(i));
+                        } else {
+                            m1[i] *= -1;
+                            file.write("- "+Double.toString(m1[i])+"x^"+Integer.toString(i));
+                        }
+                    } 
+                    else if (i == 1){
+                        if (m1[i] > 0){
+                            file.write("+ "+Double.toString(m1[i])+"x");
+                        } else {
+                            m1[i] *= -1;
+                            file.write("- "+Double.toString(m1[i])+"x");
+                        }
+                    } 
+                    else{
+                        if (m1[i] > 0){
+                            file.write("+ "+Double.toString(m1[i]));
+                        } else {
+                            m1[i] *= -1;
+                            file.write("- "+Double.toString(m1[i]));
+                        }
+                    }
+                }
+                file.write("f("+Double.toString(x)+") = "+Double.toString(result));
+                file.close();
+            }
+            catch(IOException err) {
+                err.printStackTrace();
+            }
+        }
     }
 
     public static void interpolasiPolinomialFile(Matrix m){
+        BufferedReader inputFile = new BufferedReader(new InputStreamReader(System.in));
         int i, j;
         double result = 0;
         double temp;
@@ -145,5 +210,62 @@ public class Interpolasi {
             }
         }
         System.out.printf("f(%.4f) = %.4f", m2[0], result);
+        int pil3 = OutputMatrix.printMenuOutput();
+        if (pil3 == 1){
+            String nameFile = "";
+            System.out.println("Masukkan nama file: ");
+            try {
+                nameFile = inputFile.readLine();
+                String path = "Test/" + nameFile;
+            }
+            catch (IOException err) {
+                err.printStackTrace();
+            }
+            try {
+                FileWriter file = new FileWriter("Test/" + nameFile);
+                file.write("f(x) = ");
+                for (i = m1.row - 1; i >= 0; i--) {
+                    temp = (matrix[i] * Math.pow(m2[0], i));
+                    result += temp;
+                    if (i == m1.row - 1){
+                        if (matrix[i] > 0){
+                            file.write(Double.toString(matrix[i])+"x^"+Integer.toString(i));
+                        } else {
+                            matrix[i] *= -1;
+                            file.write("- "+Double.toString(matrix[i])+"x^"+Integer.toString(i));
+                        }
+                    }
+                    else if (i > 1 && i < m.row - 1){
+                        if (matrix[i] > 0){
+                            file.write("+ "+Double.toString(matrix[i])+"x^"+Integer.toString(i));
+                        } else {
+                            matrix[i] *= -1;
+                            file.write("- "+Double.toString(matrix[i])+"x^"+Integer.toString(i));
+                        }
+                    } 
+                    else if (i == 1){
+                        if (matrix[i] > 0){
+                            file.write("+ "+Double.toString(matrix[i])+"x");
+                        } else {
+                            matrix[i] *= -1;
+                            file.write("- "+Double.toString(matrix[i])+"x");
+                        }
+                    } 
+                    else{
+                        if (matrix[i] > 0){
+                            file.write("+ "+Double.toString(matrix[i]));
+                        } else {
+                            matrix[i] *= -1;
+                            file.write("- "+Double.toString(matrix[i]));
+                        }
+                    }
+                }
+                file.write("f("+Double.toString(m2[0])+") = "+Double.toString(result));
+                file.close();
+            }
+            catch(IOException err) {
+                err.printStackTrace();
+            }
+        }
     }
 }

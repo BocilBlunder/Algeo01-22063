@@ -53,7 +53,8 @@ public class Main{
                     SPL.gaussSPL(m1);
                 }
                 else if (pil2 == 2){
-                    //readfile
+                    Matrix m1 = InputMatrix.readMatrixFile();
+                    SPL.gaussSPL(m1);
                 }
             }
             else if (pil1 == 2){
@@ -63,7 +64,8 @@ public class Main{
                     SPL.gaussJordanSPL(m1);
                 }
                 else if (pil2 == 2){
-                    //readfile
+                    Matrix m1 = InputMatrix.readMatrixFile();
+                    SPL.gaussJordanSPL(m1);
                 }
             }
             else if (pil1 == 3){
@@ -73,7 +75,8 @@ public class Main{
                     SPL.inversSPL(m1);
                 }
                 else if (pil2 == 2){
-                    //readfile
+                    Matrix m1 = InputMatrix.readMatrixFile();
+                    SPL.inversSPL(m1);
                 }   
             }
             else if (pil1 == 4){
@@ -83,7 +86,8 @@ public class Main{
                     SPL.cramerSPL(m1);
                 }
                 else if (pil2 == 2){
-                    //readfile
+                    Matrix m1 = InputMatrix.readMatrixFile();
+                    SPL.cramerSPL(m1);
                 }   
             }
         }
@@ -108,9 +112,12 @@ public class Main{
                     double[][]m = InputMatrix.readMatrixKeyboard2();
                     Matrix m1 = new Matrix(m, m.length, m[0].length);
                     System.out.println(Determinan.detKofaktor(m1));
+                    OutputMatrix.OutputFileDeterminan(Determinan.detKofaktor(m1));
                 }
                 else if (pil2 == 2){
-                    //readfile
+                    Matrix m1 = InputMatrix.readMatrixFile();
+                    System.out.println(Determinan.detKofaktor(m1));
+                    OutputMatrix.OutputFileDeterminan(Determinan.detKofaktor(m1));
                 }
             }
             else if (pil1 == 2){
@@ -120,7 +127,9 @@ public class Main{
                     System.out.println(Determinan.detOBE(m1));
                 }
                 else if (pil2 == 2){
-                    //readfile
+                    Matrix m1 = InputMatrix.readMatrixFile();
+                    System.out.println(Determinan.detOBE(m1));
+                    OutputMatrix.OutputFileDeterminan(Determinan.detOBE(m1));
                 }
             }
         }
@@ -145,9 +154,12 @@ public class Main{
                     double[][]m = InputMatrix.readMatrixKeyboard2();
                     Matrix m1 = new Matrix(m, m.length, m[0].length);
                     OutputMatrix.printMatrix(Invers.inversAdjoin(m1));
+                    OutputMatrix.OutputFileInvers(Invers.inversAdjoin(m1));
                 }
                 else if (pil2 == 2){
-                    //readfile
+                    Matrix m1 = InputMatrix.readMatrixFile();
+                    OutputMatrix.printMatrix(Invers.inversAdjoin(m1));
+                    OutputMatrix.OutputFileInvers(Invers.inversAdjoin(m1));
                 }
             }
             else if (pil1 == 2){
@@ -157,7 +169,9 @@ public class Main{
                     OutputMatrix.printMatrix(Invers.inversIdentitas(m1));
                 }
                 else if (pil2 == 2){
-                    //readfile
+                    Matrix m1 = InputMatrix.readMatrixFile();
+                    OutputMatrix.printMatrix(Invers.inversIdentitas(m1));
+                    OutputMatrix.OutputFileInvers(Invers.inversIdentitas(m1));
                 }
             }
         }
@@ -175,15 +189,16 @@ public class Main{
             if (pil2 == 1){
                 double[][]m = InputMatrix.readInterpolasiKeyboard();
                 Matrix m1 = new Matrix(m, m.length, m[0].length);
-                Interpolasi.interpolasiPolinomial1(m1);
+                Interpolasi.interpolasiPolinomialKeyboard(m1);
             }
             else if (pil2 == 2){
-                //readfile
+                Matrix m = InputMatrix.readMatrixFile();
+                Interpolasi.interpolasiPolinomialFile(m);
             }
         }
         if (pilihan == 5){
-            //readfile
-            Bicubic.interpolasiBicubic();
+            Matrix m = InputMatrix.readMatrixFile();
+            Bicubic.interpolasiBicubic(m);
         }
         if (pilihan == 6){
             System.out.println("------------------------------------------------------------");
@@ -197,20 +212,23 @@ public class Main{
                 pil2 = input.nextInt();
             }
             if (pil2 == 1){
-                double[][]m = InputMatrix.readInterpolasiKeyboard();
+                double[][]m = InputMatrix.readRegresiKeyboard();
                 Matrix m1 = new Matrix(m, m.length, m[0].length);
                 Regresi.regresiLinear(m1);
             }
             else if (pil2 == 2){
-                //readfile
+                Matrix m = InputMatrix.readMatrixFile();
+                Regresi.regresiLinear(m);
             }
         }
         if (pilihan == 7){
             System.out.println("------------------------------------------------------------");
-            System.out.println("                     Terima Kasih!                          ");
-            System.out.println("                    OPET BROT BROT                          ");
-            System.out.println("            13522063 | 13522070 | 13522113                  ");
+            System.out.println("                       Terima Kasih!                        ");
+            System.out.println("                      OPET BROT BROT                        ");
+            System.out.println("               13522063 | 13522070 | 13522113                ");
             System.out.println("------------------------------------------------------------");
         }
     }
+
+
 }
