@@ -11,12 +11,15 @@ public class Invers {
         int i, j, k;
         Matrix invers;
 		Boolean inversExist = true;
+		// membuat matriks baru dengan ukuran kolom 2 kali lebih besar
 		invers = new Matrix(matrix.getRowLength(), matrix.getColLength()*2);
 		
+		// jika determinan = 0, maka matriks tidak ada
 		if (Determinan.detKofaktor(matrix) == 0){
 			System.out.println("Invers tidak ada.");
 		}
         else{
+			// mengisi matriks dengan matriks identitas dan matriks input
 			for (i = 0; i < matrix.getRowLength(); i++){
 				for (j = 0; j < matrix.getColLength(); j++){
 					if (i == j){
@@ -28,6 +31,7 @@ public class Invers {
 					invers.setElmt(i, j, matrix.getElmt(i,j));
 				}
 			}
+			// mengloop sehingga mendapatkan invers
 			for (i = 0; i < invers.getRowLength(); i++){
 				for (j = 0; j < invers.getRowLength(); j++){
 					if (i != j){
@@ -36,6 +40,7 @@ public class Invers {
 							inversExist = false;
 							while (k < invers.getRowLength()){
 								if (invers.getElmt(k,i) != 0){
+									// menukar baris
 									invers.rowSwap(invers, i, k);
 									inversExist = true;
 								}
@@ -75,14 +80,16 @@ public class Invers {
 	public static Matrix inversAdjoin (Matrix m){
 		int i, j;
 		Boolean inversExist = true;
+		// menggunakan fungsi adjoin untuk mencari matriks adjoinnya.
 		Matrix mAdjoin = Matrix.Adjoin(m);
 		double det = Determinan.detKofaktor(m);
-
+		// jika determinan = 0, maka invers tidak ada
 		if (det == 0){
 			inversExist = false;
 			System.out.println("Invers tidak ada.");
 		}
 		for (i = 0; i < m.row; i++){
+			// membagi matriks adjoin dengan determinan m
 			for (j = 0; j < m.col; j++){
 				mAdjoin.setElmt(i, j, (mAdjoin.getElmt(i, j)/det));
 			}

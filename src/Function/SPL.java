@@ -16,8 +16,10 @@ public class SPL {
         Matrix matrixInvers;
         int i, j;
         BufferedReader inputFile = new BufferedReader(new InputStreamReader(System.in));
+        // Konstruktor matriks A dan B
         A = new Matrix(MatrixSPL.row, MatrixSPL.row);
         B = new Matrix(MatrixSPL.row, 1);
+        // Memisahkan A dan B yang terinput sebagai augmented matrix
         for (i = 0; i < A.getRowLength(); i++){
             for (j = 0; j < MatrixSPL.getColLength(); j++){
                 if (j != MatrixSPL.getColLength()-1){
@@ -29,8 +31,10 @@ public class SPL {
             }
         }
 
+        // Jika determinan 0, maka SPL tidak dapat diselesaikan dengan metode matriks balikan
         if ((MatrixSPL.getRowLength() != MatrixSPL.getColLength()-1) || Determinan.detKofaktor(A) == 0){
             System.out.println("SPL tidak dapat diselesaikan dengan metode invers.");
+            // output file
             int pil3 = OutputMatrix.printMenuOutput();
             if (pil3 == 1){
                 String newfileName = "";
@@ -52,12 +56,16 @@ public class SPL {
                 }
             }
         } else {
+            // Konstruktor x
             x = new Matrix(MatrixSPL.row, 1);
+            // x = (invers A) * B
             matrixInvers = Invers.inversIdentitas(A);
             x = Matrix.multiplyMatrix(matrixInvers, B);
+            // Mengeluarkan output x
             for(i = 0; i < x.getRowLength(); i++){
                 System.out.printf("x%d = %.4f\n", (i+1), (x.getElmt(i, 0)));
             }
+            // output file
             int pil3 = OutputMatrix.printMenuOutput();
             if (pil3 == 1){
                 String newfileName = "";
@@ -98,6 +106,7 @@ public class SPL {
         Matrix mTemp;
         BufferedReader inputFile = new BufferedReader(new InputStreamReader(System.in));
 
+        // Input A dan B (Memisahkan augmented matrix)
         A = new Matrix(mCramer.getRowLength(), mCramer.getColLength()-1);
         B = new Matrix(mCramer.row, 1);
         for (i = 0; i < mCramer.getRowLength(); i++){
@@ -111,9 +120,11 @@ public class SPL {
                 
             }
         }
-
+        
+        // Jika determinan 0, maka SPL tidak dapat diselesaikan dengan metode cramer.
         if ((mCramer.getRowLength() != mCramer.getColLength()-1) || Determinan.detKofaktor(A) == 0){
             System.out.print("SPL tidak dapat diselesaikan dengan metode cramer.");
+            // output file
             int pil3 = OutputMatrix.printMenuOutput();
             if (pil3 == 1){
                 String newfileName = "";
@@ -135,10 +146,12 @@ public class SPL {
                 }
             }
         } else {
+            // Konstruktor x
             x = new Matrix(mCramer.getRowLength(), 1);
-            
+            // Determinan
             det = Determinan.detKofaktor(A);
             mTemp = A;
+            // Mengloop sehingga setiap kolom diubah dengan B kemudian dicari nilai x[kolom]nya.
             for (j = 0; j < A.row; j++){
                 for (i = 0; i < A.row; i++){
                     mTemp.setElmt(i, j, mCramer.getElmt(i, A.row));
@@ -149,6 +162,7 @@ public class SPL {
                     mTemp.setElmt(i, j, mCramer.getElmt(i, j));
                 }
             }
+            // output file
             int pil3 = OutputMatrix.printMenuOutput();
             if (pil3 == 1){
                 String newfileName = "";
