@@ -18,10 +18,12 @@ public class Determinan {
             if(row == 1 || col == 1){
                 return m.matrix[0][0];
             } else{
-                for (i = 0; i < row; i++){
+                // kofaktor pake baris 0
+                for (i = 0; i < col; i++){
                     mTemp = new Matrix(row - 1, col - 1);
-                    for (j = 1; j < row; j++){
+                    for (j = 1; j < col; j++){
                         for (k = 0; k < row; k++){
+                            // menentukan indeks yang masuk ke matriks kofaktor
                             x = m.matrix[j][k];
                             if (k > i){
                                 mTemp.setElmt(j - 1, k - 1, x);

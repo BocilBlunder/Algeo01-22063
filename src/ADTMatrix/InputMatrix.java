@@ -1,9 +1,7 @@
 package ADTMatrix;
 import java.util.*;
 import java.io.*;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.nio.file.Paths;
 import java.util.Scanner;
 
 public class InputMatrix{
@@ -144,10 +142,48 @@ public class InputMatrix{
             matrix = new double[1][1];
             return matrix;
         }
-    }
+    }    
+
+    public static double[][] readInterpolasiFile(){
+        Scanner scan;
+        File tes;
+        double[][] matrix;
+        int i, j;
+        int row = 0;
+        int col = 0;
+
+        System.out.print("Masukkan nama file: ");
+        String file = input.nextLine();
+        String path = "Test/" + file;
+        System.out.println(path);
+
+        try{
+            tes = new File(path);
+            scan = new Scanner(tes);
+            while(scan.hasNextLine()){
+                col = (scan.nextLine()).split(" ").length;
+                row++;
+            }
+            scan.close();
+
+            matrix = new double[row][col];
+            scan = new Scanner(tes);
+  
+            for (i = 0; i < row; i++){
+                for (j = 0; j < col; j++){
+                    matrix[i][j] = scan.nextDouble();
+                }
+            }
+            // close the scanner
+            scan.close();
+            return matrix;
+        }
+        catch(FileNotFoundException e){
+            System.out.println("File not found");
+            System.out.println("Returning a 1x1 matrix with value 0");
+            matrix = new double[1][1];
+            return matrix;
+        }
+    }    
+
 }
-    
-
-
-    
-
