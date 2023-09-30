@@ -50,11 +50,11 @@ public class Bicubic {
         X = Invers.inversIdentitas(tempX);
         A = Matrix.multiplyMatrix(X, tempY);
 
-        Double hasil=0.0;
-        indeks=0;
+        Double hasil = 0.0;
+        indeks = 0;
         for(i = 0; i < 4; i++){
             for(j = 0; j < 4; j++){
-                hasil += A.getElmt(indeks, 0)*Math.pow(a, i)*Math.pow(b, j);
+                hasil += A.getElmt(indeks, 0) * Math.pow(a, i) * Math.pow(b, j);
                 indeks++;
             }
         }
