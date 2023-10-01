@@ -14,16 +14,21 @@ public class Determinan {
         row = m.getRowLength();
         col = m.getColLength();
 
+        // Menentukan Apakah Matriks Berukuran MxM
         if (m.isSquare()){
             if(row == 1 || col == 1){
                 return m.matrix[0][0];
             } else{
-                // kofaktor pake baris 0
+
+                // Kofaktor Dengan Baris 0
                 for (i = 0; i < col; i++){
+
+                    // Membuat Matriks Kofaktor
                     mTemp = new Matrix(row - 1, col - 1);
                     for (j = 1; j < col; j++){
                         for (k = 0; k < row; k++){
-                            // menentukan indeks yang masuk ke matriks kofaktor
+
+                            // Menentukan Indeks yang Masuk ke Matriks Kofaktor
                             x = m.matrix[j][k];
                             if (k > i){
                                 mTemp.setElmt(j - 1, k - 1, x);
@@ -53,10 +58,12 @@ public class Determinan {
         row = m.getRowLength();
         col = m.getColLength();
 
+        // Menentukan Apakah Matriks Berukuran MxM
         if (m.isSquare()){
             if (row == 1 || col == 1){
                 return m.matrix[0][0];
             } else {
+                // Mencari Ujung Matriks yang 0
                 for (i = 0; i < row; i++){
                     if (m.matrix[i][i] == 0){
                         j = i + 1;
@@ -75,27 +82,30 @@ public class Determinan {
                         }
                     }
                     
+                    // Membuat Ujung Kiri Baris Menjadi 1
                     x = m.matrix[i][i];
                     det *= x;
                     if (x != 0){
                         for (k = 0; k < row; k++){
                             m.matrix[i][k] /= x;
                         }
+                    }
                         
-                        for (k = i + 1; k < row; k++){
-                            y = m.matrix[k][i];
-                            for (l = 0; l < row; l++){
-                                m.setElmt(k, l, m.matrix[k][l] - y * m.matrix[i][l]);
-                            }
-                        }    
+                    // Membuat Kolom di Bawah Angka 1 Menjadi 0
+                    for (k = i + 1; k < row; k++){
+                        y = m.matrix[k][i];
+                        for (l = 0; l < row; l++){
+                            m.setElmt(k, l, m.matrix[k][l] - y * m.matrix[i][l]);
+                        }
+                        
                     }
                 }
+                // Membuat Nilai Det yang -0 Menjadi 0
                 if (det == -0 || det == 0){
                     det = 0;
                 }
                 return det;
-            }
-        
+            } 
         } else {
             return m.MARK;
         }

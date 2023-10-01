@@ -7,7 +7,8 @@ import java.io.InputStreamReader;
 import ADTMatrix.*;
 
 public class Interpolasi {
-    // Gauss-Elimination
+
+    // Menerima Inputan dari Keyboard
     public static void interpolasiPolinomialKeyboard(Matrix m){
         int i, j;
         double result = 0;
@@ -15,12 +16,14 @@ public class Interpolasi {
         Matrix mTemp;
         BufferedReader inputFile = new BufferedReader(new InputStreamReader(System.in));
 
-
+        // Input Nilai yang ingin Ditaksir
         System.out.print("Masukkan nilai yang ingin ditaksir (x): ");
         x = InputMatrix.input.nextDouble();
 
+        // Membuat Matriks
         mTemp = new Matrix(m.row, m.row + 1);
 
+        
         if ( m.row >= 1){
             for (i = 0; i < mTemp.row; i++){
                 for (j = 2; j < mTemp.col; j++){
@@ -35,6 +38,7 @@ public class Interpolasi {
             }
         }
 
+        // Melakukan Eliminasi Gauss
         mTemp = Matrix.gaussElimination(mTemp);
         double[] m1 = new double [mTemp.getRowLength()];
         Matrix.backSubstitution(mTemp, m1);
@@ -133,6 +137,8 @@ public class Interpolasi {
         }
     }
 
+
+    // Menerima Inputan dari File
     public static void interpolasiPolinomialFile(Matrix m){
         BufferedReader inputFile = new BufferedReader(new InputStreamReader(System.in));
         int i, j;
@@ -143,6 +149,7 @@ public class Interpolasi {
         double[] m2;
         double[] matrix;
 
+        // Membuat Matriks
         m1 = new Matrix(m.row - 1, 2);
         for(i = 0; i < m.row - 1; i++){
             for(j = 0; j < 2; j++){
@@ -171,6 +178,7 @@ public class Interpolasi {
             }
         }
 
+        // Melakukan Eliminasi Gauss
         mTemp = Matrix.gaussElimination(mTemp);
         matrix = new double [mTemp.getRowLength()];
         Matrix.backSubstitution(mTemp, matrix);

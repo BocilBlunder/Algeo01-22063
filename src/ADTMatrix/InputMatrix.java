@@ -5,19 +5,21 @@ import java.nio.file.Paths;
 import java.util.Scanner;
 
 public class InputMatrix{
-    // Input dari Keyboard
     public static Scanner input = new Scanner(System.in);
-    
+
+    // Input dari Keyboard
     public static double[][] readMatrixKeyboard1(){
         int i,j;
         double [][] matrixA, matrixB, m;
         int rows, cols;
 
+        // Input Jumlah Baris dan Kolom
         System.out.print("Masukkan jumlah baris: ");
         rows = input.nextInt();
         System.out.print("Masukkan jumlah kolom: ");
         cols = input.nextInt();
 
+        // Membuat Matriks A
         matrixA = new double[rows][cols];
         System.out.println("Masukkan elemen matriks A: ");
         for(i = 0; i < rows; i++){
@@ -26,6 +28,7 @@ public class InputMatrix{
             }
         }
 
+        // Membuat Matriks B
         matrixB = new double[rows][1];
         System.out.println("Masukkan elemen matriks B: ");
         for(i = 0; i < rows; i++){
@@ -34,6 +37,7 @@ public class InputMatrix{
             }
         }
         
+        // Menggabungkan Kedua Matriks
         m = new double [rows][cols + 1];
         for (i = 0; i < rows; i++){
             System.arraycopy(matrixA[i], 0, m[i], 0, cols);
@@ -47,11 +51,13 @@ public class InputMatrix{
         double [][] matrix;
         int rows, cols;
 
+        // Input Jumlah Baris dan Kolom
         System.out.print("Masukkan jumlah baris: ");
         rows = input.nextInt();
         System.out.print("Masukkan jumlah kolom: ");
         cols = input.nextInt();
-
+        
+        // Membuat Matriks 
         matrix = new double[rows][cols];
         System.out.println("Masukkan elemen matriks: ");
         for(i = 0; i < rows; i++){
@@ -68,9 +74,11 @@ public class InputMatrix{
         double [][] matrix;
         double x;
 
+        // Input Derajat Polinom
         System.out.print("Masukkan derajat polinom (n): ");
         n = input.nextInt();
 
+        // Membuat Matriks dengan Titik X dan Y
         matrix = new double[n + 1][2];
         System.out.println("Masukkan titik x dan y: ");
         for(i = 0; i < n + 1; i++){
@@ -88,11 +96,13 @@ public class InputMatrix{
         int n, m;
         double [][] matrix;
 
+        // Input Jumlah Peubah dan Sampel
         System.out.print("Masukkan jumlah peubah (x): ");
         n = input.nextInt();
         System.out.print("Masukkan jumlah sampel (m): ");
         m = input.nextInt();
 
+        // Membuat Matriks dengan Titik X dan Y
         matrix = new double[m][n + 1];
         System.out.println("Masukkan titik x dan y: ");
         for(i = 0; i < m; i++){
@@ -109,12 +119,13 @@ public class InputMatrix{
         int i;
         Matrix matrix;
         
-
+        // Input Nama File
         System.out.print("Masukkan nama file: ");
         String file = input.nextLine();
         String path = "test/" + file;
         System.out.println(path);
 
+        // Mencari File
         try{
             BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(path)));
             String s;
@@ -122,21 +133,24 @@ public class InputMatrix{
             double[] y;
             double[][] mTemp;
 
-            
+            // Membaca Baris 1
             s = br.readLine();
-     
+            
+            // Mengubah Baris 1 Menjadi Array of String
             x = s.split("\\s+");
             y = new double[x.length];
-        
+
+            // Mengubah Array menjadi Array of Double
             for(i = 0; i < y.length; i++){
                 y[i] = Double.parseDouble(x[i]);
             }
-            // pindah ke matriks dengan kolom 1
+
+            // Memindahkan Array of Double ke Matriks
             mTemp = new double[1][x.length];
             for(i = 0; i < y.length; i++){
                 mTemp[0][i] = y[i];
             }
-            // buat matriks 
+            // Membuat matriks 
             matrix = new Matrix(mTemp, 1, y.length);
 
             while((s = br.readLine()) != null){
@@ -161,6 +175,8 @@ public class InputMatrix{
             }
             br.close();
             return matrix;
+            
+        // Ketika File Tidak Ditemukan
         }catch(Exception ex){
             System.out.println("File not found");
             System.out.println("Returning a 1x1 matrix with value 0");

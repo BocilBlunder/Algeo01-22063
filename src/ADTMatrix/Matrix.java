@@ -5,8 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Scanner;
-
-import Function.Determinan;
+import Function.*;
 
 public class Matrix {
     public int row = 0;
@@ -53,9 +52,11 @@ public class Matrix {
     public boolean isSquare(){
         return this.row == this.col;
     }
+
     public double getElmt(int i, int j){
         return this.matrix[i][j];
     }
+
     public void setElmt(int i, int j, double elmt){
         this.matrix[i][j] = elmt;
     }
@@ -69,7 +70,6 @@ public class Matrix {
 		}
     }
 
-    // PRIMITIF //
     public static Matrix multiplyMatrix(Matrix m1, Matrix m2){
         int i, j, k;
         double temp;
