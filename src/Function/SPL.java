@@ -197,8 +197,10 @@ public class SPL {
 
     public static void gaussSPL (Matrix Mgauss) {
         BufferedReader inputFile = new BufferedReader(new InputStreamReader(System.in));
+        //Melakukan eliminasi gauss 
         Mgauss = Matrix.gaussElimination(Mgauss);
         double X[] = new double[Mgauss.getRowLength()];
+        //Menganalisis matriks hasil eliminasi gauss apakah memiliki solusi tidak ada, unik atau banyak
         int solutionType = Matrix.SolutionType(Mgauss);
         int pil3;
         Matrix.backSubstitution(Mgauss, X);
@@ -206,6 +208,7 @@ public class SPL {
         if (solutionType == 0) {
             System.out.println("Solusi tidak ada.");
             pil3 = OutputMatrix.printMenuOutput();
+            //Mencetak SPL dalam bentuk file
             if(pil3 == 1) {
                 String nameFile = "";
                 System.out.println("Masukkan nama file: ");
@@ -231,6 +234,7 @@ public class SPL {
                 System.out.printf("X[%d] = %.4f%n", i + 1, X[i]);
             }
             pil3 = OutputMatrix.printMenuOutput();
+            //Mencetak SPL dalam bentuk file
             if(pil3 == 1) {
                 String nameFile = "";
                 System.out.println("Masukkan nama file: ");
@@ -260,6 +264,7 @@ public class SPL {
                 }
             
             } else {
+                //Jika solusi berupa parametrik maka memanggil fungsi solusi parametrik
                 System.out.println("Solusi banyak (parametrik):");
                 Matrix.solveManySolution(Mgauss);
             }
@@ -267,15 +272,17 @@ public class SPL {
     }
 
     public static void gaussJordanSPL (Matrix Mgajo) {
+        //Melakukan eliminasi gauss jordan
         Mgajo = Matrix.gaussJordanElimination(Mgajo);
         int pil3;
         BufferedReader inputFile = new BufferedReader(new InputStreamReader(System.in));
         int solutionType = Matrix.SolutionType(Mgajo);
-
+        //Menganalisis matriks hasil eliminasi gauss apakah memiliki solusi tidak ada, unik atau banyak
         if (solutionType == 0) {
             System.out.println("Solusi tidak ada.");
             pil3 = OutputMatrix.printMenuOutput();
             if(pil3 == 1) {
+                //Mencetak out SPL ke dalam bentuk file
                 String nameFile = "";
                 System.out.println("Masukkan nama file: ");
                 try {
@@ -301,6 +308,7 @@ public class SPL {
             }
             pil3 = OutputMatrix.printMenuOutput();
             if(pil3 == 1) {
+                 //Mencetak out SPL ke dalam bentuk file
                 String nameFile = "";
                 System.out.println("Masukkan nama file: ");
                 try {
@@ -329,6 +337,7 @@ public class SPL {
                 }
             } else {
                 System.out.println("Solusi banyak (parametrik):");
+                //Jika solusi berupa parametrik maka memanggil fungsi solusi parametrik
                 Matrix.solveManySolution(Mgajo);
             }
         }

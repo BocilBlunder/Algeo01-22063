@@ -240,7 +240,7 @@ public class Matrix {
             return 1;
         }
     }
-
+    //Fungsi jika matriksnya memiliki SPL berupa parametrik
     public static void solveManySolution(Matrix matrix) {
         int nEff = matrix.getColLength() - 1;
         boolean[] visited = new boolean[nEff];
@@ -355,18 +355,18 @@ public class Matrix {
         }
     }
     }
-
+    //Menghasilkan matriks eselon baris
     public static Matrix gaussElimination(Matrix matrix) {
         int n = matrix.getRowLength();
         int m = matrix.getColLength();
         double X[] = new double[n];
-
+        // Cari pivot non-nol pertama dalam kolom
         for (int i = 0; i < n; i++) {
             int pivotRow = i;
             while (pivotRow < n && matrix.getElmt(pivotRow, i) == 0) {
                 pivotRow++;
             }
-
+            //Pivot ketermu
             if (pivotRow == n) {
                 continue;
             }
@@ -377,7 +377,8 @@ public class Matrix {
                     matrix.setElmt(pivotRow, j, matrix.getElmt(pivotRow, j) / pivotValue);
                 }
             }
-
+            
+            // Tukar baris pivot dengan baris saat ini
             for (int j = i; j < m; j++) {
                 double temp = matrix.getElmt(i, j);
                 matrix.setElmt(i, j, matrix.getElmt(pivotRow, j));
@@ -418,7 +419,7 @@ public class Matrix {
             if (pivotColl == m - 1) {
                 continue;
             }
-
+            
             if (matrix.getElmt(i, pivotColl) != 1) {
                 double pivotValue2 = matrix.getElmt(i, pivotColl);
                 for (int k = pivotColl; k < m; k++) {
@@ -464,7 +465,7 @@ public class Matrix {
         backSubstitution(matrix, X);
         return matrix;
     }
-
+    //Menghasilkan matriks eselon baris tereduksi
     public static Matrix gaussJordanElimination(Matrix A) {
         int n = A.getRowLength();
         int m = A.getColLength();

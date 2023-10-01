@@ -17,11 +17,12 @@ public class Regresi {
         BufferedReader inputFile = new BufferedReader(new InputStreamReader(System.in));
 
         x = new double [m.col - 1];
+        //Input nilai-nilai xk yang ingin ditaksir
         System.out.println("Masukkan nilai x yang ingin ditaksir: ");
         for(i = 0; i < x.length; i++){
             x[i] = InputMatrix.input.nextDouble();
         }
-
+        //Membuat matriks baru semacam SPL
         mTemp = new Matrix(m.col, m.col + 1);
 
         for(i = 0 ; i < mTemp.row ; i++){
@@ -80,6 +81,7 @@ public class Regresi {
 
         int pil3 = OutputMatrix.printMenuOutput();
         if (pil3 == 1){
+            //Mencetak ouput ke dalam bentuk file
             String nameFile = "";
             System.out.println("Masukkan nama file: ");
             try {
