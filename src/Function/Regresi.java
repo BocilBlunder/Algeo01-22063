@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 import ADTMatrix.*;
 
 public class Regresi {
-    public static void regresiLinear (Matrix m){
+    public static void regresiLinearKeyboard(Matrix m){
         int i, j;
         double temp = 0;
         double result = 0;
@@ -77,7 +77,7 @@ public class Regresi {
             }
             sum += result;
         }
-        System.out.printf("f(xk) = %.4f", sum);
+        System.out.printf("f(xk) = %.4f\n", sum);
 
         int pil3 = OutputMatrix.printMenuOutput();
         if (pil3 == 1){
@@ -129,6 +129,86 @@ public class Regresi {
                 err.printStackTrace();
             }
         }
+    }
+
+    public static void regresiLinearFile (Matrix m){
+        int i, j;
+        double temp = 0;
+        double result = 0;
+        double sum = 0;
+        Matrix mTemp;
+        Matrix m1;
+        double[] m2;
+        double[] x;
+
+        // Membuat Matriks
+        m1 = new Matrix(m.row - 1, m.col);
+        for(i = 0; i < m.row - 1; i++){
+            for(j = 0; j < m.col; j++){
+                m1.setElmt(i, j, m.matrix[i][j]);
+            }
+        }
+
+        m2 = new double[m.col - 1];
+        for(i = 0; i < m2.length; i++){ 
+            m2[i] = m.getElmt(m.row - 1, i);
+        }
+
+        //Membuat matriks baru semacam SPL
+        mTemp = new Matrix(m.col, m.col + 1);
+
+        for(i = 0 ; i < mTemp.row  ; i++){
+            for(j = 0 ; j < mTemp.col ; j++){
+                if(i == 0 && j == 0){
+                    temp = m1.row;
+                }
+                else if (i == 0 && j > 0){
+                    temp = Matrix.sumCol(m1, j - 1);
+                }
+                else if (j == 0 && i > 0){
+                    temp = Matrix.sumCol(m1, i - 1);
+                }
+                else if (i > 0 && j > 0) {
+                    temp = Matrix.sumMultiplyCol(m1, i-1, j-1);
+                }
+                mTemp.setElmt(i, j, temp);
+            }
+        }
+        
+        mTemp = Matrix.gaussElimination(mTemp);
+        x = new double [mTemp.getRowLength()];
+        Matrix.backSubstitution(mTemp, x); 
+
+        System.out.print("f(x) = ");
+        for (i = 0; i < mTemp.row; i++) {
+            if (i == 0){
+                result = x[i];
+                if (x[i] > 0){
+                    System.out.printf("%.4f ", x[i]);
+                } else {
+                    x[i] *= -1;
+                    System.out.printf("- %.4f ", x[i]);
+                }
+            } else if ( i > 0 && i < mTemp.row - 1){
+                result = x[i] * m2[i - 1];
+                if (x[i] > 0){
+                    System.out.printf("+ %.4fx%d ", x[i], i);
+                } else {
+                    x[i] *= -1;
+                    System.out.printf("- %.4fx%d ", x[i], i);
+                }
+            } else if (i == mTemp.row - 1){
+                result = x[i] * m2[i - 1];
+                if (x[i] > 0){
+                    System.out.printf("+ %.4fx%d, ", x[i], i);
+                } else {
+                    x[i] *= -1;
+                    System.out.printf("- %.4fx%d, ", x[i], i);
+                }
+            }
+            sum += result;
+        }
+        System.out.printf("f(xk) = %.4f", sum);
     }
  }
 

@@ -156,7 +156,6 @@ public class Interpolasi {
                 m1.setElmt(i, j, m.matrix[i][j]);
             }
         }
-        OutputMatrix.printMatrix(m1);
 
         m2 = new double[1];
         m2[0] = m.getElmt(m.row - 1, 0);

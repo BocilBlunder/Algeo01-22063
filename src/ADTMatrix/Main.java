@@ -214,11 +214,11 @@ public class Main{
             if (pil2 == 1){
                 double[][]m = InputMatrix.readRegresiKeyboard();
                 Matrix m1 = new Matrix(m, m.length, m[0].length);
-                Regresi.regresiLinear(m1);
+                Regresi.regresiLinearKeyboard(m1);
             }
             else if (pil2 == 2){
                 Matrix m = InputMatrix.readMatrixFile();
-                Regresi.regresiLinear(m);
+                Regresi.regresiLinearFile(m);
             }
         }
         if (pilihan == 7){
