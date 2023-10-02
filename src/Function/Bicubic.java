@@ -232,6 +232,7 @@ public class Bicubic {
 
         // A = (invers X) * Y
         X = matrixX();
+        OutputMatrix.printMatrix(X);
         Matrix inversX = Invers.inversIdentitas(X);
         A = Matrix.multiplyMatrix(inversX, tempY);
 

@@ -49,7 +49,6 @@ public class Determinan {
 
     public static double detOBE (Matrix m){
         int i, j, k, l;
-        int swap = 1;
         double det = 1;
         double x = 0;
         double y = 0;
@@ -65,34 +64,48 @@ public class Determinan {
                 return m.matrix[0][0];
             } else {
                 // Mencari Ujung Matriks yang 0
-                for (i = 0; i < row - 1; i++){
-                    double temp = m.getElmt(i, i);
-                    if (temp == 0){
-                        for (j = i + 1; j < row; j++){
-                            double tes = m.matrix[j][i];
-                            if (tes != 0){
-                                for (k = 0; k < row; k++){
-                                    m.rowSwap(m, i, j);
-                                }
-                                swap *= -1;
+                for (i = 0; i < row; i++){
+                    if (i < col){
+                        if (m.matrix[i][i] == 0){
+                            j = i + 1;
+
+                            while (j < row && m.matrix[j][i] == 0){
+                                j++;
+                            }
+                        
+                            if (j >= row){
+                                det = 0;
                                 break;
+                            } else {
+                                det *= -1;
+                                double temp;
+                                for (k = 0; k < col; k++){
+                                    temp = m.matrix[i][k];
+                                    m.matrix[i][k] = m.matrix[j][k];
+                                    m.matrix[j][k] = temp;
+                                }
+                            }
+                        }
+                        
+                        // Membuat Ujung Kiri Baris Menjadi tidak 0
+                        x = m.matrix[i][i];
+                        det *= x;
+                        if (x != 0){
+                            for (j = 0; j < col; j++){
+                                m.matrix[i][j] /= x;
+                            }
+                        }
+                            
+                        // Membuat Kolom di Bawah Angka pertama Menjadi 0
+                        for (k = i + 1; k < row; k++){
+                            y = m.matrix[k][i];
+                            for (l = 0; l < col; l++){
+                                m.matrix[k][l] -= m.matrix[i][l] * y;
                             }
                         }
                     }
-                    for(j = i + 1; j < row; j++){
-                        x = m.matrix[j][i] / m.matrix[i][i];
-                        x *= -1;
-                        for (k = 0; k < row; k++){
-                            y = m.matrix[i][k] * x;
-                            m.setElmt(j, k, m.getElmt(j, k) + y);
-                        }
-                    }
                 }
-                int res = swap;
-                for (i = 0; i < row; i++){
-                    res *= m.getElmt(i, i);
-                }
-                return res;
+                return det;
             }
         } else {
             return m.MARK;

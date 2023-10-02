@@ -77,7 +77,7 @@ public class Interpolasi {
                 }
             }
         }
-        System.out.printf("f(%.4f) = %.4f", x, result);
+        System.out.printf("f(%.4f) = %.4f\n", x, result);
         int pil3 = OutputMatrix.printMenuOutput();
         if (pil3 == 1){
             String nameFile = "";
@@ -93,8 +93,6 @@ public class Interpolasi {
                 FileWriter file = new FileWriter("Test/" + nameFile);
                 file.write("f(x) = ");
                 for (i = m.row - 1; i >= 0; i--) {
-                    temp = (m1[i] * Math.pow(x, i));
-                    result += temp;
                     if (i == m.row - 1){
                         if (m1[i] > 0){
                             file.write(Double.toString(m1[i])+"x^"+Integer.toString(i));
@@ -216,7 +214,7 @@ public class Interpolasi {
                 }
             }
         }
-        System.out.printf("f(%.4f) = %.4f", m2[0], result);
+        System.out.printf("f(%.4f) = %.4f\n", m2[0], result);
         int pil3 = OutputMatrix.printMenuOutput();
         if (pil3 == 1){
             String nameFile = "";
@@ -232,8 +230,6 @@ public class Interpolasi {
                 FileWriter file = new FileWriter("Test/" + nameFile);
                 file.write("f(x) = ");
                 for (i = m1.row - 1; i >= 0; i--) {
-                    temp = (matrix[i] * Math.pow(m2[0], i));
-                    result += temp;
                     if (i == m1.row - 1){
                         if (matrix[i] > 0){
                             file.write(Double.toString(matrix[i])+"x^"+Integer.toString(i));

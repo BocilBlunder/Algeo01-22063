@@ -93,10 +93,9 @@ public class Regresi {
             }
             try {
                 FileWriter file = new FileWriter("Test/" + nameFile);
-                System.out.print("f(x) = ");
+                file.write("f(x) = ");
                 for (i = 0; i < mTemp.row; i++) {
                     if (i == 0){
-                        result = m1[i];
                         if (m1[i] > 0){
                             file.write(Double.toString(m1[i]));
                         } else {
@@ -120,9 +119,8 @@ public class Regresi {
                             file.write("- "+Double.toString(m1[i])+"x^"+Integer.toString(i));
                         }
                     }
-                    sum += result;
                 }
-                file.write("f(xk) = "+Double.toString(sum));
+                file.write("\nf(xk) = "+Double.toString(sum));
                 file.close();
             }
             catch(IOException err) {
@@ -140,6 +138,7 @@ public class Regresi {
         Matrix m1;
         double[] m2;
         double[] x;
+        BufferedReader inputFile = new BufferedReader(new InputStreamReader(System.in));
 
         // Membuat Matriks
         m1 = new Matrix(m.row - 1, m.col);
@@ -208,7 +207,56 @@ public class Regresi {
             }
             sum += result;
         }
-        System.out.printf("f(xk) = %.4f", sum);
+         System.out.printf("f(xk) = %.4f\n", sum);
+         
+        int pil3 = OutputMatrix.printMenuOutput();
+        if (pil3 == 1){
+            //Mencetak ouput ke dalam bentuk file
+            String nameFile = "";
+            System.out.println("Masukkan nama file: ");
+            try {
+                nameFile = inputFile.readLine();
+                String path = "Test/" + nameFile;
+            }
+            catch (IOException err) {
+                err.printStackTrace();
+            }
+            try {
+                FileWriter file = new FileWriter("Test/" + nameFile);
+                file.write("f(x) = ");
+                for (i = 0; i < mTemp.row; i++) {
+                    if (i == 0){
+                        if (x[i] > 0){
+                            file.write(Double.toString(x[i]));
+                        } else {
+                            x[i] *= -1;
+                            file.write("- "+Double.toString(x[i]));
+                        }
+                    } else if (i > 0 && i < mTemp.row - 1){
+                        result = x[i] * m2[i - 1];
+                        if (x[i] > 0){
+                            file.write("+ "+ Double.toString(x[i])+"x"+Integer.toString(i));
+                        } else {
+                            x[i] *= -1;
+                            file.write("- "+ Double.toString(x[i])+"x"+Integer.toString(i));
+                        }
+                    } else if (i == mTemp.row - 1){
+                        result = x[i] * m2[i - 1];
+                        if (x[i] > 0){
+                            file.write("+ "+Double.toString(x[i])+"x^"+Integer.toString(i));
+                        } else {
+                            x[i] *= -1;
+                            file.write("- "+Double.toString(x[i])+"x^"+Integer.toString(i));
+                        }
+                    }
+                }
+                file.write("\nf(xk) = "+Double.toString(sum));
+                file.close();
+            }
+            catch(IOException err) {
+                err.printStackTrace();
+            }
+        }
     }
  }
 

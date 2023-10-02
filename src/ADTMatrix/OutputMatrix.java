@@ -76,7 +76,7 @@ public class OutputMatrix {
             try{
                 FileWriter file = new FileWriter("Test/" + newfileName);
                 int i, j;
-                if (Determinan.detKofaktor(m) == 0){
+                if (Determinan.detOBE(m) == 0){
                     file.write("Invers tidak ada.");
                 }
                 else{

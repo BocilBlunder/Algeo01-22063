@@ -63,7 +63,7 @@ public class SPL {
             x = Matrix.multiplyMatrix(matrixInvers, B);
             // Mengeluarkan output x
             for(i = 0; i < x.getRowLength(); i++){
-                System.out.printf("x%d = %.4f\n", (i+1), (x.getElmt(i, 0)));
+                System.out.printf("X%d = %.4f\n", (i+1), (x.getElmt(i, 0)));
             }
             // output file
             int pil3 = OutputMatrix.printMenuOutput();
@@ -82,10 +82,10 @@ public class SPL {
                     for(i = 0; i < x.getRowLength(); i++){
                         if (i != x.row - 1){
                             double temp = x.getElmt(i, 0);
-                            file.write("x"+Integer.toString(i+1)+" = " + Double.toString(temp)+"\n");
+                            file.write("X"+Integer.toString(i+1)+" = " + Double.toString(temp)+"\n");
                         }
                         else{
-                            file.write("x"+Integer.toString(i+1)+" = "+Double.toString(x.getElmt(i, 0)));
+                            file.write("X"+Integer.toString(i+1)+" = "+Double.toString(x.getElmt(i, 0)));
                         }
                     }
                     file.close();
@@ -157,7 +157,7 @@ public class SPL {
                     mTemp.setElmt(i, j, mCramer.getElmt(i, A.row));
                 }
                 double solution = Determinan.detKofaktor(mTemp)/det;
-                System.out.printf("x%d = %.4f\n", (j+1), (solution));
+                System.out.printf("X%d = %.4f\n", (j+1), (solution));
                 for (i = 0; i < A.row; i++){
                     mTemp.setElmt(i, j, mCramer.getElmt(i, j));
                 }
@@ -181,7 +181,7 @@ public class SPL {
                             mTemp.setElmt(i, j, mCramer.getElmt(i, A.row));
                         }
                         double solution = Determinan.detKofaktor(mTemp)/det;
-                        file.write("x"+Integer.toString(j+1)+" = "+Double.toString(solution)+"\n");
+                        file.write("X"+Integer.toString(j+1)+" = "+Double.toString(solution)+"\n");
                         for (i = 0; i < A.row; i++){
                             mTemp.setElmt(i, j, mCramer.getElmt(i, j));
                         }

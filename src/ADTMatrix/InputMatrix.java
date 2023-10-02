@@ -86,8 +86,6 @@ public class InputMatrix{
                 matrix[i][j] = input.nextDouble();
             }
         }
-        System.out.print("Masukkan nilai yang ingin ditaksir (x): ");
-        x = InputMatrix.input.nextDouble();
         return matrix;
     }
 
