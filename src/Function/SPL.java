@@ -262,14 +262,13 @@ public class SPL {
                 catch(IOException err) {
                     err.printStackTrace();
                 }
-            
-            } else {
+            } 
+        } else {
                 //Jika solusi berupa parametrik maka memanggil fungsi solusi parametrik
                 System.out.println("Solusi banyak (parametrik):");
                 Matrix.solveManySolution(Mgauss);
-            }
-        }
-    }
+     }
+}
 
     public static void gaussJordanSPL (Matrix Mgajo) {
         //Melakukan eliminasi gauss jordan
@@ -335,11 +334,12 @@ public class SPL {
                 catch(IOException err) {
                     err.printStackTrace();
                 }
+            } 
             } else {
                 System.out.println("Solusi banyak (parametrik):");
                 //Jika solusi berupa parametrik maka memanggil fungsi solusi parametrik
                 Matrix.solveManySolution(Mgajo);
-            }
         }
     }
 }
+

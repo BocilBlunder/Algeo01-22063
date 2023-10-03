@@ -250,20 +250,6 @@ public class Matrix {
         for (int i = 0; i < nEff; i++) {
             visited[i] = false;
         }
-        //Untuk menyimpan dalam File
-        Scanner input = new Scanner(System.in);
-        BufferedReader inputFile = new BufferedReader(new InputStreamReader(System.in));
-        int pil3 = OutputMatrix.printMenuOutput();
-        if(pil3 == 1) {
-        String nameFile = "";
-        System.out.println("Masukkan nama file: ");
-        try {
-            nameFile = inputFile.readLine();
-            String path = "Test/" + nameFile;
-        }
-        catch (IOException err) {
-            err.printStackTrace();
-        }
         for (int i = 0; i < matrix.getRowLength(); i++) {
             for (int j = i; j < nEff; j++) {
                 if (matrix.getElmt(i, j) == 1) {
@@ -281,17 +267,6 @@ public class Matrix {
                             parametric[k] = (char) ('a' + cur % 26);
                             System.out.printf("X%d = %c%n", k + 1, parametric[k]);
                             cur = (cur + 1) % 26;
-                            try {
-                            FileWriter file = new FileWriter("Test/" + nameFile);
-                            file.write("Solusi parametrik:\n");
-                            String tempString = Double.toString(parametric[k]);
-                            String tempIndex = Integer.toString(k + 1);
-                            file.write("X" + tempIndex + " = " + tempString + "\n");
-                            file.close();
-                            }
-                            catch(IOException err) {
-                            err.printStackTrace();
-                            }
                         }
 
                         if (matrix.getElmt(i, k) > 0) {
@@ -321,16 +296,6 @@ public class Matrix {
                     }
                 }
                 System.out.printf("X%d = %s%n", j + 1, temp.toString());
-                try {
-                    FileWriter file = new FileWriter("Test/" + nameFile);
-                    file.write("Solusi parametrik:\n");
-                    String tempIndex = Integer.toString(j + 1);
-                    file.write("X" + tempIndex + " = " + temp.toString() + "\n");
-                    file.close();
-                    }
-                catch(IOException err) {
-                    err.printStackTrace();
-                    }
                 break;
             } else {
                 if (!visited[j]) {
@@ -338,6 +303,98 @@ public class Matrix {
                     parametric[j] = (char) ('a' + cur % 26);
                     System.out.printf("X%d = %c%n", j + i, parametric[j]);
                     cur = (cur + 1) % 26;
+                    }
+                }
+            }
+        }
+        
+        //Untuk menyimpan dalam File
+        Scanner input = new Scanner(System.in);
+        BufferedReader inputFile = new BufferedReader(new InputStreamReader(System.in));
+        int pil3 = OutputMatrix.printMenuOutput();
+        if(pil3 == 1) {
+        String nameFile = "";
+        System.out.println("Masukkan nama file: ");
+        try {
+            nameFile = inputFile.readLine();
+            String path = "Test/" + nameFile;
+        }
+        catch (IOException err) {
+            err.printStackTrace();
+        }
+        for (int i = 0; i < nEff; i++) {
+            visited[i] = false;
+        }
+        for (int i = 0; i < matrix.getRowLength(); i++) {
+            for (int j = i; j < nEff; j++) {
+                if (matrix.getElmt(i, j) == 1) {
+                visited[j] = true;
+                StringBuilder temp = new StringBuilder();
+
+                if (Math.abs(matrix.getElmt(i, matrix.getColLength() - 1)) > 1e-8) {
+                    temp.append(String.format("%.4f", (matrix.getElmt(i, matrix.getColLength() - 1))));
+                }
+
+                for (int k = j + 1; k < nEff; k++) {
+                    if (Math.abs(matrix.getElmt(i, k)) > 1e-8) {
+                        if (!visited[k]) {
+                            visited[k] = true;
+                            parametric[k] = (char) ('a' + cur % 26);
+                            try {
+                                FileWriter file = new FileWriter("Test/" + nameFile);
+                                file.write("Solusi parametrik:\n");
+                                String tempString = Double.toString(parametric[k]);
+                                String tempIndex = Integer.toString(k + 1);
+                                file.write("X" + tempIndex + " = " + tempString + "\n");
+                                file.close();
+                                }
+                            catch(IOException err) {
+                                err.printStackTrace();
+                                }
+                            cur = (cur + 1) % 26;
+                        }
+
+                        if (matrix.getElmt(i, k) > 0) {
+                            if (temp.length() == 0) {
+                                temp.append(String.format("%.4f", Math.abs(matrix.getElmt(i, k))));
+                            } else {
+                                if (Math.abs(matrix.getElmt(i, k)) == 1) {
+                                    temp.append(String.format(" - ", Math.abs(matrix.getElmt(i, k))));
+                                }
+                                else {
+                                    temp.append(String.format(" - %.4f", Math.abs(matrix.getElmt(i, k))));
+                                }
+                            }
+                        } else {
+                            if (temp.length() == 0) {
+                                temp.append(String.format("%.4f", Math.abs(matrix.getElmt(i, k))));
+                            } else {
+                                if (Math.abs(matrix.getElmt(i, k)) == 1) {
+                                    temp.append(String.format(" + ", Math.abs(matrix.getElmt(i, k))));
+                                }
+                                else {
+                                temp.append(String.format(" + %.4f", Math.abs(matrix.getElmt(i, k))));
+                                }
+                            }
+                        }
+                        temp.append(parametric[k]);
+                    }
+                }
+                try {
+                    FileWriter file = new FileWriter("Test/" + nameFile);
+                    file.write("Solusi parametrik:\n");
+                    String tempIndex = Integer.toString(j + 1);
+                    file.write("X" + tempIndex + " = " + temp.toString() + "\n");
+                    file.close();
+                }
+                catch(IOException err) {
+                    err.printStackTrace();
+                }
+                break;
+            } else {
+                if (!visited[j]) {
+                    visited[j] = true;
+                    parametric[j] = (char) ('a' + cur % 26);
                     try {
                         FileWriter file = new FileWriter("Test/" + nameFile);
                         file.write("Solusi parametrik:\n");
@@ -349,12 +406,13 @@ public class Matrix {
                     catch(IOException err) {
                         err.printStackTrace();
                         }
+                    cur = (cur + 1) % 26;
                     }
                 }
             }
         }
     }
-    }
+}
     //Menghasilkan matriks eselon baris
     public static Matrix gaussElimination(Matrix matrix) {
         int n = matrix.getRowLength();
