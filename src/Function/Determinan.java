@@ -1,6 +1,7 @@
 package Function;
 
 import ADTMatrix.Matrix;
+import ADTMatrix.OutputMatrix;
 
 public class Determinan {
     public static double detKofaktor(Matrix m){
@@ -60,9 +61,9 @@ public class Determinan {
 
         // Menentukan Apakah Matriks Berukuran MxM
         if (m.isSquare()){
-            if (row == 1 || col == 1){
+            if(row == 1 || col == 1){
                 return m.matrix[0][0];
-            } else {
+            } else{
                 // Mencari Ujung Matriks yang 0
                 for (i = 0; i < row; i++){
                     if (i < col){
@@ -73,10 +74,7 @@ public class Determinan {
                                 j++;
                             }
                         
-                            if (j >= row){
-                                det = 0;
-                                break;
-                            } else {
+                            if (j < row){
                                 det *= -1;
                                 double temp;
                                 for (k = 0; k < col; k++){
@@ -84,6 +82,10 @@ public class Determinan {
                                     m.matrix[i][k] = m.matrix[j][k];
                                     m.matrix[j][k] = temp;
                                 }
+                            } else {
+                                det = 0;
+                                break;
+                                
                             }
                         }
                         

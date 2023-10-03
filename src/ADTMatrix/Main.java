@@ -124,12 +124,15 @@ public class Main{
                 if (pil2 == 1){
                     double[][]m = InputMatrix.readMatrixKeyboard2();
                     Matrix m1 = new Matrix(m, m.length, m[0].length);
-                    System.out.println(Determinan.detOBE(m1));
+                    double hasil = (Determinan.detOBE(m1));
+                    System.out.println(hasil);
+                    OutputMatrix.OutputFileDeterminan(hasil);
                 }
                 else if (pil2 == 2){
                     Matrix m1 = InputMatrix.readMatrixFile();
-                    System.out.println(Determinan.detOBE(m1));
-                    OutputMatrix.OutputFileDeterminan(Determinan.detOBE(m1));
+                    double hasil = (Determinan.detOBE(m1));
+                    System.out.println(hasil);
+                    OutputMatrix.OutputFileDeterminan(hasil);
                 }
             }
         }

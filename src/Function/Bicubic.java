@@ -232,10 +232,7 @@ public class Bicubic {
 
         // A = (invers X) * Y
         X = matrixX();
-        OutputMatrix.printMatrix(X);
-        System.out.println("------------");
         Matrix inversX = Invers.inversIdentitas(X);
-        OutputMatrix.printMatrix(inversX);
         A = Matrix.multiplyMatrix(inversX, tempY);
 
         //jumlahkan hasil perkalian A dengan a pangkat i dan b pangkat j
