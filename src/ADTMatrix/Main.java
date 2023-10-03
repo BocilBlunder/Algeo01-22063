@@ -166,11 +166,22 @@ public class Main{
                 if (pil2 == 1){
                     double[][]m = InputMatrix.readMatrixKeyboard2();
                     Matrix m1 = new Matrix(m, m.length, m[0].length);
-                    OutputMatrix.printMatrix(Invers.inversIdentitas(m1));
+                    if (Determinan.detOBE(m1) != 0){
+                        OutputMatrix.printMatrix(Invers.inversIdentitas(m1));
+                    }
+                    else{
+                        System.out.println("Invers tidak ada.");
+                    }
+                    OutputMatrix.OutputFileInvers(Invers.inversIdentitas(m1));
                 }
                 else if (pil2 == 2){
                     Matrix m1 = InputMatrix.readMatrixFile();
-                    OutputMatrix.printMatrix(Invers.inversIdentitas(m1));
+                    if (Determinan.detOBE(m1) != 0){
+                        OutputMatrix.printMatrix(Invers.inversIdentitas(m1));
+                    }
+                    else{
+                        System.out.println("Invers tidak ada.");
+                    }
                     OutputMatrix.OutputFileInvers(Invers.inversIdentitas(m1));
                 }
             }
