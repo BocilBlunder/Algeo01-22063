@@ -5,12 +5,11 @@ import ADTMatrix.Matrix;
 
 public class Invers {
 	public double matrix [][];
-    public boolean inversExist = true;
 
     public static Matrix inversIdentitas (Matrix matrix){
         int i, j, k;
         Matrix invers;
-		Boolean inversExist = true;
+
 		// membuat matriks baru dengan ukuran kolom 2 kali lebih besar
 		invers = new Matrix(matrix.getRowLength(), matrix.getColLength()*2);
 		
@@ -32,20 +31,15 @@ public class Invers {
 				if (i != j){
 					k = (i + 1);
 					if (invers.getElmt(i,i) == 0){
-						inversExist = false;
 						while (k < invers.getRowLength()){
 							if (invers.getElmt(k,i) != 0){
 								// menukar baris
 								invers.rowSwap(invers, i, k);
-								inversExist = true;
 							}
 							k++;
 						}
 					}
 
-					if (inversExist == false){
-						return matrix;
-					}
 					double sub = -1 * invers.getElmt(j, i) / invers.getElmt(i, i);
 					for (k = i; k < invers.getColLength(); k++){
 						invers.setElmt(j, k, (invers.getElmt(j,k)+sub*invers.getElmt(i,k)));
@@ -73,13 +67,11 @@ public class Invers {
 
 	public static Matrix inversAdjoin (Matrix m){
 		int i, j;
-		Boolean inversExist = true;
 		// menggunakan fungsi adjoin untuk mencari matriks adjoinnya.
 		Matrix mAdjoin = Matrix.Adjoin(m);
 		double det = Determinan.detKofaktor(m);
 		// jika determinan = 0, maka invers tidak ada
 		if (det == 0){
-			inversExist = false;
 			System.out.println("Invers tidak ada.");
 		}
 		for (i = 0; i < m.row; i++){

@@ -56,7 +56,7 @@ public class OutputMatrix {
             }
         }
     }
-    public static void OutputFileInvers(Matrix m){
+    public static void OutputFileInvers(Matrix m1){
         Scanner input = new Scanner(System.in);
         BufferedReader inputFile = new BufferedReader(new InputStreamReader(System.in));
         int pil3 = printMenuOutput();
@@ -76,13 +76,19 @@ public class OutputMatrix {
             try{
                 FileWriter file = new FileWriter("Test/" + newfileName);
                 int i, j;
-                if (Determinan.detOBE(m) == 0){
+                Matrix m2 = new Matrix (m1.row, m1.col);
+                for (i = 0; i < m1.row; i++){
+                    for (j = 0; j < m1.col; j++){
+                        m2.setElmt(i, j, m1.getElmt(i, j));
+                    }
+                }
+                if (Determinan.detOBE(m2) == 0){
                     file.write("Invers tidak ada.");
                 }
                 else{
-                    for (i = 0; i < m.row; i++){
-                        for (j = 0; j < m.col; j++){
-                            String tempString = Double.toString(m.getElmt(i, j));
+                    for (i = 0; i < m1.row; i++){
+                        for (j = 0; j < m1.col; j++){
+                            String tempString = Double.toString(m1.getElmt(i, j));
                             file.write(tempString + " ");
                         }
                         file.write("\n");

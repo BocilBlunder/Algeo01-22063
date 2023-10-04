@@ -156,36 +156,54 @@ public class Main{
                 if (pil2 == 1){
                     double[][]m = InputMatrix.readMatrixKeyboard2();
                     Matrix m1 = new Matrix(m, m.length, m[0].length);
-                    OutputMatrix.printMatrix(Invers.inversAdjoin(m1));
-                    OutputMatrix.OutputFileInvers(Invers.inversAdjoin(m1));
+                    Matrix hasil = (Invers.inversAdjoin(m1));
+                    OutputMatrix.printMatrix(hasil);
+                    OutputMatrix.OutputFileInvers(hasil);
                 }
                 else if (pil2 == 2){
                     Matrix m1 = InputMatrix.readMatrixFile();
-                    OutputMatrix.printMatrix(Invers.inversAdjoin(m1));
-                    OutputMatrix.OutputFileInvers(Invers.inversAdjoin(m1));
+                    Matrix hasil = (Invers.inversAdjoin(m1));
+                    OutputMatrix.printMatrix(hasil);
+                    OutputMatrix.OutputFileInvers(hasil);
                 }
             }
             else if (pil1 == 2){
                 if (pil2 == 1){
                     double[][]m = InputMatrix.readMatrixKeyboard2();
                     Matrix m1 = new Matrix(m, m.length, m[0].length);
-                    if (Determinan.detOBE(m1) != 0){
-                        OutputMatrix.printMatrix(Invers.inversIdentitas(m1));
+                    Matrix m2 = new Matrix (m, m.length, m[0].length);
+                    int i, j;
+                    for (i = 0; i < m1.row; i++){
+                        for (j = 0; j < m1.col; j++){
+                            m2.setElmt(i, j, m1.getElmt(i, j));
+                        }
+                    }
+                    Matrix hasil = Invers.inversIdentitas(m1);
+                    if (Determinan.detOBE(m2) != 0){ 
+                        OutputMatrix.printMatrix(hasil);
                     }
                     else{
                         System.out.println("Invers tidak ada.");
                     }
-                    OutputMatrix.OutputFileInvers(Invers.inversIdentitas(m1));
+                    OutputMatrix.OutputFileInvers(hasil);  
                 }
                 else if (pil2 == 2){
                     Matrix m1 = InputMatrix.readMatrixFile();
-                    if (Determinan.detOBE(m1) != 0){
-                        OutputMatrix.printMatrix(Invers.inversIdentitas(m1));
+                    Matrix m2 = new Matrix (m1.row, m1.col);
+                    int i, j;
+                    for (i = 0; i < m1.row; i++){
+                        for (j = 0; j < m1.col; j++){
+                            m2.setElmt(i, j, m1.getElmt(i, j));
+                        }
+                    }
+                    Matrix hasil = Invers.inversIdentitas(m1);
+                    if (Determinan.detOBE(m2) != 0){
+                        OutputMatrix.printMatrix(hasil);
                     }
                     else{
                         System.out.println("Invers tidak ada.");
                     }
-                    OutputMatrix.OutputFileInvers(Invers.inversIdentitas(m1));
+                    OutputMatrix.OutputFileInvers(hasil);  
                 }
             }
         }
