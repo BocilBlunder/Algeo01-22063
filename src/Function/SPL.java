@@ -123,7 +123,7 @@ public class SPL {
         
         // Jika determinan 0, maka SPL tidak dapat diselesaikan dengan metode cramer.
         if ((mCramer.getRowLength() != mCramer.getColLength()-1) || Determinan.detKofaktor(A) == 0){
-            System.out.print("SPL tidak dapat diselesaikan dengan metode cramer.");
+            System.out.println("SPL tidak dapat diselesaikan dengan metode cramer.");
             // output file
             int pil3 = OutputMatrix.printMenuOutput();
             if (pil3 == 1){
