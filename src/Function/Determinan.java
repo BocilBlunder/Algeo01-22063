@@ -22,14 +22,13 @@ public class Determinan {
                 return m.matrix[0][0];
             } else{
 
-                // Kofaktor Dengan Baris 0
+                // Kofaktor Dengan Baris 0 / Baris Pertama
                 for (i = 0; i < col; i++){
 
                     // Membuat Matriks Kofaktor
                     mTemp = new Matrix(row - 1, col - 1);
                     for (j = 1; j < col; j++){
                         for (k = 0; k < row; k++){
-
                             // Menentukan Indeks yang Masuk ke Matriks Kofaktor
                             x = m.matrix[j][k];
                             if (k > i){
@@ -68,7 +67,7 @@ public class Determinan {
             } else{
                 // Mencari Ujung Matriks yang 0
                 for (i = 0; i < row; i++){
-                    if (i < col){
+                    if (i < row){
                         if (m.matrix[i][i] == 0){
                             j = i + 1;
 
@@ -80,7 +79,7 @@ public class Determinan {
                             if (j < row){
                                 det *= -1;
                                 double temp;
-                                for (k = 0; k < col; k++){
+                                for (k = 0; k < row; k++){
                                     temp = m.matrix[i][k];
                                     m.matrix[i][k] = m.matrix[j][k];
                                     m.matrix[j][k] = temp;
@@ -96,7 +95,7 @@ public class Determinan {
                         x = m.matrix[i][i];
                         det *= x;
                         if (x != 0){
-                            for (j = 0; j < col; j++){
+                            for (j = 0; j < row; j++){
                                 m.matrix[i][j] /= x;
                             }
                         }
@@ -104,7 +103,7 @@ public class Determinan {
                         // Membuat Kolom di Bawah Angka pertama Menjadi 0
                         for (k = i + 1; k < row; k++){
                             y = m.matrix[k][i];
-                            for (l = 0; l < col; l++){
+                            for (l = 0; l < row; l++){
                                 m.matrix[k][l] -= m.matrix[i][l] * y;
                             }
                         }

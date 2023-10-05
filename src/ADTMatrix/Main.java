@@ -230,7 +230,7 @@ public class Main{
         }
         if (pilihan == 5){
             Matrix m = InputMatrix.readMatrixFile();
-            Bicubic.interpolasiBicubic(m);
+            Bikubic.interpolasiBicubic(m);
         }
         if (pilihan == 6){
             System.out.println("------------------------------------------------------------");

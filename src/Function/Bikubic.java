@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import ADTMatrix.*;
 
-public class Bicubic {
+public class Bikubic {
     // Membuat Matriks f(x,y)
     public static Matrix XforF(){
         int i, j;
