@@ -1,0 +1,6 @@
+Solusi parametrik:
+X2 = r
+X3 = s
+X4 = t
+X1 = -1.0000 + r - 2.0000s + t
+X2 = 2.0000s

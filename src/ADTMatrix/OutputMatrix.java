@@ -88,8 +88,9 @@ public class OutputMatrix {
                         m2.setElmt(i, j, m1.getElmt(i, j));
                     }
                 }
-                if (Determinan.detOBE(m2) == 0){
+                if (m1.getElmt(0, 0) == Double.POSITIVE_INFINITY || m1.getElmt(0, 0) == Double.NEGATIVE_INFINITY){
                     file.write("Invers tidak ada.");
+                    file.close();
                 }
                 else{
                     for (i = 0; i < m1.row; i++){
@@ -99,8 +100,8 @@ public class OutputMatrix {
                         }
                         file.write("\n");
                     }
+                    file.close();
                 }
-                file.close();
             }
             catch(IOException err){
                 err.printStackTrace();

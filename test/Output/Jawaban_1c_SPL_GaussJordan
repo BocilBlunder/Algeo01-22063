@@ -1,0 +1,9 @@
+Solusi parametrik:
+X1 = r
+X2 = s
+X3 = t
+X4 = u
+X6 = v
+X5 = 1.0000 + v
+X2 = 1.0000 - v
+X4 = -1.0000 

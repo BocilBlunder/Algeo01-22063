@@ -1,0 +1,8 @@
+Solusi parametrik:
+X2 = r
+X5 = s
+X1 = 3.0000 + r - s
+X4 = t
+X2 = 1.5000 + 1.5000t + 0.5000s
+X3 = u
+X4 = -1.0000 + s

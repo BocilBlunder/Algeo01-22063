@@ -17,13 +17,13 @@ public class SPL {
         int i, j;
         BufferedReader inputFile = new BufferedReader(new InputStreamReader(System.in));
         // Konstruktor matriks A dan B
-        A = new Matrix(MatrixSPL.row, MatrixSPL.row);
+        A = new Matrix(MatrixSPL.row, MatrixSPL.col-1);
         B = new Matrix(MatrixSPL.row, 1);
         // Memisahkan A dan B yang terinput sebagai augmented matrix
         for (i = 0; i < A.getRowLength(); i++){
             for (j = 0; j < MatrixSPL.getColLength(); j++){
                 if (j != MatrixSPL.getColLength()-1){
-                        A.setElmt(i, j, MatrixSPL.getElmt(i, j));
+                    A.setElmt(i, j, MatrixSPL.getElmt(i, j));
                 }
                 else if (j == MatrixSPL.getColLength()-1){
                     B.setElmt(i, 0, MatrixSPL.getElmt(i, j));
