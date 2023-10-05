@@ -26,12 +26,12 @@ Aljabar Linier dan Geometri </center> </h1>
 <p> <b> Isi Source Code : </b> </p>
 <ul>
 <li> Sistem Persamaan Linear (Gauss, Gauss-Jordan, Matriks Balikan, & Kramer)
-<li> Determinan 
-<li> Matriks Balikan
+<li> Determinan (Metode Kofaktor & Metode OBE)
+<li> Matriks Balikan (Metode Adjoin & Metode OBE dengan Matriks Identitas)
 <li> Interpolasi Polinomial 
 <li> Interpolasi Bikubik
 <li> Regresi Linear Berganda
-<li> Fungsi dan Prosedur Penunjang Lainnya
+<li> Fungsi dan Prosedur Penunjang Lainnya (ADT Matriks)
 </ul>
 
 <h2> <b> Keterangan Folder </b> </h2>
