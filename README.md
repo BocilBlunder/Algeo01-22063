@@ -9,15 +9,18 @@ Aljabar Linier dan Geometri </center> </h1>
 <li> William Glory Henderson - 13522113
 </ol> </h3>
 
-<h2> <b> Penjelasan Singkat </b> </h2>
-<ul> 
-<li> <center> Program ini adalah implementasi dari library mengenai matrix yang berisi metode <br> penyelesaian sistem persamaan linear, determinan, inverse, interpolasi polinomial, interpolasi bikubik, dan regresi linear. </center> <li> 
-</ul>
+<h2> <b> Penjelasan Singkat Program </b> </h2>
+<li> <center> Program ini adalah implementasi dari library mengenai matrix yang berisi metode penyelesaian untuk <br>
+sistem persamaan linear, determinan, inverse, interpolasi polinomial, interpolasi bikubik, dan regresi linear. </center> <li> 
 
 <h2> <b> Cara Menjalankan Program </b> </h2>
 <ul> 
-<li> Compile Semua File
+<li> Compile Semua File pada Folder src
 <li> Run File Main.java
+<li> Pilih Menu yang Diinginkan 
+<li> Pilih Cara Input Matriks
+<li> Pilih
+<li> 
 </ul>
 
 <h2> <b> List Tugas </b> </h2>

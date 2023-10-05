@@ -19,7 +19,7 @@ public class Main{
         System.out.println("7. Keluar");
         System.out.println("------------------------------------------------------------");
         pilihan = input.nextInt();
-        while (pilihan < 1 || pilihan > 7){
+        while (pilihan < 1 || pilihan >7 ){
             pilihan = input.nextInt();
         }
         if (pilihan == 1){
@@ -261,6 +261,4 @@ public class Main{
             System.out.println("------------------------------------------------------------");
         }
     }
-
-
 }
