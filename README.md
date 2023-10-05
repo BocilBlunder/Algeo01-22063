@@ -10,17 +10,17 @@ Aljabar Linier dan Geometri </center> </h1>
 </ol> </h3>
 
 <h2> <b> Penjelasan Singkat Program </b> </h2>
-<li> <center> Program ini adalah implementasi dari library mengenai matrix yang berisi metode penyelesaian untuk <br>
-sistem persamaan linear, determinan, inverse, interpolasi polinomial, interpolasi bikubik, dan regresi linear. </center> <li> 
+<h3> <center> Program ini adalah implementasi dari library mengenai matrix yang berisi metode penyelesaian untuk <br>
+sistem persamaan linear, determinan, invers, interpolasi polinomial, interpolasi bikubik, dan regresi linear. </center> <h3> 
 
 <h2> <b> Cara Menjalankan Program </b> </h2>
 <ul> 
 <li> Compile Semua File pada Folder src
-<li> Run File Main.java
-<li> Pilih Menu yang Diinginkan 
-<li> Pilih Cara Input Matriks
-<li> Pilih
-<li> 
+<li> Run File Main.java 
+<li> Pilih Menu Fungsi yang Diinginkan 
+<li> Pilih Cara Input Matriks (keyboard / file)
+<li> Pilih Menu Output yang Diinginkan
+<li> Program Selesai Ketika Memilih Keluar
 </ul>
 
 <h2> <b> List Tugas </b> </h2>
@@ -29,51 +29,50 @@ sistem persamaan linear, determinan, inverse, interpolasi polinomial, interpolas
 <li> Sistem Persamaan Linear (Gauss, Gauss-Jordan, Matriks Balikan, & Kramer)
 <li> Determinan 
 <li> Matriks Balikan
-<li> Interpolasi Polinom 
-<li> Interpolasi Bicubic
+<li> Interpolasi Polinomial 
+<li> Interpolasi Bikubik
 <li> Regresi Linear Berganda
-<li> Fungsi dan Prosedur lainnya
+<li> Fungsi dan Prosedur Penunjang Lainnya
 </ul>
 
-<p><b> List tugas pada Laporan </b></p>
-<!-- <ul>
-<li> Cover 
-<li> Daftar Isi
-<li> Bab 1 - Deskripsi masalah
-<li> Bab 2 - Teori Singkat 
-<li> Bab 3 - Implementasi Pustaka dan Program Java
-<li> Bab 4 - Eksperimen (Hasil Eksekusi Program)
-<li> Bab 5 - Kesimpulan, saran, dan refleksi
-<li> Daftar Pustaka
-<li> Lampiran
-</ul> --> 
-
 <h2> <b> Keterangan Folder </b> </h2>
-<p> <b> Folder 'bin' </b> </p>
-<p> Berisikan folder java bytecode .class </p>
-<p> <b> Folder 'doc' </b> </p>
-<p> Berisikan file hasil laporan dan file spek tugas dari tugas besar Algeo </p>
-<p> <b> Folder 'src' </b> </p>
-<p> Berisikan file-file yang mengandung program utama dari pemenuhan Tugas Besar ini. File yang dimaksud termasuk file main dan file yang berisi prosedur dan fungsi penunjang. </p>
+<h3> <b> Folder 'bin' </b> </h3>
+<ul> <li> <p> <b> Folder 'Function Class' </b> </p> </li> </ul>
+<p> Berisikan file java bytecode (Folder Function) .class</p>
+<ul> <li> <p> <b> Folder 'Matrix Class' </b> </p> </li> </ul>
+<p> Berisikan file java bytecode (Folder ADTMatrix) .class </b>
+<h3> <b> Folder 'doc' </b> </h3>
+<p> Berisikan file hasil laporan tugas besar Algeo </p>
+<h3> <b> Folder 'src' </b> </h3>
+<p> Berisikan file-file yang mengandung program utama dari pemenuhan Tugas Besar ini. File yang dimaksud adalah file main, file input/output, dan file yang berisi semua prosedur dan fungsi penunjang </p>
 <ul> <li> <p> <b> Folder 'ADTMatrix' </b> </p> </li> </ul>
-<p> Berisikan file yang mengandung algoritma pengolahan matriks, baik algoritma pengolahan di dalam matriks maupun algoritma pengolahan antar matriks.</p>
+<p> Berisikan file-file yang mengandung algoritma semua metode pengolahan matriks </p>
 <ul> <li> <p> <b> Folder 'Function' </b> </p> </li> </ul>
-<p> Berisikan file yang mengandung algoritma untuk mengerjakan fungsi interpolasi, bicubic, regresi, SPL, determinan, dan Invers. </b>
-<p> <b> Folder 'test' </b> </p>
-<p> Berisikan folder input yang berisikan file input dari user dan folder output untuk menyimpan file output yang dikeluarkan program untuk menjawab input user </p>
+<p> Berisikan file yang mengandung algoritma untuk menyelesaikan fungsi SPL, determinan, invers, interpolasi polinomial, interpolasi bikubik, dan regresi</b>
+<h3> <b> Folder 'test' </b> </h3>
+<<ul> <li> <p> <b> Folder 'Input' </b> </p> </li> </ul>
+<p> Berisikan file-file inputan dari user </p>
+<ul> <li> <p> <b> Folder 'Output' </b> </p> </li> </ul>
+<p> Berisikan file-file hasil output program yang disimpan </b>
 
-<!-- <h2> <b> Keterangan File </b> </h2>
-<p> <b> File InputOutput.java </b> </p>
-<p> File yang berisikan segala algoritma untuk mengatur input dan output matriks, baik pada terminal maupun pada text. </p>
-<p> <b> File Matrix.java </b> </p>
-<p> File yang berisikan segala algoritma pengolahan matriks dan operasi di dalam suatu matriks. </p>
-<p> <b> File MatrixOps.java </b> </p>
-<p> File yang berisikan segala algoritma pengolahan antar 2 atau lebih matriks. </p>
+<h2> <b> Keterangan File </b> </h2>
 <p> <b> File Main.java </b> </p>
-<p> File yang berisikan program utama untuk menjalankan segala fungsi matriks. </p>
+<p> File yang berisikan program utama untuk menjalankan semua pengolahan dalam matriks </p>
+<p> <b> File Matrix.java </b> </p>
+<p> File yang berisikan segala algoritma untuk pengolahan matriks </p>
+<p> <b> File InputMatrix.java </b> </p>
+<p> File yang berisikan segala algoritma untuk mengatur input dalam terminal maupun pada text (file) </p>
+<p> <b> File OutputMatrix.java </b> </p>
+<p> File yang berisikan segala algoritma untuk mengatur output dalam terminal maupun pada text (file) </p>
+<p> <b> File SPL.java </b> </p>
+<p> File yang berisikan segala algoritma untuk menemukan solusi dari sistem persamaan linear </p>
+<p> <b> File Determinan.java </b> </p>
+<p> File yang berisikan segala algoritma untuk menghitung nilai determinan dari matriks. </p>
+<p> <b> File Invers.java </b> </p>
+<p> File yang berisikan segala algoritma untuk mencari bentuk invers dari matriks. </p>
 <p> <b> File Interpolasi.java </b> </p>
-<p> File yang berisikan semua algoritma untuk melakukan fungsi interpolasi. </p>
-<p> <b> File BicubicInterpolation.java </b></p>
-<p> File yang berisikan semua algoritma untuk melakukan fungsi interpolasi bikubik. </p>
-<p> <b> File MultipleLinearRegression.java </b></p>
-<p> File yang berisikan semua algoritma untuk melakukan fungsi regresi linear berganda. </p> -->
+<p> File yang berisikan segala algoritma untuk melakukan fungsi interpolasi polinomial. </p>
+<p> <b> File Bikubic.java </b></p>
+<p> File yang berisikan segala algoritma untuk melakukan fungsi interpolasi bikubik. </p>
+<p> <b> File Regresi.java </b></p>
+<p> File yang berisikan segala algoritma untuk melakukan fungsi regresi linear berganda. </p>
