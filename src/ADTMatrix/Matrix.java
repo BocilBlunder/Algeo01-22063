@@ -221,23 +221,16 @@ public class Matrix {
     public static void backSubstitution(Matrix matrix, double[] X) {
         int i, j;
         int n, m;
-        int indeks, sol;
-        double val;
         
         n = matrix.getRowLength();
         m = matrix.getColLength();
 
-        indeks = 0;
         for (i = n - 1; i >= 0; i--) {
-            val = matrix.getElmt(i, m - 1);
-
-            sol = n - i - 2;
+            X[i] = matrix.getElmt(i, m - 1);
             for (j = i + 1; j < n; j++) {
-                val -= matrix.getElmt(i, j) * X[sol];
-                sol -= 1;
+                X[i] -= matrix.getElmt(i, j) * X[j];
             }
-            X[indeks] = val;
-            indeks += 1;
+            X[i] /= matrix.getElmt(i, i);
         }
     }
 
@@ -442,36 +435,36 @@ public class Matrix {
         for (int i = 0; i < n; i++) {
             int pivotRow = i;
             if (i < matrix.col){
-                while (pivotRow < n && matrix.getElmt(pivotRow, i) == 0) {
-                    pivotRow++;
-                }
-                //Pivot ketermu
-                if (pivotRow == n) {
-                    continue;
-                }
+            while (pivotRow < n && matrix.getElmt(pivotRow, i) == 0) {
+                pivotRow++;
+            }
+            //Pivot ketermu
+            if (pivotRow == n) {
+                continue;
+            }
 
-                if (matrix.getElmt(pivotRow, i) != 1) {
-                    double pivotValue = matrix.getElmt(pivotRow, i);
-                    for (int j = i; j < m; j++) {
-                        matrix.setElmt(pivotRow, j, matrix.getElmt(pivotRow, j) / pivotValue);
-                    }
-                }
-                
-                // Tukar baris pivot dengan baris saat ini
+            if (matrix.getElmt(pivotRow, i) != 1) {
+                double pivotValue = matrix.getElmt(pivotRow, i);
                 for (int j = i; j < m; j++) {
-                    double temp = matrix.getElmt(i, j);
-                    matrix.setElmt(i, j, matrix.getElmt(pivotRow, j));
-                    matrix.setElmt(pivotRow, j, temp);
+                    matrix.setElmt(pivotRow, j, matrix.getElmt(pivotRow, j) / pivotValue);
                 }
+            }
+            
+            // Tukar baris pivot dengan baris saat ini
+            for (int j = i; j < m; j++) {
+                double temp = matrix.getElmt(i, j);
+                matrix.setElmt(i, j, matrix.getElmt(pivotRow, j));
+                matrix.setElmt(pivotRow, j, temp);
+            }
 
-                for (int j = i + 1; j < n; j++) {
-                    double factor = matrix.getElmt(j, i);
-                    for (int k = i; k < m; k++) {
-                        matrix.setElmt(j, k, matrix.getElmt(j, k) - factor * matrix.getElmt(i, k));
-                    }
+            for (int j = i + 1; j < n; j++) {
+                double factor = matrix.getElmt(j, i);
+                for (int k = i; k < m; k++) {
+                    matrix.setElmt(j, k, matrix.getElmt(j, k) - factor * matrix.getElmt(i, k));
                 }
             }
         }
+    }
 
         for (int i = 0 ; i < n ; i++) {
             int allZero = 1 ;
