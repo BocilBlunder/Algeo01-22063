@@ -29,6 +29,7 @@ public class OutputMatrix {
         System.out.println("------------------------------------------------------------");
         int pil3 = input.nextInt();
         while (pil3 < 1 || pil3 > 2){
+            System.out.println("Masukan tidak valid! Silahkan ulangi inpuran pilihan.");
             pil3 = input.nextInt();
         }
         return pil3;

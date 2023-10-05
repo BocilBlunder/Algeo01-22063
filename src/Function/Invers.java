@@ -71,9 +71,6 @@ public class Invers {
 		Matrix mAdjoin = Matrix.Adjoin(m);
 		double det = Determinan.detKofaktor(m);
 		// jika determinan = 0, maka invers tidak ada
-		if (det == 0){
-			System.out.println("Invers tidak ada.");
-		}
 		for (i = 0; i < m.row; i++){
 			// membagi matriks adjoin dengan determinan m
 			for (j = 0; j < m.col; j++){
