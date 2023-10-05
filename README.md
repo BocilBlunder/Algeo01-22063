@@ -13,14 +13,14 @@ Aljabar Linier dan Geometri </center> </h1>
 <p> <center> Program ini adalah implementasi dari library mengenai matrix yang berisi metode penyelesaian untuk <br> sistem persamaan linear, determinan, invers, interpolasi polinomial, interpolasi bikubik, dan regresi linear. </center> <p> 
 
 <h2> <b> Cara Menjalankan Program </b> </h2>
-<ol> <h2>
+<ol> 
 <li> Compile Semua File pada Folder src
 <li> Run File Main.java 
 <li> Pilih Menu Fungsi yang Diinginkan 
 <li> Pilih Cara Input Matriks (keyboard / file)
 <li> Pilih Menu Output yang Diinginkan
 <li> Program Selesai Ketika Memilih Keluar
-</ol></h2>
+</ol>
 
 <h2> <b> List Tugas </b> </h2>
 <p> <b> Isi Source Code : </b> </p>
