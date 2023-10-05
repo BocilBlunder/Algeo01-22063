@@ -14,12 +14,14 @@ public class Matrix {
     public double MARK = Double.NaN;
 
     // KONSTRUKTOR //
+    // Membuat Sebuah Matriks kosong dari tipe double [][]
     public Matrix (double contents [][] , int rows, int cols) {
         this.matrix = contents;
         this.row = rows;
         this.col = cols;
     }
 
+    // Membuat Sebuah Matriks kosong
     public Matrix (int rows, int cols){
         int i, j;
         matrix = new double[rows][cols];
@@ -33,34 +35,42 @@ public class Matrix {
     }
 
     // SELEKTOR //
+    // Untuk Mencari Panjang Baris
     public int getRowLength(){
         return this.row;
     }
 
+    // Untuk Mencari Panjang Kolom
     public int getColLength(){
         return this.col;
     }
 
+    // Untuk Mengambil Indeks Terakhir dari Baris 
     public int getLastRowIdx(){
         return this.row - 1;
     }
 
+    // Untuk Mengambil Indeks Terakhir dari Kolom 
     public int getLastColIdx(){
         return this.col - 1;
     }
 
+    // Untuk Menentukan Apakah Matriks Berukuran MxM atau Tidak
     public boolean isSquare(){
         return this.row == this.col;
     }
 
+    // Untuk Mengambil Elemen  pada Suatu Indeks
     public double getElmt(int i, int j){
         return this.matrix[i][j];
     }
 
+    // Untuk Memasukkan Elemen ke Suatu Indeks
     public void setElmt(int i, int j, double elmt){
         this.matrix[i][j] = elmt;
     }
 
+    // Untuk Menukar Baris
     public void rowSwap(Matrix m, int rows1, int rows2){
 		double temp;
 		for (int i = 0; i < m.col; i++){
@@ -70,6 +80,7 @@ public class Matrix {
 		}
     }
 
+    // Untuk Mengalikan 2 Matrix
     public static Matrix multiplyMatrix(Matrix m1, Matrix m2){
         int i, j, k;
         double temp;
@@ -88,6 +99,7 @@ public class Matrix {
         return MMultiply;
     }
 
+    // Untuk Menjumlahkan Semua Elemen pada 1 Kolom
     public static double sumCol(Matrix m, int i){
         int j;
         double sum = 0;
@@ -98,6 +110,7 @@ public class Matrix {
         return sum;
     }
 
+    // Untuk Menjumlahkan Semua Elemen pada 2 Kolom yang Sudah Dikali
     public static double sumMultiplyCol(Matrix m, int i, int j){
         double sum = 0;
         int k = 0;
@@ -107,6 +120,7 @@ public class Matrix {
         return sum;
     }
 
+    // Untuk Menambah Baris
     public static Matrix addRow(Matrix m, double[] newRow){
         Matrix mTemp;
         double[][] matrix;
@@ -125,10 +139,13 @@ public class Matrix {
         return mTemp;
     }
 
+    // Untuk Mendapatkan Det
     public static double detKofaktorIJ(Matrix m, int row, int col){
 		int n = m.getRowLength();
         int i, j;
-		Matrix temp = new Matrix(n-1, n-1);
+        Matrix temp;
+        
+		temp = new Matrix(n-1, n-1);
 
         i = 0;
         while (i < n){
@@ -166,10 +183,12 @@ public class Matrix {
 		return Determinan.detKofaktor(temp);
     }
 
+    // Untuk Mendapatkan Matriks Kofaktor
     public static Matrix matriksKofaktor (Matrix m){
         int n = m.row;
+        Matrix mKofaktor;
 
-		Matrix mKofaktor = new Matrix(n,n);
+		mKofaktor = new Matrix(n,n);
 		
 		for (int i = 0; i < n; i++){
 			for (int j = 0; j < n; j++){
@@ -182,6 +201,7 @@ public class Matrix {
 		return mKofaktor;
     }
 
+    // Untuk Mendapatkan Matriks Adjoin
     public static Matrix Adjoin (Matrix m){
         Matrix mAdjoin;
         int i, j;
@@ -199,12 +219,15 @@ public class Matrix {
     }
 
     public static void backSubstitution(Matrix matrix, double[] X) {
-        int n = matrix.getRowLength();
-        int m = matrix.getColLength();
+        int i, j;
+        int n, m;
+        
+        n = matrix.getRowLength();
+        m = matrix.getColLength();
 
-        for (int i = n - 1; i >= 0; i--) {
+        for (i = n - 1; i >= 0; i--) {
             X[i] = matrix.getElmt(i, m - 1);
-            for (int j = i + 1; j < n; j++) {
+            for (j = i + 1; j < n; j++) {
                 X[i] -= matrix.getElmt(i, j) * X[j];
             }
             X[i] /= matrix.getElmt(i, i);
@@ -212,15 +235,19 @@ public class Matrix {
     }
 
     public static int SolutionType(Matrix matrix) {
-        int n = matrix.getRowLength();
-        int m = matrix.getColLength();
+        int i, j;
+        int n, m;
         int rank = 0;
-        int augmentedColumns = m - 1;
+        int augmentedColumns;
         boolean hasNonZeroRow = false;
+        
+        n = matrix.getRowLength();
+        m = matrix.getColLength();
+        augmentedColumns = m - 1;
 
-        for (int i = 0; i < n; i++) {
+        for (i = 0; i < n; i++) {
             boolean isZeroRow = true;
-            for (int j = 0; j < augmentedColumns; j++) {
+            for (j = 0; j < augmentedColumns; j++) {
                 if (matrix.getElmt(i, j) != 0) {
                     isZeroRow = false;
                     break;
@@ -240,6 +267,7 @@ public class Matrix {
             return 1;
         }
     }
+
     //Fungsi jika matriksnya memiliki SPL berupa parametrik
     public static void solveManySolution(Matrix matrix) {
         int nEff = matrix.getColLength() - 1;
@@ -397,6 +425,7 @@ public class Matrix {
             }
         }
     }
+
     //Menghasilkan matriks eselon baris
     public static Matrix gaussElimination(Matrix matrix) {
         int n = matrix.getRowLength();
@@ -507,6 +536,7 @@ public class Matrix {
         backSubstitution(matrix, X);
         return matrix;
     }
+    
     //Menghasilkan matriks eselon baris tereduksi
     public static Matrix gaussJordanElimination(Matrix A) {
         int n = A.getRowLength();

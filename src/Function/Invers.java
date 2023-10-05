@@ -25,7 +25,7 @@ public class Invers {
 				invers.setElmt(i, j, matrix.getElmt(i,j));
 			}
 		}
-		// mengloop sehingga mendapatkan invers
+		// mengeloop sehingga mendapatkan invers
 		for (i = 0; i < invers.getRowLength(); i++){
 			for (j = 0; j < invers.getRowLength(); j++){
 				if (i != j){

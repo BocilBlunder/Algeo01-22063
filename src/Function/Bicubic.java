@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import ADTMatrix.*;
 
 public class Bicubic {
+    // Membuat Matriks f(x,y)
     public static Matrix XforF(){
         int i, j;
         Matrix F;
@@ -45,6 +46,7 @@ public class Bicubic {
         return F;
     }
 
+    // Membuat Matriks fx(x,y)
     public static Matrix XforFx(){
         int x, y;
         int i, j;
@@ -90,6 +92,7 @@ public class Bicubic {
         return Fx;
     }
 
+    // Membuat Matriks fy(x,y)
     public static Matrix XforFy(){
         int x, y;
         int i, j;
@@ -134,6 +137,8 @@ public class Bicubic {
         }
         return Fy;
     }
+
+    // Membuat Matriks fxy(x,y)
     public static Matrix XforFxy(){
         int x, y;
         int i, j;
@@ -178,6 +183,8 @@ public class Bicubic {
         }
         return Fxy;
     }
+
+    // Membuat Matriks 16x16 yang berisi f, fx, fy, dan fxy
     public static Matrix matrixX(){
         Matrix X = new Matrix(16, 16);
         int i, j;
@@ -200,6 +207,7 @@ public class Bicubic {
         }
         return X;
     }
+    
     public static void interpolasiBicubic (Matrix m){
         BufferedReader inputFile = new BufferedReader(new InputStreamReader(System.in));
         int i, j;

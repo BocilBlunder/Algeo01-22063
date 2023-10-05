@@ -4,6 +4,7 @@ import ADTMatrix.Matrix;
 import ADTMatrix.OutputMatrix;
 
 public class Determinan {
+    // Mencari Det dengan Memakai Kofaktor
     public static double detKofaktor(Matrix m){
         int i, j, k;
         Matrix mTemp;
@@ -48,6 +49,7 @@ public class Determinan {
         }
     }
 
+    // Mencari Det dengan Memakai OBE
     public static double detOBE (Matrix m){
         int i, j, k, l;
         double det = 1;
@@ -73,7 +75,8 @@ public class Determinan {
                             while (j < row && m.matrix[j][i] == 0){
                                 j++;
                             }
-                        
+                            
+                            // Melakukan Pertukaran Baris
                             if (j < row){
                                 det *= -1;
                                 double temp;

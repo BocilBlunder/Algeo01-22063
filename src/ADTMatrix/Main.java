@@ -111,12 +111,12 @@ public class Main{
                 if (pil2 == 1){
                     double[][]m = InputMatrix.readMatrixKeyboard2();
                     Matrix m1 = new Matrix(m, m.length, m[0].length);
-                    System.out.println(Determinan.detKofaktor(m1));
+                    System.out.printf("%.4f\n", Determinan.detKofaktor(m1));
                     OutputMatrix.OutputFileDeterminan(Determinan.detKofaktor(m1));
                 }
                 else if (pil2 == 2){
                     Matrix m1 = InputMatrix.readMatrixFile();
-                    System.out.println(Determinan.detKofaktor(m1));
+                    System.out.printf("%.4f\n", Determinan.detKofaktor(m1));
                     OutputMatrix.OutputFileDeterminan(Determinan.detKofaktor(m1));
                 }
             }
@@ -125,13 +125,13 @@ public class Main{
                     double[][]m = InputMatrix.readMatrixKeyboard2();
                     Matrix m1 = new Matrix(m, m.length, m[0].length);
                     double hasil = (Determinan.detOBE(m1));
-                    System.out.println(hasil);
+                    System.out.printf("%.4f\n", hasil);
                     OutputMatrix.OutputFileDeterminan(hasil);
                 }
                 else if (pil2 == 2){
                     Matrix m1 = InputMatrix.readMatrixFile();
                     double hasil = (Determinan.detOBE(m1));
-                    System.out.println(hasil);
+                    System.out.printf("%.4f\n", hasil);
                     OutputMatrix.OutputFileDeterminan(hasil);
                 }
             }

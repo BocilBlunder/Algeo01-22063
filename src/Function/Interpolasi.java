@@ -7,7 +7,6 @@ import java.io.InputStreamReader;
 import ADTMatrix.*;
 
 public class Interpolasi {
-
     // Menerima Inputan dari Keyboard
     public static void interpolasiPolinomialKeyboard(Matrix m){
         int i, j;
@@ -23,7 +22,7 @@ public class Interpolasi {
         // Membuat Matriks
         mTemp = new Matrix(m.row, m.row + 1);
 
-        
+        // Melakukan Loop untuk Memindahkan Input menjadi Persamaan Lanjar
         if ( m.row >= 1){
             for (i = 0; i < mTemp.row; i++){
                 for (j = 2; j < mTemp.col; j++){
@@ -161,6 +160,7 @@ public class Interpolasi {
 
         mTemp = new Matrix(m1.row, m1.row + 1);
 
+        // Melakukan Loop untuk Memindahkan Input menjadi Persamaan Lanjar
         if ( m1.row >= 1){
             for (i = 0; i < mTemp.row; i++){
                 for (j = 2; j < mTemp.col; j++){

@@ -44,6 +44,7 @@ public class Regresi {
             }
         }
         
+        // Melakukan Eliminasi Gauss
         mTemp = Matrix.gaussElimination(mTemp);
         double[] m1 = new double [mTemp.getRowLength()];
         Matrix.backSubstitution(mTemp, m1); 
@@ -140,7 +141,7 @@ public class Regresi {
         double[] x;
         BufferedReader inputFile = new BufferedReader(new InputStreamReader(System.in));
 
-        // Membuat Matriks
+        // Membuat Matriks dari File yang Diinput
         m1 = new Matrix(m.row - 1, m.col);
         for(i = 0; i < m.row - 1; i++){
             for(j = 0; j < m.col; j++){
@@ -174,6 +175,7 @@ public class Regresi {
             }
         }
         
+        // Melakukan Eliminasi Gauss
         mTemp = Matrix.gaussElimination(mTemp);
         x = new double [mTemp.getRowLength()];
         Matrix.backSubstitution(mTemp, x); 

@@ -4,10 +4,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
-
 import Function.Determinan;
-
 public class OutputMatrix {
+    // Menampilkan Matriks pada Layar
     public static void printMatrix(Matrix matrix) {
         int i, j;
         for (i = 0; i < matrix.row; i++) {
@@ -17,6 +16,8 @@ public class OutputMatrix {
             System.out.println();
         }
     }
+
+    // Menampilkan Menu Output
     public static int printMenuOutput(){
         Scanner input = new Scanner(System.in);
         BufferedReader inputFile = new BufferedReader(new InputStreamReader(System.in));
@@ -32,7 +33,9 @@ public class OutputMatrix {
         }
         return pil3;
     }
-     public static void OutputFileDeterminan (double det){
+
+    // Memasukkan Hasil Det ke File
+    public static void OutputFileDeterminan (double det){
         Scanner input = new Scanner(System.in);
         BufferedReader inputFile = new BufferedReader(new InputStreamReader(System.in));
         int pil3 = printMenuOutput();
@@ -48,7 +51,7 @@ public class OutputMatrix {
             }
             try{
                 FileWriter file = new FileWriter("Test/" + newfileName);
-                file.write("Determinan: "+ det);
+                file.write("Determinan: "+ String.format("%.4f", det));
                 file.close();
             }
             catch(IOException err){
@@ -56,6 +59,8 @@ public class OutputMatrix {
             }
         }
     }
+
+    // Memasukkan Hasil Invers ke File
     public static void OutputFileInvers(Matrix m1){
         Scanner input = new Scanner(System.in);
         BufferedReader inputFile = new BufferedReader(new InputStreamReader(System.in));

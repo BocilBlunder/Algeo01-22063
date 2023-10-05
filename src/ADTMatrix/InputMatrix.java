@@ -116,7 +116,7 @@ public class InputMatrix{
     public static Matrix readMatrixFile(){
         int i;
         Matrix matrix;
-        
+    
         // Input Nama File
         System.out.print("Masukkan nama file: ");
         String file = input.nextLine();
@@ -177,7 +177,7 @@ public class InputMatrix{
         // Ketika File Tidak Ditemukan
         }catch(Exception ex){
             System.out.println("File not found");
-            System.out.println("Returning a 1x1 matrix with value 0");
+            System.out.println("Returning a matrix with no value");
             matrix = new Matrix(1, 1);
             return matrix;
         }
