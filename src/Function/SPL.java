@@ -82,10 +82,10 @@ public class SPL {
                     for(i = 0; i < x.getRowLength(); i++){
                         if (i != x.row - 1){
                             double temp = x.getElmt(i, 0);
-                            file.write("X"+Integer.toString(i+1)+" = " + Double.toString(temp)+"\n");
+                            file.write("X"+Integer.toString(i+1)+" = " + String.format("%.4f", temp)+"\n");
                         }
                         else{
-                            file.write("X"+Integer.toString(i+1)+" = "+Double.toString(x.getElmt(i, 0)));
+                            file.write("X"+Integer.toString(i+1)+" = "+String.format("%.4f", x.getElmt(i, 0)));
                         }
                     }
                     file.close();
@@ -181,7 +181,7 @@ public class SPL {
                             mTemp.setElmt(i, j, mCramer.getElmt(i, A.row));
                         }
                         double solution = Determinan.detKofaktor(mTemp)/det;
-                        file.write("X"+Integer.toString(j+1)+" = "+Double.toString(solution)+"\n");
+                        file.write("X"+Integer.toString(j+1)+" = "+String.format("%.4f", solution)+"\n");
                         for (i = 0; i < A.row; i++){
                             mTemp.setElmt(i, j, mCramer.getElmt(i, j));
                         }
@@ -249,7 +249,7 @@ public class SPL {
                     FileWriter file = new FileWriter("test/Output/" + nameFile);
                     file.write("Solusi tunggal:\n");
                     for (int i = 0; i < Mgauss.getRowLength(); i++) {
-                        String tempString = Double.toString(X[i]);
+                        String tempString = String.format("%.4f", X[i]);
                         String tempIndex = Integer.toString(i+1);
                         if (i == Mgauss.getRowLength() - 1){
                             file.write("X" + tempIndex + " = " + tempString);
@@ -321,7 +321,7 @@ public class SPL {
                     FileWriter file = new FileWriter("test/Output/" + nameFile);
                     file.write("Solusi tunggal:\n");
                     for (int i = 0; i < Mgajo.getRowLength(); i++) {
-                        String tempString = Double.toString(Mgajo.matrix[i][Mgajo.getColLength() - 1]);
+                        String tempString = String.format("%.4f", Mgajo.matrix[i][Mgajo.getColLength() - 1]);
                         String tempIndex = Integer.toString(i + 1);
                         if (i == Mgajo.getRowLength() - 1){
                             file.write("X" + tempIndex + " = " + tempString);

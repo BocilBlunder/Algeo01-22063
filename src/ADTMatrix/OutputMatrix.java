@@ -93,7 +93,7 @@ public class OutputMatrix {
                 else{
                     for (i = 0; i < m1.row; i++){
                         for (j = 0; j < m1.col; j++){
-                            String tempString = Double.toString(m1.getElmt(i, j));
+                            String tempString = String.format("%.4f", m1.getElmt(i, j));
                             file.write(tempString + " ");
                         }
                         file.write("\n");

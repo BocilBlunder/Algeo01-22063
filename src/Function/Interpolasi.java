@@ -94,38 +94,38 @@ public class Interpolasi {
                 for (i = m.row - 1; i >= 0; i--) {
                     if (i == m.row - 1){
                         if (m1[i] > 0){
-                            file.write(Double.toString(m1[i])+"x^"+Integer.toString(i));
+                            file.write(String.format("%.4f", m1[i])+"x^"+Integer.toString(i));
                         } else {
                             m1[i] *= -1;
-                            file.write("- "+Double.toString(m1[i])+"x^"+Integer.toString(i));
+                            file.write("- "+String.format("%.4f", m1[i])+"x^"+Integer.toString(i));
                         }
                     }
                     else if (i > 1 && i < m.row - 1){
                         if (m1[i] > 0){
-                            file.write("+ "+Double.toString(m1[i])+"x^"+Integer.toString(i));
+                            file.write("+ "+String.format("%.4f", m1[i])+"x^"+Integer.toString(i));
                         } else {
                             m1[i] *= -1;
-                            file.write("- "+Double.toString(m1[i])+"x^"+Integer.toString(i));
+                            file.write("- "+String.format("%.4f", m1[i])+"x^"+Integer.toString(i));
                         }
                     } 
                     else if (i == 1){
                         if (m1[i] > 0){
-                            file.write("+ "+Double.toString(m1[i])+"x");
+                            file.write("+ "+String.format("%.4f", m1[i])+"x");
                         } else {
                             m1[i] *= -1;
-                            file.write("- "+Double.toString(m1[i])+"x");
+                            file.write("- "+String.format("%.4f", m1[i])+"x");
                         }
                     } 
                     else{
                         if (m1[i] > 0){
-                            file.write("+ "+Double.toString(m1[i]));
+                            file.write("+ "+String.format("%.4f", m1[i]));
                         } else {
                             m1[i] *= -1;
-                            file.write("- "+Double.toString(m1[i]));
+                            file.write("- "+String.format("%.4f", m1[i]));
                         }
                     }
                 }
-                file.write("f("+Double.toString(x)+") = "+Double.toString(result));
+                file.write("f("+String.format("%.4f", x)+") = "+String.format("%.4f", result));
                 file.close();
             }
             catch(IOException err) {
@@ -232,38 +232,39 @@ public class Interpolasi {
                 for (i = m1.row - 1; i >= 0; i--) {
                     if (i == m1.row - 1){
                         if (matrix[i] > 0){
-                            file.write(Double.toString(matrix[i])+"x^"+Integer.toString(i));
+                            file.write(String.format("%.4f", matrix[i])+"x^"+Integer.toString(i));
                         } else {
                             matrix[i] *= -1;
-                            file.write("- "+Double.toString(matrix[i])+"x^"+Integer.toString(i));
+                            file.write(" - "+String.format("%.4f", matrix[i])+"x^"+Integer.toString(i));
                         }
                     }
                     else if (i > 1 && i < m.row - 1){
                         if (matrix[i] > 0){
-                            file.write("+ "+Double.toString(matrix[i])+"x^"+Integer.toString(i));
+                            file.write(" + "+String.format("%.4f", matrix[i])+"x^"+Integer.toString(i));
                         } else {
                             matrix[i] *= -1;
-                            file.write("- "+Double.toString(matrix[i])+"x^"+Integer.toString(i));
+                            file.write(" - "+String.format("%.4f", matrix[i])+"x^"+Integer.toString(i));
                         }
                     } 
                     else if (i == 1){
                         if (matrix[i] > 0){
-                            file.write("+ "+Double.toString(matrix[i])+"x");
+                            file.write(" + "+String.format("%.4f", matrix[i])+"x");
                         } else {
                             matrix[i] *= -1;
-                            file.write("- "+Double.toString(matrix[i])+"x");
+                            file.write(" - "+String.format("%.4f", matrix[i])+"x");
                         }
                     } 
                     else{
                         if (matrix[i] > 0){
-                            file.write("+ "+Double.toString(matrix[i]));
+                            file.write(" + "+String.format("%.4f", matrix[i]));
                         } else {
                             matrix[i] *= -1;
-                            file.write("- "+Double.toString(matrix[i]));
+                            file.write(" - "+String.format("%.4f", matrix[i]));
                         }
                     }
                 }
-                file.write("f("+Double.toString(m2[0])+") = "+Double.toString(result));
+                file.write(", ");
+                file.write("f("+String.format("%.4f", m2[0])+") = "+String.format("%.4f", result));
                 file.close();
             }
             catch(IOException err) {

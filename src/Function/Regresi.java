@@ -98,30 +98,30 @@ public class Regresi {
                 for (i = 0; i < mTemp.row; i++) {
                     if (i == 0){
                         if (m1[i] > 0){
-                            file.write(Double.toString(m1[i]));
+                            file.write(String.format("%.4f", m1[i]));
                         } else {
                             m1[i] *= -1;
-                            file.write("- "+Double.toString(m1[i]));
+                            file.write("- "+String.format("%.4f", m1[i]));
                         }
                     } else if (i > 0 && i < mTemp.row - 1){
                         result = m1[i] * x[i - 1];
                         if (m1[i] > 0){
-                            file.write("+ "+ Double.toString(m1[i])+"x"+Integer.toString(i));
+                            file.write("+ "+ String.format("%.4f", m1[i])+"x"+Integer.toString(i));
                         } else {
                             m1[i] *= -1;
-                            file.write("- "+ Double.toString(m1[i])+"x"+Integer.toString(i));
+                            file.write("- "+ String.format("%.4f", m1[i])+"x"+Integer.toString(i));
                         }
                     } else if (i == mTemp.row - 1){
                         result = m1[i] * x[i - 1];
                         if (m1[i] > 0){
-                            file.write("+ "+Double.toString(m1[i])+"x^"+Integer.toString(i));
+                            file.write("+ "+String.format("%.4f", m1[i])+"x^"+Integer.toString(i));
                         } else {
                             m1[i] *= -1;
-                            file.write("- "+Double.toString(m1[i])+"x^"+Integer.toString(i));
+                            file.write("- "+String.format("%.4f", m1[i])+"x^"+Integer.toString(i));
                         }
                     }
                 }
-                file.write("\nf(xk) = "+Double.toString(sum));
+                file.write("\nf(xk) = "+String.format("%.4f", sum));
                 file.close();
             }
             catch(IOException err) {
@@ -229,30 +229,30 @@ public class Regresi {
                 for (i = 0; i < mTemp.row; i++) {
                     if (i == 0){
                         if (x[i] > 0){
-                            file.write(Double.toString(x[i]));
+                            file.write(String.format("%.4f", x[i]));
                         } else {
                             x[i] *= -1;
-                            file.write("- "+Double.toString(x[i]));
+                            file.write("- "+String.format("%.4f", x[i]));
                         }
                     } else if (i > 0 && i < mTemp.row - 1){
                         result = x[i] * m2[i - 1];
                         if (x[i] > 0){
-                            file.write("+ "+ Double.toString(x[i])+"x"+Integer.toString(i));
+                            file.write("+ "+ String.format("%.4f", x[i])+"x"+Integer.toString(i));
                         } else {
                             x[i] *= -1;
-                            file.write("- "+ Double.toString(x[i])+"x"+Integer.toString(i));
+                            file.write("- "+ String.format("%.4f", x[i])+"x"+Integer.toString(i));
                         }
                     } else if (i == mTemp.row - 1){
                         result = x[i] * m2[i - 1];
                         if (x[i] > 0){
-                            file.write("+ "+Double.toString(x[i])+"x^"+Integer.toString(i));
+                            file.write("+ "+String.format("%.4f", x[i])+"x^"+Integer.toString(i));
                         } else {
                             x[i] *= -1;
-                            file.write("- "+Double.toString(x[i])+"x^"+Integer.toString(i));
+                            file.write("- "+String.format("%.4f", x[i])+"x^"+Integer.toString(i));
                         }
                     }
                 }
-                file.write("\nf(xk) = "+Double.toString(sum));
+                file.write("\nf(xk) = "+String.format("%.4f", sum));
                 file.close();
             }
             catch(IOException err) {

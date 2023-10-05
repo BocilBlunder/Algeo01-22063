@@ -253,7 +253,7 @@ public class Bicubic {
             }
         }
         // output file
-        System.out.println("f(" + m2.matrix[0][0] + "," + m2.matrix[0][1]+ ") = " + hasil);
+        System.out.println("f(" + m2.matrix[0][0] + "," + m2.matrix[0][1]+ ") = " + String.format("%.4f", hasil));
         int pil3 = OutputMatrix.printMenuOutput();
         if(pil3 == 1) {
             String nameFile = "";
@@ -267,7 +267,7 @@ public class Bicubic {
             }
             try {
                 FileWriter file = new FileWriter("test/Output/" + nameFile);
-                file.write("f(" + Double.toString(m2.matrix[0][0]) + "," + Double.toString(m2.matrix[0][1])+ ") = " + Double.toString(hasil));
+                file.write("f(" + Double.toString(m2.matrix[0][0]) + "," + Double.toString(m2.matrix[0][1])+ ") = " + String.format("%.4f", hasil));
                 file.close();
             }
             catch(IOException err) {
