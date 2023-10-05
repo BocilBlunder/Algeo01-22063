@@ -35,7 +35,7 @@ Aljabar Linier dan Geometri </center> </h1>
 </ul>
 
 <h2> <b> Keterangan Folder </b> </h2>
-<li> <h3> <b> Folder 'bin' </b> </h3> <li>
+<h3> <b> Folder 'bin' </b> </h3>
 <ul> <li> <p> <b> Folder 'Function Class' </b> </p> </li> </ul>
 <p> Berisikan file java bytecode (Folder Function) .class</p>
 <ul> <li> <p> <b> Folder 'Matrix Class' </b> </p> </li> </ul>
