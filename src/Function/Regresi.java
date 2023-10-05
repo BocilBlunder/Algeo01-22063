@@ -87,13 +87,13 @@ public class Regresi {
             System.out.println("Masukkan nama file: ");
             try {
                 nameFile = inputFile.readLine();
-                String path = "Test/" + nameFile;
+                String path = "test/Output/" + nameFile;
             }
             catch (IOException err) {
                 err.printStackTrace();
             }
             try {
-                FileWriter file = new FileWriter("Test/" + nameFile);
+                FileWriter file = new FileWriter("test/Output/" + nameFile);
                 file.write("f(x) = ");
                 for (i = 0; i < mTemp.row; i++) {
                     if (i == 0){
@@ -218,13 +218,13 @@ public class Regresi {
             System.out.println("Masukkan nama file: ");
             try {
                 nameFile = inputFile.readLine();
-                String path = "Test/" + nameFile;
+                String path = "test/Output/" + nameFile;
             }
             catch (IOException err) {
                 err.printStackTrace();
             }
             try {
-                FileWriter file = new FileWriter("Test/" + nameFile);
+                FileWriter file = new FileWriter("test/Output/" + nameFile);
                 file.write("f(x) = ");
                 for (i = 0; i < mTemp.row; i++) {
                     if (i == 0){

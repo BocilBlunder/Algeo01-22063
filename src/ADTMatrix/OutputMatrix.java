@@ -44,13 +44,13 @@ public class OutputMatrix {
             System.out.print("Masukkan nama file: ");
             try{
                 newfileName = inputFile.readLine();
-                String path = "Test/" + newfileName;
+                String path = "test/Output/" + newfileName;
             }
             catch(IOException err){
                 err.printStackTrace();
             }
             try{
-                FileWriter file = new FileWriter("Test/" + newfileName);
+                FileWriter file = new FileWriter("test/Output/" + newfileName);
                 file.write("Determinan: "+ String.format("%.4f", det));
                 file.close();
             }
@@ -73,13 +73,13 @@ public class OutputMatrix {
             System.out.print("Masukkan nama file: ");
             try{
                 newfileName = inputFile.readLine();
-                String path = "Test/" + newfileName;
+                String path = "test/Output/" + newfileName;
             }
             catch(IOException err){
                 err.printStackTrace();
             }
             try{
-                FileWriter file = new FileWriter("Test/" + newfileName);
+                FileWriter file = new FileWriter("test/Output/" + newfileName);
                 int i, j;
                 Matrix m2 = new Matrix (m1.row, m1.col);
                 for (i = 0; i < m1.row; i++){

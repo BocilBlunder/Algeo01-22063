@@ -41,13 +41,13 @@ public class SPL {
                 System.out.print("Masukkan nama file: ");
                 try{
                     newfileName = inputFile.readLine();
-                    String path = "Test/" + newfileName;
+                    String path = "test/Output/" + newfileName;
                 }
                 catch(IOException err){
                     err.printStackTrace();
                 }
                 try{
-                    FileWriter file = new FileWriter("Test/" + newfileName);
+                    FileWriter file = new FileWriter("test/Output/" + newfileName);
                     file.write("SPL tidak dapat diselesaikan dengan metode invers.");
                     file.close();
                 }
@@ -72,13 +72,13 @@ public class SPL {
                 System.out.print("Masukkan nama file: ");
                 try{
                     newfileName = inputFile.readLine();
-                    String path = "Test/" + newfileName;
+                    String path = "test/Output/" + newfileName;
                 }
                 catch(IOException err){
                     err.printStackTrace();
                 }
                 try{
-                    FileWriter file = new FileWriter("Test/" + newfileName);
+                    FileWriter file = new FileWriter("test/Output/" + newfileName);
                     for(i = 0; i < x.getRowLength(); i++){
                         if (i != x.row - 1){
                             double temp = x.getElmt(i, 0);
@@ -131,13 +131,13 @@ public class SPL {
                 System.out.print("Masukkan nama file: ");
                 try{
                     newfileName = inputFile.readLine();
-                    String path = "Test/" + newfileName;
+                    String path = "test/Output/" + newfileName;
                 }
                 catch(IOException err){
                     err.printStackTrace();
                 }
                 try{
-                    FileWriter file = new FileWriter("Test/" + newfileName);
+                    FileWriter file = new FileWriter("test/Output/" + newfileName);
                     file.write("SPL tidak dapat diselesaikan dengan metode cramer.");
                     file.close();
                 }
@@ -169,13 +169,13 @@ public class SPL {
                 System.out.print("Masukkan nama file: ");
                 try{
                     newfileName = inputFile.readLine();
-                    String path = "Test/" + newfileName;
+                    String path = "test/Output/" + newfileName;
                 }
                 catch(IOException err){
                     err.printStackTrace();
                 }
                 try{
-                    FileWriter file = new FileWriter("Test/" + newfileName);
+                    FileWriter file = new FileWriter("test/Output/" + newfileName);
                     for (j = 0; j < A.row; j++){
                         for (i = 0; i < A.row; i++){
                             mTemp.setElmt(i, j, mCramer.getElmt(i, A.row));
@@ -214,13 +214,13 @@ public class SPL {
                 System.out.println("Masukkan nama file: ");
                 try {
                     nameFile = inputFile.readLine();
-                    String path = "Test/" + nameFile;
+                    String path = "test/Output/" + nameFile;
                 }
                 catch (IOException err) {
                     err.printStackTrace();
                 }
                 try {
-                    FileWriter file = new FileWriter("Test/" + nameFile);
+                    FileWriter file = new FileWriter("test/Output/" + nameFile);
                     file.write("Solusi tidak ada.");
                     file.close();
                 }
@@ -240,13 +240,13 @@ public class SPL {
                 System.out.println("Masukkan nama file: ");
                 try {
                     nameFile = inputFile.readLine();
-                    String path = "Test/" + nameFile;
+                    String path = "test/Output/" + nameFile;
                 }
                 catch (IOException err) {
                     err.printStackTrace();
                 }
                 try {
-                    FileWriter file = new FileWriter("Test/" + nameFile);
+                    FileWriter file = new FileWriter("test/Output/" + nameFile);
                     file.write("Solusi tunggal:\n");
                     for (int i = 0; i < Mgauss.getRowLength(); i++) {
                         String tempString = Double.toString(X[i]);
@@ -286,13 +286,13 @@ public class SPL {
                 System.out.println("Masukkan nama file: ");
                 try {
                     nameFile = inputFile.readLine();
-                    String path = "Test/" + nameFile;
+                    String path = "test/Output/" + nameFile;
                 }
                 catch (IOException err) {
                     err.printStackTrace();
                 }
                 try {
-                    FileWriter file = new FileWriter("Test/" + nameFile);
+                    FileWriter file = new FileWriter("test/Output/" + nameFile);
                     file.write("Solusi tidak ada.");
                     file.close();
                 }
@@ -312,13 +312,13 @@ public class SPL {
                 System.out.println("Masukkan nama file: ");
                 try {
                     nameFile = inputFile.readLine();
-                    String path = "Test/" + nameFile;
+                    String path = "test/Output/" + nameFile;
                 }
                 catch (IOException err) {
                     err.printStackTrace();
                 }
                 try {
-                    FileWriter file = new FileWriter("Test/" + nameFile);
+                    FileWriter file = new FileWriter("test/Output/" + nameFile);
                     file.write("Solusi tunggal:\n");
                     for (int i = 0; i < Mgajo.getRowLength(); i++) {
                         String tempString = Double.toString(Mgajo.matrix[i][Mgajo.getColLength() - 1]);

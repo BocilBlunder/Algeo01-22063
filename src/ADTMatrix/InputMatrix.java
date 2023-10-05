@@ -120,7 +120,7 @@ public class InputMatrix{
         // Input Nama File
         System.out.print("Masukkan nama file: ");
         String file = input.nextLine();
-        String path = "test/" + file;
+        String path = "test/Input/" + file;
         System.out.println(path);
 
         // Mencari File

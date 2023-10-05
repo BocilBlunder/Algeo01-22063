@@ -345,13 +345,13 @@ public class Matrix {
             System.out.print("Masukkan nama file: ");
             try{
                 newfileName = inputFile.readLine();
-                String path = "Test/" + newfileName;
+                String path = "test/Output/" + newfileName;
             }
             catch(IOException err){
                 err.printStackTrace();
             }
             try{
-                FileWriter file = new FileWriter("Test/" + newfileName);
+                FileWriter file = new FileWriter("test/Output/" + newfileName);
                 file.write("Solusi parametrik:\n");
                 nEff = matrix.getColLength() - 1;
                 visited = new boolean[nEff];
