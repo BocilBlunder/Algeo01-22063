@@ -10,8 +10,7 @@ Aljabar Linier dan Geometri </center> </h1>
 </ol> </h3>
 
 <h2> <b> Penjelasan Singkat Program </b> </h2>
-<h3> <center> Program ini adalah implementasi dari library mengenai matrix yang berisi metode penyelesaian untuk <br>
-sistem persamaan linear, determinan, invers, interpolasi polinomial, interpolasi bikubik, dan regresi linear. </center> <h3> 
+<p> <center> Program ini adalah implementasi dari library mengenai matrix yang berisi metode penyelesaian untuk <br> sistem persamaan linear, determinan, invers, interpolasi polinomial, interpolasi bikubik, dan regresi linear. </center> <p> 
 
 <h2> <b> Cara Menjalankan Program </b> </h2>
 <ul> 
@@ -50,29 +49,29 @@ sistem persamaan linear, determinan, invers, interpolasi polinomial, interpolasi
 <ul> <li> <p> <b> Folder 'Function' </b> </p> </li> </ul>
 <p> Berisikan file yang mengandung algoritma untuk menyelesaikan fungsi SPL, determinan, invers, interpolasi polinomial, interpolasi bikubik, dan regresi</b>
 <h3> <b> Folder 'test' </b> </h3>
-<<ul> <li> <p> <b> Folder 'Input' </b> </p> </li> </ul>
+<ul> <li> <p> <b> Folder 'Input' </b> </p> </li> </ul>
 <p> Berisikan file-file inputan dari user </p>
 <ul> <li> <p> <b> Folder 'Output' </b> </p> </li> </ul>
 <p> Berisikan file-file hasil output program yang disimpan </b>
 
 <h2> <b> Keterangan File </b> </h2>
-<p> <b> File Main.java </b> </p>
+<ul> <li> <p> <b> File Main.java </b> </p> </li> </ul>
 <p> File yang berisikan program utama untuk menjalankan semua pengolahan dalam matriks </p>
-<p> <b> File Matrix.java </b> </p>
+<ul> <li> <p> <b> File Matrix.java </b> </p> </li> </ul>
 <p> File yang berisikan segala algoritma untuk pengolahan matriks </p>
-<p> <b> File InputMatrix.java </b> </p>
+<ul> <li> <p> <b> File InputMatrix.java </b> </p> </li> </ul>
 <p> File yang berisikan segala algoritma untuk mengatur input dalam terminal maupun pada text (file) </p>
-<p> <b> File OutputMatrix.java </b> </p>
+<ul> <li> <p> <b> File OutputMatrix.java </b> </p> </li> </ul>
 <p> File yang berisikan segala algoritma untuk mengatur output dalam terminal maupun pada text (file) </p>
-<p> <b> File SPL.java </b> </p>
+<ul> <li> <p> <b> File SPL.java </b> </p> </li> </ul>
 <p> File yang berisikan segala algoritma untuk menemukan solusi dari sistem persamaan linear </p>
-<p> <b> File Determinan.java </b> </p>
+<ul> <li> <p> <b> File Determinan.java </b> </p> </li> </ul>
 <p> File yang berisikan segala algoritma untuk menghitung nilai determinan dari matriks. </p>
-<p> <b> File Invers.java </b> </p>
+<ul> <li> <p> <b> File Invers.java </b> </p> </li> </ul>
 <p> File yang berisikan segala algoritma untuk mencari bentuk invers dari matriks. </p>
-<p> <b> File Interpolasi.java </b> </p>
+<ul> <li> <p> <b> File Interpolasi.java </b> </p> </li> </ul>
 <p> File yang berisikan segala algoritma untuk melakukan fungsi interpolasi polinomial. </p>
-<p> <b> File Bikubic.java </b></p>
+<ul> <li> <p> <b> File Bikubic.java </b> </p> </li> </ul>
 <p> File yang berisikan segala algoritma untuk melakukan fungsi interpolasi bikubik. </p>
-<p> <b> File Regresi.java </b></p>
+<ul> <li> <p> <b> File Regresi.java </b> </p> </li> </ul>
 <p> File yang berisikan segala algoritma untuk melakukan fungsi regresi linear berganda. </p>
