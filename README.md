@@ -35,12 +35,12 @@ Aljabar Linier dan Geometri </center> </h1>
 </ul>
 
 <h2> <b> Keterangan Folder </b> </h2>
-<h3> <b> Folder 'bin' </b> </h3>
+<ol> <li> <h3> <b> Folder 'bin' </b> </h3> <li> <ol> 
 <ul> <li> <p> <b> Folder 'Function Class' </b> </p> </li> </ul>
 <p> Berisikan file java bytecode (Folder Function) .class</p>
 <ul> <li> <p> <b> Folder 'Matrix Class' </b> </p> </li> </ul>
 <p> Berisikan file java bytecode (Folder ADTMatrix) .class </b>
-<h3> <b> Folder 'doc' </b> </h3>
+<ol> <li>  <h3> <b> Folder 'doc' </b> </h3>
 <p> Berisikan file hasil laporan tugas besar Algeo </p>
 <h3> <b> Folder 'src' </b> </h3>
 <p> Berisikan file-file yang mengandung program utama dari pemenuhan Tugas Besar ini. File yang dimaksud adalah file main, file input/output, dan file yang berisi semua prosedur dan fungsi penunjang </p>
